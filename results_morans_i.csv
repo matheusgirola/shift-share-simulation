@@ -1,0 +1,13 @@
+series,morans_I,p_value
+TRUE c_bar (regional rate),0.6590435192400603,0.001
+Classic Dunn (base wts) [rate],0.6309455238584741,0.001
+Classic Dunn (terminal wts) [rate],0.5891826741518319,0.001
+"Classic Dunn (avg wts, Fuchs) [rate]",0.6132560509537116,0.001
+Esteban-Marquillas (static) [rate],0.6439832635296068,0.001
+Arcelus I (static) [rate],0.6439832635296068,0.001
+Dynamic (Barff-Knight) [rate],0.6301858686437705,0.001
+Dynamic Esteban-Marquillas [rate],0.6474047571619509,0.001
+Berzeg ANOVA (stochastic) [rate],0.6301858686437702,0.001
+Full-analogue regression [rate],0.6251731148934133,0.001
+Nazara-Hewings spatial (static) [rate],0.6309455238584742,0.001
+Nazara-Hewings spatial (dynamic) [rate],0.6301858686437705,0.001
