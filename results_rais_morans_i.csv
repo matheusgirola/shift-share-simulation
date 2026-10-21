@@ -1,0 +1,16 @@
+series,morans_I,p_value
+crescimento total observado,0.16416380685367662,0.268
+Classic Dunn (base wts) [rate],0.12831214260635485,0.389
+Classic Dunn (terminal wts) [rate],0.05623731019032954,0.679
+"Classic Dunn (avg wts, Fuchs) [rate]",0.073875635507267,0.608
+Esteban-Marquillas (static) [rate],0.18997077737753243,0.183
+Arcelus I (static) [rate],0.18997077737753243,0.183
+Dynamic (Barff-Knight) [rate],0.1417783424486945,0.339
+Dynamic Esteban-Marquillas [rate],0.1663142413827746,0.235
+Berzeg ANOVA (stochastic) [rate],0.14177834244869453,0.339
+Full-analogue regression [rate],0.1543325469315589,0.307
+Nazara-Hewings spatial (static) [rate],0.12831214260635487,0.389
+Nazara-Hewings spatial (dynamic) [rate],0.14177834244869447,0.339
+Knudsen MDI (static) [rate],0.1313004972683748,0.375
+Knudsen MDI (dynamic) [rate],0.15451987130599498,0.307
+Dynamic (Barff-Knight) [nível],0.10062867002846623,0.427

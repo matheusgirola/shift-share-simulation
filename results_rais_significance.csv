@@ -1,0 +1,5 @@
+model,n_significant,share_significant,significant_states
+Berzeg ANOVA (stochastic),4,0.14814814814814814,AP PI RS TO
+Full-analogue regression,0,0.0,
+Knudsen MDI (static),3,0.1111111111111111,PI RS TO
+Knudsen MDI (dynamic),2,0.07407407407407407,PI RS

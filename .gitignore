@@ -1,0 +1,8 @@
+# RAIS microdata downloaded and unpacked by rais_data.build() (~10 GB);
+# the committed aggregate it produces is rais_uf_secao.csv
+_rais_cache/
+
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/

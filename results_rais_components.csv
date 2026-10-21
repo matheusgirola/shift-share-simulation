@@ -1,0 +1,1081 @@
+model,region,component,jobs
+Classic Dunn (base wts),AC,national,10214.871279734567
+Classic Dunn (base wts),AL,national,43016.594476759696
+Classic Dunn (base wts),AP,national,8881.406479474219
+Classic Dunn (base wts),AM,national,55344.61243028791
+Classic Dunn (base wts),BA,national,203997.55602201502
+Classic Dunn (base wts),CE,national,131820.48175276513
+Classic Dunn (base wts),DF,national,100342.67537450507
+Classic Dunn (base wts),ES,national,91427.27388399265
+Classic Dunn (base wts),GO,national,160260.6660181652
+Classic Dunn (base wts),MA,national,60710.15833914885
+Classic Dunn (base wts),MT,national,92363.7105306465
+Classic Dunn (base wts),MS,national,68134.18610467107
+Classic Dunn (base wts),MG,national,495302.79914286075
+Classic Dunn (base wts),PA,national,96055.73660599161
+Classic Dunn (base wts),PB,national,51098.69850534216
+Classic Dunn (base wts),PR,national,322268.92741859
+Classic Dunn (base wts),PE,national,144780.76494245426
+Classic Dunn (base wts),PI,national,36597.41307146202
+Classic Dunn (base wts),RJ,national,372843.7460161739
+Classic Dunn (base wts),RN,national,50401.2761646914
+Classic Dunn (base wts),RS,national,283023.89055534505
+Classic Dunn (base wts),RO,national,28736.591383248513
+Classic Dunn (base wts),RR,national,7441.025271041291
+Classic Dunn (base wts),SC,national,250543.02150571122
+Classic Dunn (base wts),SP,national,1400585.851097784
+Classic Dunn (base wts),SE,national,32678.858512069208
+Classic Dunn (base wts),TO,national,25382.20711506665
+Classic Dunn (base wts),AC,mix,258.170110624652
+Classic Dunn (base wts),AL,mix,-706.0005445583632
+Classic Dunn (base wts),AP,mix,2211.314189964287
+Classic Dunn (base wts),AM,mix,8380.501815247733
+Classic Dunn (base wts),BA,mix,-69.49536274502111
+Classic Dunn (base wts),CE,mix,2117.9735864813347
+Classic Dunn (base wts),DF,mix,14440.038557594005
+Classic Dunn (base wts),ES,mix,657.0666642046142
+Classic Dunn (base wts),GO,mix,6090.679743955986
+Classic Dunn (base wts),MA,mix,792.6256622617732
+Classic Dunn (base wts),MT,mix,-16973.404207553347
+Classic Dunn (base wts),MS,mix,-789.432154929685
+Classic Dunn (base wts),MG,mix,7665.90548296312
+Classic Dunn (base wts),PA,mix,1650.0847514490367
+Classic Dunn (base wts),PB,mix,4093.1758810077545
+Classic Dunn (base wts),PR,mix,-9045.30365262039
+Classic Dunn (base wts),PE,mix,2283.1808477735112
+Classic Dunn (base wts),PI,mix,7830.566662321139
+Classic Dunn (base wts),RJ,mix,42205.17910169295
+Classic Dunn (base wts),RN,mix,3147.162519238111
+Classic Dunn (base wts),RS,mix,-25856.267855922375
+Classic Dunn (base wts),RO,mix,-4277.713687735502
+Classic Dunn (base wts),RR,mix,148.319626140408
+Classic Dunn (base wts),SC,mix,-32663.764911232884
+Classic Dunn (base wts),SP,mix,-22637.603702762593
+Classic Dunn (base wts),SE,mix,2712.0541156638365
+Classic Dunn (base wts),TO,mix,6334.986761478416
+Classic Dunn (base wts),AC,competitive,1004.9586096407809
+Classic Dunn (base wts),AL,competitive,-3117.593932201338
+Classic Dunn (base wts),AP,competitive,10227.279330561489
+Classic Dunn (base wts),AM,competitive,-19768.114245535646
+Classic Dunn (base wts),BA,competitive,4263.939340730118
+Classic Dunn (base wts),CE,competitive,6493.544660753497
+Classic Dunn (base wts),DF,competitive,-31874.713932099075
+Classic Dunn (base wts),ES,competitive,-11668.340548197253
+Classic Dunn (base wts),GO,competitive,-6469.3457621212
+Classic Dunn (base wts),MA,competitive,29470.215998589367
+Classic Dunn (base wts),MT,competitive,6510.693676906851
+Classic Dunn (base wts),MS,competitive,-22528.753949741345
+Classic Dunn (base wts),MG,competitive,68711.29537417597
+Classic Dunn (base wts),PA,competitive,26874.178642559298
+Classic Dunn (base wts),PB,competitive,32318.12561365007
+Classic Dunn (base wts),PR,competitive,-24246.62376596959
+Classic Dunn (base wts),PE,competitive,14232.054209772217
+Classic Dunn (base wts),PI,competitive,42747.02026621683
+Classic Dunn (base wts),RJ,competitive,-67028.92511786695
+Classic Dunn (base wts),RN,competitive,7826.561316070483
+Classic Dunn (base wts),RS,competitive,-135479.62269942267
+Classic Dunn (base wts),RO,competitive,4624.12230448698
+Classic Dunn (base wts),RR,competitive,12196.655102818304
+Classic Dunn (base wts),SC,competitive,-14191.256594478375
+Classic Dunn (base wts),SP,competitive,26049.752604978654
+Classic Dunn (base wts),SE,competitive,9334.08737226695
+Classic Dunn (base wts),TO,competitive,33488.80612345493
+Classic Dunn (terminal wts),AC,national,10334.817294243403
+Classic Dunn (terminal wts),AL,national,42653.508030202654
+Classic Dunn (terminal wts),AP,national,10062.568537581003
+Classic Dunn (terminal wts),AM,national,54263.25096342387
+Classic Dunn (terminal wts),BA,national,204395.85813498904
+Classic Dunn (terminal wts),CE,national,132638.2268297743
+Classic Dunn (terminal wts),DF,national,98687.08810784249
+Classic Dunn (terminal wts),ES,national,90381.64932027232
+Classic Dunn (terminal wts),GO,national,160224.70809956192
+Classic Dunn (terminal wts),MA,national,63583.90128133158
+Classic Dunn (terminal wts),MT,national,91370.17724383551
+Classic Dunn (terminal wts),MS,national,65919.90386727336
+Classic Dunn (terminal wts),MG,national,502555.5364887661
+Classic Dunn (terminal wts),PA,national,98764.38510397894
+Classic Dunn (terminal wts),PB,national,54556.29584066844
+Classic Dunn (terminal wts),PR,national,319107.5441445732
+Classic Dunn (terminal wts),PE,national,146349.04265797712
+Classic Dunn (terminal wts),PI,national,41400.233146899416
+Classic Dunn (terminal wts),RJ,national,370486.4966305421
+Classic Dunn (terminal wts),RN,national,51443.33499626424
+Classic Dunn (terminal wts),RS,national,267703.5223625602
+Classic Dunn (terminal wts),RO,national,28769.48615660315
+Classic Dunn (terminal wts),RR,national,8613.297339749966
+Classic Dunn (terminal wts),SC,national,246093.6942129592
+Classic Dunn (terminal wts),SP,national,1400909.8668969383
+Classic Dunn (terminal wts),SE,national,33822.75353915973
+Classic Dunn (terminal wts),TO,national,29163.852772026574
+Classic Dunn (terminal wts),AC,mix,789.9300325381286
+Classic Dunn (terminal wts),AL,mix,110.82973165034286
+Classic Dunn (terminal wts),AP,mix,3113.311541244497
+Classic Dunn (terminal wts),AM,mix,-894.4793685625739
+Classic Dunn (terminal wts),BA,mix,4766.9850291481835
+Classic Dunn (terminal wts),CE,mix,5304.936779462355
+Classic Dunn (terminal wts),DF,mix,15299.892350686563
+Classic Dunn (terminal wts),ES,mix,1064.419230742566
+Classic Dunn (terminal wts),GO,mix,18564.288909605966
+Classic Dunn (terminal wts),MA,mix,4649.099783364598
+Classic Dunn (terminal wts),MT,mix,-16350.015772107025
+Classic Dunn (terminal wts),MS,mix,-4134.177877823832
+Classic Dunn (terminal wts),MG,mix,84432.6261023355
+Classic Dunn (terminal wts),PA,mix,4048.0564765264876
+Classic Dunn (terminal wts),PB,mix,6149.519097326771
+Classic Dunn (terminal wts),PR,mix,5203.041582010043
+Classic Dunn (terminal wts),PE,mix,5254.6961529733535
+Classic Dunn (terminal wts),PI,mix,16095.023509111143
+Classic Dunn (terminal wts),RJ,mix,52085.6098393416
+Classic Dunn (terminal wts),RN,mix,3705.2252346593827
+Classic Dunn (terminal wts),RS,mix,-18648.285502964514
+Classic Dunn (terminal wts),RO,mix,-2913.676265842753
+Classic Dunn (terminal wts),RR,mix,1099.058323933741
+Classic Dunn (terminal wts),SC,mix,-27824.27381024486
+Classic Dunn (terminal wts),SP,mix,117578.52476722206
+Classic Dunn (terminal wts),SE,mix,3471.4675874557693
+Classic Dunn (terminal wts),TO,mix,15046.037428070968
+Classic Dunn (terminal wts),AC,competitive,2462.264839675071
+Classic Dunn (terminal wts),AL,competitive,337.3726680604991
+Classic Dunn (terminal wts),AP,competitive,13579.051918962175
+Classic Dunn (terminal wts),AM,competitive,14331.66188985131
+Classic Dunn (terminal wts),BA,competitive,7811.899250759145
+Classic Dunn (terminal wts),CE,competitive,14278.106968706174
+Classic Dunn (terminal wts),DF,competitive,-17541.00292550122
+Classic Dunn (terminal wts),ES,competitive,-10590.220148021785
+Classic Dunn (terminal wts),GO,competitive,-2461.3615453133025
+Classic Dunn (terminal wts),MA,competitive,37902.287409892706
+Classic Dunn (terminal wts),MT,competitive,15545.27850834945
+Classic Dunn (terminal wts),MS,competitive,-13168.478824164868
+Classic Dunn (terminal wts),MG,competitive,178714.44066569666
+Classic Dunn (terminal wts),PA,competitive,30928.314351720936
+Classic Dunn (terminal wts),PB,competitive,51847.34739928312
+Classic Dunn (terminal wts),PR,competitive,-26251.147308349333
+Classic Dunn (terminal wts),PE,competitive,20278.093168561558
+Classic Dunn (terminal wts),PI,competitive,57187.75429454796
+Classic Dunn (terminal wts),RJ,competitive,-55090.090323213415
+Classic Dunn (terminal wts),RN,competitive,10431.408659529548
+Classic Dunn (terminal wts),RS,competitive,-124949.10638522098
+Classic Dunn (terminal wts),RO,competitive,9425.640470075661
+Classic Dunn (terminal wts),RR,competitive,33403.05482097785
+Classic Dunn (terminal wts),SC,competitive,-8569.912023799885
+Classic Dunn (terminal wts),SP,competitive,212587.53918365392
+Classic Dunn (terminal wts),SE,competitive,11925.996758551595
+Classic Dunn (terminal wts),TO,competitive,52533.81322879045
+"Classic Dunn (avg wts, Fuchs)",AC,national,10274.844286988986
+"Classic Dunn (avg wts, Fuchs)",AL,national,42835.05125348118
+"Classic Dunn (avg wts, Fuchs)",AP,national,9471.98750852761
+"Classic Dunn (avg wts, Fuchs)",AM,national,54803.9316968559
+"Classic Dunn (avg wts, Fuchs)",BA,national,204196.707078502
+"Classic Dunn (avg wts, Fuchs)",CE,national,132229.3542912697
+"Classic Dunn (avg wts, Fuchs)",DF,national,99514.88174117378
+"Classic Dunn (avg wts, Fuchs)",ES,national,90904.46160213249
+"Classic Dunn (avg wts, Fuchs)",GO,national,160242.68705886358
+"Classic Dunn (avg wts, Fuchs)",MA,national,62147.02981024022
+"Classic Dunn (avg wts, Fuchs)",MT,national,91866.94388724101
+"Classic Dunn (avg wts, Fuchs)",MS,national,67027.0449859722
+"Classic Dunn (avg wts, Fuchs)",MG,national,498929.1678158134
+"Classic Dunn (avg wts, Fuchs)",PA,national,97410.06085498528
+"Classic Dunn (avg wts, Fuchs)",PB,national,52827.49717300531
+"Classic Dunn (avg wts, Fuchs)",PR,national,320688.23578158166
+"Classic Dunn (avg wts, Fuchs)",PE,national,145564.9038002157
+"Classic Dunn (avg wts, Fuchs)",PI,national,38998.82310918072
+"Classic Dunn (avg wts, Fuchs)",RJ,national,371665.1213233579
+"Classic Dunn (avg wts, Fuchs)",RN,national,50922.30558047782
+"Classic Dunn (avg wts, Fuchs)",RS,national,275363.7064589526
+"Classic Dunn (avg wts, Fuchs)",RO,national,28753.03876992583
+"Classic Dunn (avg wts, Fuchs)",RR,national,8027.161305395629
+"Classic Dunn (avg wts, Fuchs)",SC,national,248318.35785933517
+"Classic Dunn (avg wts, Fuchs)",SP,national,1400747.858997361
+"Classic Dunn (avg wts, Fuchs)",SE,national,33250.80602561447
+"Classic Dunn (avg wts, Fuchs)",TO,national,27273.029943546608
+"Classic Dunn (avg wts, Fuchs)",AC,mix,524.0500715813904
+"Classic Dunn (avg wts, Fuchs)",AL,mix,-297.5854064540088
+"Classic Dunn (avg wts, Fuchs)",AP,mix,2662.312865604392
+"Classic Dunn (avg wts, Fuchs)",AM,mix,3743.01122334258
+"Classic Dunn (avg wts, Fuchs)",BA,mix,2348.744833201581
+"Classic Dunn (avg wts, Fuchs)",CE,mix,3711.4551829718444
+"Classic Dunn (avg wts, Fuchs)",DF,mix,14869.965454140283
+"Classic Dunn (avg wts, Fuchs)",ES,mix,860.742947473593
+"Classic Dunn (avg wts, Fuchs)",GO,mix,12327.484326780967
+"Classic Dunn (avg wts, Fuchs)",MA,mix,2720.862722813183
+"Classic Dunn (avg wts, Fuchs)",MT,mix,-16661.709989830186
+"Classic Dunn (avg wts, Fuchs)",MS,mix,-2461.805016376757
+"Classic Dunn (avg wts, Fuchs)",MG,mix,46049.26579264934
+"Classic Dunn (avg wts, Fuchs)",PA,mix,2849.0706139877584
+"Classic Dunn (avg wts, Fuchs)",PB,mix,5121.347489167263
+"Classic Dunn (avg wts, Fuchs)",PR,mix,-1921.1310353051713
+"Classic Dunn (avg wts, Fuchs)",PE,mix,3768.9385003734246
+"Classic Dunn (avg wts, Fuchs)",PI,mix,11962.795085716147
+"Classic Dunn (avg wts, Fuchs)",RJ,mix,47145.39447051728
+"Classic Dunn (avg wts, Fuchs)",RN,mix,3426.193876948747
+"Classic Dunn (avg wts, Fuchs)",RS,mix,-22252.276679443443
+"Classic Dunn (avg wts, Fuchs)",RO,mix,-3595.6949767891274
+"Classic Dunn (avg wts, Fuchs)",RR,mix,623.6889750370741
+"Classic Dunn (avg wts, Fuchs)",SC,mix,-30244.01936073887
+"Classic Dunn (avg wts, Fuchs)",SP,mix,47470.46053222974
+"Classic Dunn (avg wts, Fuchs)",SE,mix,3091.760851559802
+"Classic Dunn (avg wts, Fuchs)",TO,mix,10690.512094774691
+"Classic Dunn (avg wts, Fuchs)",AC,competitive,1733.6117246579258
+"Classic Dunn (avg wts, Fuchs)",AL,competitive,-1390.110632070419
+"Classic Dunn (avg wts, Fuchs)",AP,competitive,11903.165624761832
+"Classic Dunn (avg wts, Fuchs)",AM,competitive,-2718.226177842169
+"Classic Dunn (avg wts, Fuchs)",BA,competitive,6037.919295744627
+"Classic Dunn (avg wts, Fuchs)",CE,competitive,10385.82581472984
+"Classic Dunn (avg wts, Fuchs)",DF,competitive,-24707.858428800144
+"Classic Dunn (avg wts, Fuchs)",ES,competitive,-11129.280348109518
+"Classic Dunn (avg wts, Fuchs)",GO,competitive,-4465.353653717253
+"Classic Dunn (avg wts, Fuchs)",MA,competitive,33686.251704241025
+"Classic Dunn (avg wts, Fuchs)",MT,competitive,11027.98609262815
+"Classic Dunn (avg wts, Fuchs)",MS,competitive,-17848.616386953094
+"Classic Dunn (avg wts, Fuchs)",MG,competitive,123712.86801993633
+"Classic Dunn (avg wts, Fuchs)",PA,competitive,28901.246497140124
+"Classic Dunn (avg wts, Fuchs)",PB,competitive,42082.736506466594
+"Classic Dunn (avg wts, Fuchs)",PR,competitive,-25248.885537159455
+"Classic Dunn (avg wts, Fuchs)",PE,competitive,17255.07368916689
+"Classic Dunn (avg wts, Fuchs)",PI,competitive,49967.3872803824
+"Classic Dunn (avg wts, Fuchs)",RJ,competitive,-61059.50772054018
+"Classic Dunn (avg wts, Fuchs)",RN,competitive,9128.984987800019
+"Classic Dunn (avg wts, Fuchs)",RS,competitive,-130214.36454232184
+"Classic Dunn (avg wts, Fuchs)",RO,competitive,7024.88138728132
+"Classic Dunn (avg wts, Fuchs)",RR,competitive,22799.854961898072
+"Classic Dunn (avg wts, Fuchs)",SC,competitive,-11380.584309139125
+"Classic Dunn (avg wts, Fuchs)",SP,competitive,119318.64589431624
+"Classic Dunn (avg wts, Fuchs)",SE,competitive,10630.042065409269
+"Classic Dunn (avg wts, Fuchs)",TO,competitive,43011.30967612269
+Esteban-Marquillas (static),AC,national,10214.871279734567
+Esteban-Marquillas (static),AL,national,43016.594476759696
+Esteban-Marquillas (static),AP,national,8881.406479474219
+Esteban-Marquillas (static),AM,national,55344.61243028791
+Esteban-Marquillas (static),BA,national,203997.55602201502
+Esteban-Marquillas (static),CE,national,131820.48175276513
+Esteban-Marquillas (static),DF,national,100342.67537450507
+Esteban-Marquillas (static),ES,national,91427.27388399265
+Esteban-Marquillas (static),GO,national,160260.6660181652
+Esteban-Marquillas (static),MA,national,60710.15833914885
+Esteban-Marquillas (static),MT,national,92363.7105306465
+Esteban-Marquillas (static),MS,national,68134.18610467107
+Esteban-Marquillas (static),MG,national,495302.79914286075
+Esteban-Marquillas (static),PA,national,96055.73660599161
+Esteban-Marquillas (static),PB,national,51098.69850534216
+Esteban-Marquillas (static),PR,national,322268.92741859
+Esteban-Marquillas (static),PE,national,144780.76494245426
+Esteban-Marquillas (static),PI,national,36597.41307146202
+Esteban-Marquillas (static),RJ,national,372843.7460161739
+Esteban-Marquillas (static),RN,national,50401.2761646914
+Esteban-Marquillas (static),RS,national,283023.89055534505
+Esteban-Marquillas (static),RO,national,28736.591383248513
+Esteban-Marquillas (static),RR,national,7441.025271041291
+Esteban-Marquillas (static),SC,national,250543.02150571122
+Esteban-Marquillas (static),SP,national,1400585.851097784
+Esteban-Marquillas (static),SE,national,32678.858512069208
+Esteban-Marquillas (static),TO,national,25382.20711506665
+Esteban-Marquillas (static),AC,mix,258.170110624652
+Esteban-Marquillas (static),AL,mix,-706.0005445583632
+Esteban-Marquillas (static),AP,mix,2211.314189964287
+Esteban-Marquillas (static),AM,mix,8380.501815247733
+Esteban-Marquillas (static),BA,mix,-69.49536274502111
+Esteban-Marquillas (static),CE,mix,2117.9735864813347
+Esteban-Marquillas (static),DF,mix,14440.038557594005
+Esteban-Marquillas (static),ES,mix,657.0666642046142
+Esteban-Marquillas (static),GO,mix,6090.679743955986
+Esteban-Marquillas (static),MA,mix,792.6256622617732
+Esteban-Marquillas (static),MT,mix,-16973.404207553347
+Esteban-Marquillas (static),MS,mix,-789.432154929685
+Esteban-Marquillas (static),MG,mix,7665.90548296312
+Esteban-Marquillas (static),PA,mix,1650.0847514490367
+Esteban-Marquillas (static),PB,mix,4093.1758810077545
+Esteban-Marquillas (static),PR,mix,-9045.30365262039
+Esteban-Marquillas (static),PE,mix,2283.1808477735112
+Esteban-Marquillas (static),PI,mix,7830.566662321139
+Esteban-Marquillas (static),RJ,mix,42205.17910169295
+Esteban-Marquillas (static),RN,mix,3147.162519238111
+Esteban-Marquillas (static),RS,mix,-25856.267855922375
+Esteban-Marquillas (static),RO,mix,-4277.713687735502
+Esteban-Marquillas (static),RR,mix,148.319626140408
+Esteban-Marquillas (static),SC,mix,-32663.764911232884
+Esteban-Marquillas (static),SP,mix,-22637.603702762593
+Esteban-Marquillas (static),SE,mix,2712.0541156638365
+Esteban-Marquillas (static),TO,mix,6334.986761478416
+Esteban-Marquillas (static),AC,competitive,2540.800688465052
+Esteban-Marquillas (static),AL,competitive,-1878.8844395953217
+Esteban-Marquillas (static),AP,competitive,15580.892644652411
+Esteban-Marquillas (static),AM,competitive,5832.380387732341
+Esteban-Marquillas (static),BA,competitive,4320.526443196148
+Esteban-Marquillas (static),CE,competitive,15107.749016201768
+Esteban-Marquillas (static),DF,competitive,-37625.752300092296
+Esteban-Marquillas (static),ES,competitive,-12989.835437600897
+Esteban-Marquillas (static),GO,competitive,3537.8478764292577
+Esteban-Marquillas (static),MA,competitive,32473.82212699328
+Esteban-Marquillas (static),MT,competitive,8659.440742611865
+Esteban-Marquillas (static),MS,competitive,-19698.418183074482
+Esteban-Marquillas (static),MG,competitive,54151.392868996
+Esteban-Marquillas (static),PA,competitive,41722.472363268884
+Esteban-Marquillas (static),PB,competitive,33690.386485205796
+Esteban-Marquillas (static),PR,competitive,-22622.546663409466
+Esteban-Marquillas (static),PE,competitive,15515.18358546441
+Esteban-Marquillas (static),PI,competitive,38730.991418929
+Esteban-Marquillas (static),RJ,competitive,-53153.028460158836
+Esteban-Marquillas (static),RN,competitive,6637.042685351497
+Esteban-Marquillas (static),RS,competitive,-130135.8975833116
+Esteban-Marquillas (static),RO,competitive,9394.117780951157
+Esteban-Marquillas (static),RR,competitive,16137.700294083015
+Esteban-Marquillas (static),SC,competitive,-15254.543186928138
+Esteban-Marquillas (static),SP,competitive,127321.77370932065
+Esteban-Marquillas (static),SE,competitive,11206.706076642024
+Esteban-Marquillas (static),TO,competitive,30474.155795595532
+Esteban-Marquillas (static),AC,allocation,-1535.8420788242722
+Esteban-Marquillas (static),AL,allocation,-1238.7094926060167
+Esteban-Marquillas (static),AP,allocation,-5353.613314090922
+Esteban-Marquillas (static),AM,allocation,-25600.49463326798
+Esteban-Marquillas (static),BA,allocation,-56.58710246602878
+Esteban-Marquillas (static),CE,allocation,-8614.204355448266
+Esteban-Marquillas (static),DF,allocation,5751.038367993218
+Esteban-Marquillas (static),ES,allocation,1321.4948894036443
+Esteban-Marquillas (static),GO,allocation,-10007.193638550458
+Esteban-Marquillas (static),MA,allocation,-3003.6061284039124
+Esteban-Marquillas (static),MT,allocation,-2148.7470657050108
+Esteban-Marquillas (static),MS,allocation,-2830.3357666668585
+Esteban-Marquillas (static),MG,allocation,14559.902505179924
+Esteban-Marquillas (static),PA,allocation,-14848.293720709586
+Esteban-Marquillas (static),PB,allocation,-1372.2608715557221
+Esteban-Marquillas (static),PR,allocation,-1624.0771025601314
+Esteban-Marquillas (static),PE,allocation,-1283.1293756921896
+Esteban-Marquillas (static),PI,allocation,4016.02884728782
+Esteban-Marquillas (static),RJ,allocation,-13875.896657708112
+Esteban-Marquillas (static),RN,allocation,1189.5186307189858
+Esteban-Marquillas (static),RS,allocation,-5343.725116111072
+Esteban-Marquillas (static),RO,allocation,-4769.995476464181
+Esteban-Marquillas (static),RR,allocation,-3941.0451912647127
+Esteban-Marquillas (static),SC,allocation,1063.2865924497648
+Esteban-Marquillas (static),SP,allocation,-101272.02110434194
+Esteban-Marquillas (static),SE,allocation,-1872.6187043750747
+Esteban-Marquillas (static),TO,allocation,3014.650327859401
+Arcelus I (static),AC,national,10214.871279734569
+Arcelus I (static),AL,national,43016.59447675969
+Arcelus I (static),AP,national,8881.406479474217
+Arcelus I (static),AM,national,55344.61243028791
+Arcelus I (static),BA,national,203997.556022015
+Arcelus I (static),CE,national,131820.48175276513
+Arcelus I (static),DF,national,100342.67537450507
+Arcelus I (static),ES,national,91427.27388399266
+Arcelus I (static),GO,national,160260.66601816527
+Arcelus I (static),MA,national,60710.15833914886
+Arcelus I (static),MT,national,92363.7105306465
+Arcelus I (static),MS,national,68134.18610467104
+Arcelus I (static),MG,national,495302.79914286063
+Arcelus I (static),PA,national,96055.73660599161
+Arcelus I (static),PB,national,51098.69850534215
+Arcelus I (static),PR,national,322268.92741859
+Arcelus I (static),PE,national,144780.76494245426
+Arcelus I (static),PI,national,36597.41307146202
+Arcelus I (static),RJ,national,372843.7460161739
+Arcelus I (static),RN,national,50401.2761646914
+Arcelus I (static),RS,national,283023.89055534505
+Arcelus I (static),RO,national,28736.591383248517
+Arcelus I (static),RR,national,7441.025271041289
+Arcelus I (static),SC,national,250543.02150571125
+Arcelus I (static),SP,national,1400585.851097784
+Arcelus I (static),SE,national,32678.858512069208
+Arcelus I (static),TO,national,25382.207115066645
+Arcelus I (static),AC,mix,258.170110624652
+Arcelus I (static),AL,mix,-706.0005445583628
+Arcelus I (static),AP,mix,2211.314189964287
+Arcelus I (static),AM,mix,8380.501815247733
+Arcelus I (static),BA,mix,-69.49536274501743
+Arcelus I (static),CE,mix,2117.973586481339
+Arcelus I (static),DF,mix,14440.038557594004
+Arcelus I (static),ES,mix,657.0666642046141
+Arcelus I (static),GO,mix,6090.6797439559905
+Arcelus I (static),MA,mix,792.6256622617711
+Arcelus I (static),MT,mix,-16973.40420755335
+Arcelus I (static),MS,mix,-789.4321549296809
+Arcelus I (static),MG,mix,7665.905482963122
+Arcelus I (static),PA,mix,1650.0847514490379
+Arcelus I (static),PB,mix,4093.1758810077554
+Arcelus I (static),PR,mix,-9045.303652620374
+Arcelus I (static),PE,mix,2283.1808477735094
+Arcelus I (static),PI,mix,7830.56666232114
+Arcelus I (static),RJ,mix,42205.17910169296
+Arcelus I (static),RN,mix,3147.1625192381102
+Arcelus I (static),RS,mix,-25856.267855922382
+Arcelus I (static),RO,mix,-4277.713687735502
+Arcelus I (static),RR,mix,148.31962614040782
+Arcelus I (static),SC,mix,-32663.76491123289
+Arcelus I (static),SP,mix,-22637.603702762586
+Arcelus I (static),SE,mix,2712.0541156638365
+Arcelus I (static),TO,mix,6334.986761478418
+Arcelus I (static),AC,competitive,2540.800688465052
+Arcelus I (static),AL,competitive,-1878.8844395953217
+Arcelus I (static),AP,competitive,15580.892644652411
+Arcelus I (static),AM,competitive,5832.380387732341
+Arcelus I (static),BA,competitive,4320.526443196148
+Arcelus I (static),CE,competitive,15107.749016201768
+Arcelus I (static),DF,competitive,-37625.752300092296
+Arcelus I (static),ES,competitive,-12989.835437600897
+Arcelus I (static),GO,competitive,3537.8478764292577
+Arcelus I (static),MA,competitive,32473.82212699328
+Arcelus I (static),MT,competitive,8659.440742611865
+Arcelus I (static),MS,competitive,-19698.418183074482
+Arcelus I (static),MG,competitive,54151.392868996
+Arcelus I (static),PA,competitive,41722.472363268884
+Arcelus I (static),PB,competitive,33690.386485205796
+Arcelus I (static),PR,competitive,-22622.546663409466
+Arcelus I (static),PE,competitive,15515.18358546441
+Arcelus I (static),PI,competitive,38730.991418929
+Arcelus I (static),RJ,competitive,-53153.028460158836
+Arcelus I (static),RN,competitive,6637.042685351497
+Arcelus I (static),RS,competitive,-130135.8975833116
+Arcelus I (static),RO,competitive,9394.117780951157
+Arcelus I (static),RR,competitive,16137.700294083015
+Arcelus I (static),SC,competitive,-15254.543186928138
+Arcelus I (static),SP,competitive,127321.77370932065
+Arcelus I (static),SE,competitive,11206.706076642024
+Arcelus I (static),TO,competitive,30474.155795595532
+Arcelus I (static),AC,allocation,-1535.8420788242722
+Arcelus I (static),AL,allocation,-1238.7094926060167
+Arcelus I (static),AP,allocation,-5353.613314090922
+Arcelus I (static),AM,allocation,-25600.49463326798
+Arcelus I (static),BA,allocation,-56.58710246602878
+Arcelus I (static),CE,allocation,-8614.204355448266
+Arcelus I (static),DF,allocation,5751.038367993218
+Arcelus I (static),ES,allocation,1321.4948894036443
+Arcelus I (static),GO,allocation,-10007.193638550458
+Arcelus I (static),MA,allocation,-3003.6061284039124
+Arcelus I (static),MT,allocation,-2148.7470657050108
+Arcelus I (static),MS,allocation,-2830.3357666668585
+Arcelus I (static),MG,allocation,14559.902505179924
+Arcelus I (static),PA,allocation,-14848.293720709586
+Arcelus I (static),PB,allocation,-1372.2608715557221
+Arcelus I (static),PR,allocation,-1624.0771025601314
+Arcelus I (static),PE,allocation,-1283.1293756921896
+Arcelus I (static),PI,allocation,4016.02884728782
+Arcelus I (static),RJ,allocation,-13875.896657708112
+Arcelus I (static),RN,allocation,1189.5186307189858
+Arcelus I (static),RS,allocation,-5343.725116111072
+Arcelus I (static),RO,allocation,-4769.995476464181
+Arcelus I (static),RR,allocation,-3941.0451912647127
+Arcelus I (static),SC,allocation,1063.2865924497648
+Arcelus I (static),SP,allocation,-101272.02110434194
+Arcelus I (static),SE,allocation,-1872.6187043750747
+Arcelus I (static),TO,allocation,3014.650327859401
+Dynamic (Barff-Knight),AC,national,10233.245546329545
+Dynamic (Barff-Knight),AL,national,42833.65326686374
+Dynamic (Barff-Knight),AP,national,9216.506904412128
+Dynamic (Barff-Knight),AM,national,54709.17303264345
+Dynamic (Barff-Knight),BA,national,202156.14975376966
+Dynamic (Barff-Knight),CE,national,131593.67690606596
+Dynamic (Barff-Knight),DF,national,97446.99391851906
+Dynamic (Barff-Knight),ES,national,91265.23996584293
+Dynamic (Barff-Knight),GO,national,160099.70603811915
+Dynamic (Barff-Knight),MA,national,62167.76416039214
+Dynamic (Barff-Knight),MT,national,92100.43318526208
+Dynamic (Barff-Knight),MS,national,67681.8025350312
+Dynamic (Barff-Knight),MG,national,498174.41121402313
+Dynamic (Barff-Knight),PA,national,97177.74466575749
+Dynamic (Barff-Knight),PB,national,51795.829129356265
+Dynamic (Barff-Knight),PR,national,320712.42982889916
+Dynamic (Barff-Knight),PE,national,144259.66442705775
+Dynamic (Barff-Knight),PI,national,38227.5377901345
+Dynamic (Barff-Knight),RJ,national,371973.401323445
+Dynamic (Barff-Knight),RN,national,50549.78193736287
+Dynamic (Barff-Knight),RS,national,276579.967602007
+Dynamic (Barff-Knight),RO,national,28675.12553561351
+Dynamic (Barff-Knight),RR,national,8208.785381965834
+Dynamic (Barff-Knight),SC,national,248242.36454450717
+Dynamic (Barff-Knight),SP,national,1408355.1620664492
+Dynamic (Barff-Knight),SE,national,32901.231539291446
+Dynamic (Barff-Knight),TO,national,26917.217800878352
+Dynamic (Barff-Knight),AC,mix,212.72297055818294
+Dynamic (Barff-Knight),AL,mix,-942.161528690213
+Dynamic (Barff-Knight),AP,mix,2130.9076208830816
+Dynamic (Barff-Knight),AM,mix,5943.435182701866
+Dynamic (Barff-Knight),BA,mix,-1552.2083308006906
+Dynamic (Barff-Knight),CE,mix,1078.6300912123393
+Dynamic (Barff-Knight),DF,mix,12450.704204183947
+Dynamic (Barff-Knight),ES,mix,-845.8990898867706
+Dynamic (Barff-Knight),GO,mix,5491.696964851078
+Dynamic (Barff-Knight),MA,mix,1113.8937430343929
+Dynamic (Barff-Knight),MT,mix,-16798.29548804243
+Dynamic (Barff-Knight),MS,mix,-2452.2311129238687
+Dynamic (Barff-Knight),MG,mix,11479.003723054913
+Dynamic (Barff-Knight),PA,mix,779.7298922492691
+Dynamic (Barff-Knight),PB,mix,3346.738822095109
+Dynamic (Barff-Knight),PR,mix,-11499.053104756234
+Dynamic (Barff-Knight),PE,mix,1305.8916697286234
+Dynamic (Barff-Knight),PI,mix,7710.734606623459
+Dynamic (Barff-Knight),RJ,mix,38183.93073766343
+Dynamic (Barff-Knight),RN,mix,2574.495963945822
+Dynamic (Barff-Knight),RS,mix,-26270.893335820536
+Dynamic (Barff-Knight),RO,mix,-3999.9666886067976
+Dynamic (Barff-Knight),RR,mix,315.77827997964056
+Dynamic (Barff-Knight),SC,mix,-32428.711623981297
+Dynamic (Barff-Knight),SP,mix,-6200.932726554678
+Dynamic (Barff-Knight),SE,mix,2181.8235486299445
+Dynamic (Barff-Knight),TO,mix,6690.235008667789
+Dynamic (Barff-Knight),AC,competitive,1032.031483112274
+Dynamic (Barff-Knight),AL,competitive,-2698.4917381735277
+Dynamic (Barff-Knight),AP,competitive,9972.585474704783
+Dynamic (Barff-Knight),AM,competitive,-16695.60821534534
+Dynamic (Barff-Knight),BA,competitive,7588.058577031057
+Dynamic (Barff-Knight),CE,competitive,7759.693002721739
+Dynamic (Barff-Knight),DF,competitive,-26989.698122703063
+Dynamic (Barff-Knight),ES,competitive,-10003.34087595621
+Dynamic (Barff-Knight),GO,competitive,-5709.403002970299
+Dynamic (Barff-Knight),MA,competitive,27691.342096573462
+Dynamic (Barff-Knight),MT,competitive,6598.862302780297
+Dynamic (Barff-Knight),MS,competitive,-20413.571422107343
+Dynamic (Barff-Knight),MG,competitive,62026.58506292189
+Dynamic (Barff-Knight),PA,competitive,26622.525441993283
+Dynamic (Barff-Knight),PB,competitive,32367.432048548657
+Dynamic (Barff-Knight),PR,competitive,-20236.37672414299
+Dynamic (Barff-Knight),PE,competitive,15730.443903213607
+Dynamic (Barff-Knight),PI,competitive,41236.72760324206
+Dynamic (Barff-Knight),RJ,competitive,-62137.33206110813
+Dynamic (Barff-Knight),RN,competitive,8250.722098691289
+Dynamic (Barff-Knight),RS,competitive,-128621.0742661866
+Dynamic (Barff-Knight),RO,competitive,4407.8411529932755
+Dynamic (Barff-Knight),RR,competitive,11261.436338054524
+Dynamic (Barff-Knight),SC,competitive,-12125.652920525841
+Dynamic (Barff-Knight),SP,competitive,1843.770660105787
+Dynamic (Barff-Knight),SE,competitive,9641.9449120786
+Dynamic (Barff-Knight),TO,competitive,31598.547190453857
+Dynamic Esteban-Marquillas,AC,national,10233.245546329545
+Dynamic Esteban-Marquillas,AL,national,42833.65326686374
+Dynamic Esteban-Marquillas,AP,national,9216.506904412128
+Dynamic Esteban-Marquillas,AM,national,54709.17303264345
+Dynamic Esteban-Marquillas,BA,national,202156.14975376966
+Dynamic Esteban-Marquillas,CE,national,131593.67690606596
+Dynamic Esteban-Marquillas,DF,national,97446.99391851906
+Dynamic Esteban-Marquillas,ES,national,91265.23996584293
+Dynamic Esteban-Marquillas,GO,national,160099.70603811915
+Dynamic Esteban-Marquillas,MA,national,62167.76416039214
+Dynamic Esteban-Marquillas,MT,national,92100.43318526208
+Dynamic Esteban-Marquillas,MS,national,67681.8025350312
+Dynamic Esteban-Marquillas,MG,national,498174.41121402313
+Dynamic Esteban-Marquillas,PA,national,97177.74466575749
+Dynamic Esteban-Marquillas,PB,national,51795.829129356265
+Dynamic Esteban-Marquillas,PR,national,320712.42982889916
+Dynamic Esteban-Marquillas,PE,national,144259.66442705775
+Dynamic Esteban-Marquillas,PI,national,38227.5377901345
+Dynamic Esteban-Marquillas,RJ,national,371973.401323445
+Dynamic Esteban-Marquillas,RN,national,50549.78193736287
+Dynamic Esteban-Marquillas,RS,national,276579.967602007
+Dynamic Esteban-Marquillas,RO,national,28675.12553561351
+Dynamic Esteban-Marquillas,RR,national,8208.785381965834
+Dynamic Esteban-Marquillas,SC,national,248242.36454450717
+Dynamic Esteban-Marquillas,SP,national,1408355.1620664492
+Dynamic Esteban-Marquillas,SE,national,32901.231539291446
+Dynamic Esteban-Marquillas,TO,national,26917.217800878352
+Dynamic Esteban-Marquillas,AC,mix,212.72297055818294
+Dynamic Esteban-Marquillas,AL,mix,-942.161528690213
+Dynamic Esteban-Marquillas,AP,mix,2130.9076208830816
+Dynamic Esteban-Marquillas,AM,mix,5943.435182701866
+Dynamic Esteban-Marquillas,BA,mix,-1552.2083308006906
+Dynamic Esteban-Marquillas,CE,mix,1078.6300912123393
+Dynamic Esteban-Marquillas,DF,mix,12450.704204183947
+Dynamic Esteban-Marquillas,ES,mix,-845.8990898867706
+Dynamic Esteban-Marquillas,GO,mix,5491.696964851078
+Dynamic Esteban-Marquillas,MA,mix,1113.8937430343929
+Dynamic Esteban-Marquillas,MT,mix,-16798.29548804243
+Dynamic Esteban-Marquillas,MS,mix,-2452.2311129238687
+Dynamic Esteban-Marquillas,MG,mix,11479.003723054913
+Dynamic Esteban-Marquillas,PA,mix,779.7298922492691
+Dynamic Esteban-Marquillas,PB,mix,3346.738822095109
+Dynamic Esteban-Marquillas,PR,mix,-11499.053104756234
+Dynamic Esteban-Marquillas,PE,mix,1305.8916697286234
+Dynamic Esteban-Marquillas,PI,mix,7710.734606623459
+Dynamic Esteban-Marquillas,RJ,mix,38183.93073766343
+Dynamic Esteban-Marquillas,RN,mix,2574.495963945822
+Dynamic Esteban-Marquillas,RS,mix,-26270.893335820536
+Dynamic Esteban-Marquillas,RO,mix,-3999.9666886067976
+Dynamic Esteban-Marquillas,RR,mix,315.77827997964056
+Dynamic Esteban-Marquillas,SC,mix,-32428.711623981297
+Dynamic Esteban-Marquillas,SP,mix,-6200.932726554678
+Dynamic Esteban-Marquillas,SE,mix,2181.8235486299445
+Dynamic Esteban-Marquillas,TO,mix,6690.235008667789
+Dynamic Esteban-Marquillas,AC,competitive,2592.7334128056427
+Dynamic Esteban-Marquillas,AL,competitive,-342.5775307087313
+Dynamic Esteban-Marquillas,AP,competitive,14527.60670701756
+Dynamic Esteban-Marquillas,AM,competitive,1868.4408421415828
+Dynamic Esteban-Marquillas,BA,competitive,5770.994955322873
+Dynamic Esteban-Marquillas,CE,competitive,14016.634688497506
+Dynamic Esteban-Marquillas,DF,competitive,-34111.250776289
+Dynamic Esteban-Marquillas,ES,competitive,-10177.420204571892
+Dynamic Esteban-Marquillas,GO,competitive,3758.853508226508
+Dynamic Esteban-Marquillas,MA,competitive,30903.164937109046
+Dynamic Esteban-Marquillas,MT,competitive,12020.692049934909
+Dynamic Esteban-Marquillas,MS,competitive,-19442.329820707826
+Dynamic Esteban-Marquillas,MG,competitive,46461.830094578836
+Dynamic Esteban-Marquillas,PA,competitive,40137.54656930454
+Dynamic Esteban-Marquillas,PB,competitive,31116.55965036851
+Dynamic Esteban-Marquillas,PR,competitive,-13480.034337227413
+Dynamic Esteban-Marquillas,PE,competitive,15159.089422257766
+Dynamic Esteban-Marquillas,PI,competitive,37464.664462149725
+Dynamic Esteban-Marquillas,RJ,competitive,-54466.28181307787
+Dynamic Esteban-Marquillas,RN,competitive,6894.517880132777
+Dynamic Esteban-Marquillas,RS,competitive,-125376.03775955166
+Dynamic Esteban-Marquillas,RO,competitive,7751.971094943479
+Dynamic Esteban-Marquillas,RR,competitive,17594.296090944244
+Dynamic Esteban-Marquillas,SC,competitive,-16008.988586600291
+Dynamic Esteban-Marquillas,SP,competitive,88859.76850289862
+Dynamic Esteban-Marquillas,SE,competitive,10736.955477948568
+Dynamic Esteban-Marquillas,TO,competitive,28470.996850559895
+Dynamic Esteban-Marquillas,AC,allocation,-1560.7019296933672
+Dynamic Esteban-Marquillas,AL,allocation,-2355.914207464797
+Dynamic Esteban-Marquillas,AP,allocation,-4555.021232312776
+Dynamic Esteban-Marquillas,AM,allocation,-18564.049057486915
+Dynamic Esteban-Marquillas,BA,allocation,1817.0636217081833
+Dynamic Esteban-Marquillas,CE,allocation,-6256.941685775765
+Dynamic Esteban-Marquillas,DF,allocation,7121.55265358593
+Dynamic Esteban-Marquillas,ES,allocation,174.07932861567906
+Dynamic Esteban-Marquillas,GO,allocation,-9468.256511196809
+Dynamic Esteban-Marquillas,MA,allocation,-3211.822840535588
+Dynamic Esteban-Marquillas,MT,allocation,-5421.829747154613
+Dynamic Esteban-Marquillas,MS,allocation,-971.2416013995198
+Dynamic Esteban-Marquillas,MG,allocation,15564.754968343022
+Dynamic Esteban-Marquillas,PA,allocation,-13515.021127311267
+Dynamic Esteban-Marquillas,PB,allocation,1250.8723981801402
+Dynamic Esteban-Marquillas,PR,allocation,-6756.342386915576
+Dynamic Esteban-Marquillas,PE,allocation,571.3544809558462
+Dynamic Esteban-Marquillas,PI,allocation,3772.0631410923315
+Dynamic Esteban-Marquillas,RJ,allocation,-7671.050248030256
+Dynamic Esteban-Marquillas,RN,allocation,1356.2042185585142
+Dynamic Esteban-Marquillas,RS,allocation,-3245.0365066349477
+Dynamic Esteban-Marquillas,RO,allocation,-3344.129941950203
+Dynamic Esteban-Marquillas,RR,allocation,-6332.8597528897235
+Dynamic Esteban-Marquillas,SC,allocation,3883.3356660744557
+Dynamic Esteban-Marquillas,SP,allocation,-87015.99784279283
+Dynamic Esteban-Marquillas,SE,allocation,-1095.01056586997
+Dynamic Esteban-Marquillas,TO,allocation,3127.550339893963
+Berzeg ANOVA (stochastic),AC,national,10233.245546329545
+Berzeg ANOVA (stochastic),AL,national,42833.65326686373
+Berzeg ANOVA (stochastic),AP,national,9216.506904412132
+Berzeg ANOVA (stochastic),AM,national,54709.17303264345
+Berzeg ANOVA (stochastic),BA,national,202156.14975376969
+Berzeg ANOVA (stochastic),CE,national,131593.67690606593
+Berzeg ANOVA (stochastic),DF,national,97446.99391851905
+Berzeg ANOVA (stochastic),ES,national,91265.23996584293
+Berzeg ANOVA (stochastic),GO,national,160099.70603811913
+Berzeg ANOVA (stochastic),MA,national,62167.76416039215
+Berzeg ANOVA (stochastic),MT,national,92100.4331852621
+Berzeg ANOVA (stochastic),MS,national,67681.8025350312
+Berzeg ANOVA (stochastic),MG,national,498174.4112140232
+Berzeg ANOVA (stochastic),PA,national,97177.74466575749
+Berzeg ANOVA (stochastic),PB,national,51795.82912935625
+Berzeg ANOVA (stochastic),PR,national,320712.42982889916
+Berzeg ANOVA (stochastic),PE,national,144259.66442705778
+Berzeg ANOVA (stochastic),PI,national,38227.53779013449
+Berzeg ANOVA (stochastic),RJ,national,371973.401323445
+Berzeg ANOVA (stochastic),RN,national,50549.78193736288
+Berzeg ANOVA (stochastic),RS,national,276579.9676020069
+Berzeg ANOVA (stochastic),RO,national,28675.12553561351
+Berzeg ANOVA (stochastic),RR,national,8208.785381965836
+Berzeg ANOVA (stochastic),SC,national,248242.3645445071
+Berzeg ANOVA (stochastic),SP,national,1408355.1620664494
+Berzeg ANOVA (stochastic),SE,national,32901.23153929146
+Berzeg ANOVA (stochastic),TO,national,26917.217800878345
+Berzeg ANOVA (stochastic),AC,mix,212.7229705581828
+Berzeg ANOVA (stochastic),AL,mix,-942.161528690212
+Berzeg ANOVA (stochastic),AP,mix,2130.907620883081
+Berzeg ANOVA (stochastic),AM,mix,5943.435182701885
+Berzeg ANOVA (stochastic),BA,mix,-1552.2083308006909
+Berzeg ANOVA (stochastic),CE,mix,1078.6300912123597
+Berzeg ANOVA (stochastic),DF,mix,12450.704204183947
+Berzeg ANOVA (stochastic),ES,mix,-845.8990898867588
+Berzeg ANOVA (stochastic),GO,mix,5491.6969648510885
+Berzeg ANOVA (stochastic),MA,mix,1113.8937430343835
+Berzeg ANOVA (stochastic),MT,mix,-16798.295488042426
+Berzeg ANOVA (stochastic),MS,mix,-2452.231112923866
+Berzeg ANOVA (stochastic),MG,mix,11479.00372305498
+Berzeg ANOVA (stochastic),PA,mix,779.7298922492726
+Berzeg ANOVA (stochastic),PB,mix,3346.7388220951125
+Berzeg ANOVA (stochastic),PR,mix,-11499.05310475618
+Berzeg ANOVA (stochastic),PE,mix,1305.8916697286309
+Berzeg ANOVA (stochastic),PI,mix,7710.734606623456
+Berzeg ANOVA (stochastic),RJ,mix,38183.93073766346
+Berzeg ANOVA (stochastic),RN,mix,2574.495963945825
+Berzeg ANOVA (stochastic),RS,mix,-26270.893335820467
+Berzeg ANOVA (stochastic),RO,mix,-3999.966688606797
+Berzeg ANOVA (stochastic),RR,mix,315.7782799796387
+Berzeg ANOVA (stochastic),SC,mix,-32428.711623981202
+Berzeg ANOVA (stochastic),SP,mix,-6200.932726554464
+Berzeg ANOVA (stochastic),SE,mix,2181.8235486299454
+Berzeg ANOVA (stochastic),TO,mix,6690.235008667788
+Berzeg ANOVA (stochastic),AC,competitive,1032.0314831122741
+Berzeg ANOVA (stochastic),AL,competitive,-2698.491738173532
+Berzeg ANOVA (stochastic),AP,competitive,9972.585474704785
+Berzeg ANOVA (stochastic),AM,competitive,-16695.608215345364
+Berzeg ANOVA (stochastic),BA,competitive,7588.058577031036
+Berzeg ANOVA (stochastic),CE,competitive,7759.693002721715
+Berzeg ANOVA (stochastic),DF,competitive,-26989.698122703063
+Berzeg ANOVA (stochastic),ES,competitive,-10003.340875956228
+Berzeg ANOVA (stochastic),GO,competitive,-5709.403002970322
+Berzeg ANOVA (stochastic),MA,competitive,27691.342096573466
+Berzeg ANOVA (stochastic),MT,competitive,6598.862302780286
+Berzeg ANOVA (stochastic),MS,competitive,-20413.57142210736
+Berzeg ANOVA (stochastic),MG,competitive,62026.585062921804
+Berzeg ANOVA (stochastic),PA,competitive,26622.525441993268
+Berzeg ANOVA (stochastic),PB,competitive,32367.432048548646
+Berzeg ANOVA (stochastic),PR,competitive,-20236.376724143087
+Berzeg ANOVA (stochastic),PE,competitive,15730.443903213596
+Berzeg ANOVA (stochastic),PI,competitive,41236.727603242056
+Berzeg ANOVA (stochastic),RJ,competitive,-62137.33206110819
+Berzeg ANOVA (stochastic),RN,competitive,8250.722098691283
+Berzeg ANOVA (stochastic),RS,competitive,-128621.0742661867
+Berzeg ANOVA (stochastic),RO,competitive,4407.841152993271
+Berzeg ANOVA (stochastic),RR,competitive,11261.436338054524
+Berzeg ANOVA (stochastic),SC,competitive,-12125.652920525945
+Berzeg ANOVA (stochastic),SP,competitive,1843.7706601054178
+Berzeg ANOVA (stochastic),SE,competitive,9641.944912078596
+Berzeg ANOVA (stochastic),TO,competitive,31598.547190453857
+Full-analogue regression,AC,competitive,1184.7589459430512
+Full-analogue regression,AL,competitive,-2112.5419023368927
+Full-analogue regression,AP,competitive,10117.914783812681
+Full-analogue regression,AM,competitive,-13852.930899332441
+Full-analogue regression,BA,competitive,10159.932616390057
+Full-analogue regression,CE,competitive,9295.804401094389
+Full-analogue regression,DF,competitive,-25904.735662259285
+Full-analogue regression,ES,competitive,-8493.999989723263
+Full-analogue regression,GO,competitive,-3962.1303056913657
+Full-analogue regression,MA,competitive,27981.378420130583
+Full-analogue regression,MT,competitive,7651.205172833761
+Full-analogue regression,MS,competitive,-18252.190580372026
+Full-analogue regression,MG,competitive,58190.38406648948
+Full-analogue regression,PA,competitive,27943.858930213268
+Full-analogue regression,PB,competitive,33382.782548536445
+Full-analogue regression,PR,competitive,-17940.4717822101
+Full-analogue regression,PE,competitive,17156.44614610304
+Full-analogue regression,PI,competitive,41133.408755279255
+Full-analogue regression,RJ,competitive,-57363.87485696644
+Full-analogue regression,RN,competitive,9254.536268815817
+Full-analogue regression,RS,competitive,-127193.03498137748
+Full-analogue regression,RO,competitive,4613.498044345448
+Full-analogue regression,RR,competitive,11326.832107141736
+Full-analogue regression,SC,competitive,-11866.108915379764
+Full-analogue regression,SP,competitive,-23592.356198729078
+Full-analogue regression,SE,competitive,10169.793044079706
+Full-analogue regression,TO,competitive,30971.841823169394
+Nazara-Hewings spatial (static),AC,national,10214.871279734567
+Nazara-Hewings spatial (static),AL,national,43016.594476759696
+Nazara-Hewings spatial (static),AP,national,8881.406479474219
+Nazara-Hewings spatial (static),AM,national,55344.61243028791
+Nazara-Hewings spatial (static),BA,national,203997.55602201502
+Nazara-Hewings spatial (static),CE,national,131820.48175276513
+Nazara-Hewings spatial (static),DF,national,100342.67537450507
+Nazara-Hewings spatial (static),ES,national,91427.27388399265
+Nazara-Hewings spatial (static),GO,national,160260.6660181652
+Nazara-Hewings spatial (static),MA,national,60710.15833914885
+Nazara-Hewings spatial (static),MT,national,92363.7105306465
+Nazara-Hewings spatial (static),MS,national,68134.18610467107
+Nazara-Hewings spatial (static),MG,national,495302.79914286075
+Nazara-Hewings spatial (static),PA,national,96055.73660599161
+Nazara-Hewings spatial (static),PB,national,51098.69850534216
+Nazara-Hewings spatial (static),PR,national,322268.92741859
+Nazara-Hewings spatial (static),PE,national,144780.76494245426
+Nazara-Hewings spatial (static),PI,national,36597.41307146202
+Nazara-Hewings spatial (static),RJ,national,372843.7460161739
+Nazara-Hewings spatial (static),RN,national,50401.2761646914
+Nazara-Hewings spatial (static),RS,national,283023.89055534505
+Nazara-Hewings spatial (static),RO,national,28736.591383248513
+Nazara-Hewings spatial (static),RR,national,7441.025271041291
+Nazara-Hewings spatial (static),SC,national,250543.02150571122
+Nazara-Hewings spatial (static),SP,national,1400585.851097784
+Nazara-Hewings spatial (static),SE,national,32678.858512069208
+Nazara-Hewings spatial (static),TO,national,25382.20711506665
+Nazara-Hewings spatial (static),AC,mix,258.170110624652
+Nazara-Hewings spatial (static),AL,mix,-706.0005445583632
+Nazara-Hewings spatial (static),AP,mix,2211.314189964287
+Nazara-Hewings spatial (static),AM,mix,8380.501815247733
+Nazara-Hewings spatial (static),BA,mix,-69.49536274502111
+Nazara-Hewings spatial (static),CE,mix,2117.9735864813347
+Nazara-Hewings spatial (static),DF,mix,14440.038557594005
+Nazara-Hewings spatial (static),ES,mix,657.0666642046142
+Nazara-Hewings spatial (static),GO,mix,6090.679743955986
+Nazara-Hewings spatial (static),MA,mix,792.6256622617732
+Nazara-Hewings spatial (static),MT,mix,-16973.404207553347
+Nazara-Hewings spatial (static),MS,mix,-789.432154929685
+Nazara-Hewings spatial (static),MG,mix,7665.90548296312
+Nazara-Hewings spatial (static),PA,mix,1650.0847514490367
+Nazara-Hewings spatial (static),PB,mix,4093.1758810077545
+Nazara-Hewings spatial (static),PR,mix,-9045.30365262039
+Nazara-Hewings spatial (static),PE,mix,2283.1808477735112
+Nazara-Hewings spatial (static),PI,mix,7830.566662321139
+Nazara-Hewings spatial (static),RJ,mix,42205.17910169295
+Nazara-Hewings spatial (static),RN,mix,3147.162519238111
+Nazara-Hewings spatial (static),RS,mix,-25856.267855922375
+Nazara-Hewings spatial (static),RO,mix,-4277.713687735502
+Nazara-Hewings spatial (static),RR,mix,148.319626140408
+Nazara-Hewings spatial (static),SC,mix,-32663.764911232884
+Nazara-Hewings spatial (static),SP,mix,-22637.603702762593
+Nazara-Hewings spatial (static),SE,mix,2712.0541156638365
+Nazara-Hewings spatial (static),TO,mix,6334.986761478416
+Nazara-Hewings spatial (static),AC,competitive,1004.9586096407804
+Nazara-Hewings spatial (static),AL,competitive,-3117.593932201342
+Nazara-Hewings spatial (static),AP,competitive,10227.279330561489
+Nazara-Hewings spatial (static),AM,competitive,-19768.114245535642
+Nazara-Hewings spatial (static),BA,competitive,4263.939340730118
+Nazara-Hewings spatial (static),CE,competitive,6493.5446607534905
+Nazara-Hewings spatial (static),DF,competitive,-31874.713932099075
+Nazara-Hewings spatial (static),ES,competitive,-11668.340548197255
+Nazara-Hewings spatial (static),GO,competitive,-6469.3457621212
+Nazara-Hewings spatial (static),MA,competitive,29470.21599858937
+Nazara-Hewings spatial (static),MT,competitive,6510.693676906858
+Nazara-Hewings spatial (static),MS,competitive,-22528.753949741345
+Nazara-Hewings spatial (static),MG,competitive,68711.29537417598
+Nazara-Hewings spatial (static),PA,competitive,26874.17864255931
+Nazara-Hewings spatial (static),PB,competitive,32318.12561365007
+Nazara-Hewings spatial (static),PR,competitive,-24246.623765969598
+Nazara-Hewings spatial (static),PE,competitive,14232.054209772206
+Nazara-Hewings spatial (static),PI,competitive,42747.02026621682
+Nazara-Hewings spatial (static),RJ,competitive,-67028.92511786694
+Nazara-Hewings spatial (static),RN,competitive,7826.561316070487
+Nazara-Hewings spatial (static),RS,competitive,-135479.62269942267
+Nazara-Hewings spatial (static),RO,competitive,4624.12230448698
+Nazara-Hewings spatial (static),RR,competitive,12196.655102818306
+Nazara-Hewings spatial (static),SC,competitive,-14191.256594478371
+Nazara-Hewings spatial (static),SP,competitive,26049.752604978683
+Nazara-Hewings spatial (static),SE,competitive,9334.087372266951
+Nazara-Hewings spatial (static),TO,competitive,33488.80612345493
+Nazara-Hewings spatial (static),AC,neighborhood,852.0425986268173
+Nazara-Hewings spatial (static),AL,neighborhood,6705.554844009959
+Nazara-Hewings spatial (static),AP,neighborhood,1030.3851784781975
+Nazara-Hewings spatial (static),AM,neighborhood,23220.31784719237
+Nazara-Hewings spatial (static),BA,neighborhood,67353.47613219364
+Nazara-Hewings spatial (static),CE,neighborhood,67556.08902680875
+Nazara-Hewings spatial (static),DF,neighborhood,14031.556843392651
+Nazara-Hewings spatial (static),ES,neighborhood,-1037.399450237403
+Nazara-Hewings spatial (static),GO,neighborhood,15866.43810264318
+Nazara-Hewings spatial (static),MA,neighborhood,51059.00176419808
+Nazara-Hewings spatial (static),MT,neighborhood,15920.777451839245
+Nazara-Hewings spatial (static),MS,neighborhood,1354.0561790829147
+Nazara-Hewings spatial (static),MG,neighborhood,-70949.15508186158
+Nazara-Hewings spatial (static),PA,neighborhood,78258.6091796647
+Nazara-Hewings spatial (static),PB,neighborhood,5090.1036147669465
+Nazara-Hewings spatial (static),PR,neighborhood,-23804.979861292635
+Nazara-Hewings spatial (static),PE,neighborhood,59159.45753121011
+Nazara-Hewings spatial (static),PI,neighborhood,10961.277989198861
+Nazara-Hewings spatial (static),RJ,neighborhood,7179.906051164566
+Nazara-Hewings spatial (static),RN,neighborhood,22381.31716890902
+Nazara-Hewings spatial (static),RS,neighborhood,-17818.86384981082
+Nazara-Hewings spatial (static),RO,neighborhood,3849.9013066324696
+Nazara-Hewings spatial (static),RR,neighborhood,1040.7552847082256
+Nazara-Hewings spatial (static),SC,neighborhood,-60410.62090111886
+Nazara-Hewings spatial (static),SP,neighborhood,-117133.32124859889
+Nazara-Hewings spatial (static),SE,neighborhood,-1128.6321725836826
+Nazara-Hewings spatial (static),TO,neighborhood,2853.166082764457
+Nazara-Hewings spatial (static),AC,own_net,152.91601101396319
+Nazara-Hewings spatial (static),AL,own_net,-9823.148776211301
+Nazara-Hewings spatial (static),AP,own_net,9196.89415208329
+Nazara-Hewings spatial (static),AM,own_net,-42988.43209272801
+Nazara-Hewings spatial (static),BA,own_net,-63089.53679146352
+Nazara-Hewings spatial (static),CE,own_net,-61062.54436605526
+Nazara-Hewings spatial (static),DF,own_net,-45906.27077549173
+Nazara-Hewings spatial (static),ES,own_net,-10630.941097959852
+Nazara-Hewings spatial (static),GO,own_net,-22335.78386476438
+Nazara-Hewings spatial (static),MA,own_net,-21588.78576560871
+Nazara-Hewings spatial (static),MT,own_net,-9410.083774932387
+Nazara-Hewings spatial (static),MS,own_net,-23882.81012882426
+Nazara-Hewings spatial (static),MG,own_net,139660.45045603756
+Nazara-Hewings spatial (static),PA,own_net,-51384.430537105385
+Nazara-Hewings spatial (static),PB,own_net,27228.021998883123
+Nazara-Hewings spatial (static),PR,own_net,-441.64390467696217
+Nazara-Hewings spatial (static),PE,own_net,-44927.4033214379
+Nazara-Hewings spatial (static),PI,own_net,31785.742277017962
+Nazara-Hewings spatial (static),RJ,own_net,-74208.8311690315
+Nazara-Hewings spatial (static),RN,own_net,-14554.755852838533
+Nazara-Hewings spatial (static),RS,own_net,-117660.75884961186
+Nazara-Hewings spatial (static),RO,own_net,774.2209978545102
+Nazara-Hewings spatial (static),RR,own_net,11155.89981811008
+Nazara-Hewings spatial (static),SC,own_net,46219.36430664049
+Nazara-Hewings spatial (static),SP,own_net,143183.07385357757
+Nazara-Hewings spatial (static),SE,own_net,10462.719544850634
+Nazara-Hewings spatial (static),TO,own_net,30635.640040690476
+Nazara-Hewings spatial (dynamic),AC,national,10233.245546329545
+Nazara-Hewings spatial (dynamic),AL,national,42833.65326686374
+Nazara-Hewings spatial (dynamic),AP,national,9216.506904412128
+Nazara-Hewings spatial (dynamic),AM,national,54709.17303264345
+Nazara-Hewings spatial (dynamic),BA,national,202156.14975376966
+Nazara-Hewings spatial (dynamic),CE,national,131593.67690606596
+Nazara-Hewings spatial (dynamic),DF,national,97446.99391851906
+Nazara-Hewings spatial (dynamic),ES,national,91265.23996584293
+Nazara-Hewings spatial (dynamic),GO,national,160099.70603811915
+Nazara-Hewings spatial (dynamic),MA,national,62167.76416039214
+Nazara-Hewings spatial (dynamic),MT,national,92100.43318526208
+Nazara-Hewings spatial (dynamic),MS,national,67681.8025350312
+Nazara-Hewings spatial (dynamic),MG,national,498174.41121402313
+Nazara-Hewings spatial (dynamic),PA,national,97177.74466575749
+Nazara-Hewings spatial (dynamic),PB,national,51795.829129356265
+Nazara-Hewings spatial (dynamic),PR,national,320712.42982889916
+Nazara-Hewings spatial (dynamic),PE,national,144259.66442705775
+Nazara-Hewings spatial (dynamic),PI,national,38227.5377901345
+Nazara-Hewings spatial (dynamic),RJ,national,371973.401323445
+Nazara-Hewings spatial (dynamic),RN,national,50549.78193736287
+Nazara-Hewings spatial (dynamic),RS,national,276579.967602007
+Nazara-Hewings spatial (dynamic),RO,national,28675.12553561351
+Nazara-Hewings spatial (dynamic),RR,national,8208.785381965834
+Nazara-Hewings spatial (dynamic),SC,national,248242.36454450717
+Nazara-Hewings spatial (dynamic),SP,national,1408355.1620664492
+Nazara-Hewings spatial (dynamic),SE,national,32901.231539291446
+Nazara-Hewings spatial (dynamic),TO,national,26917.217800878352
+Nazara-Hewings spatial (dynamic),AC,mix,212.72297055818294
+Nazara-Hewings spatial (dynamic),AL,mix,-942.161528690213
+Nazara-Hewings spatial (dynamic),AP,mix,2130.9076208830816
+Nazara-Hewings spatial (dynamic),AM,mix,5943.435182701866
+Nazara-Hewings spatial (dynamic),BA,mix,-1552.2083308006906
+Nazara-Hewings spatial (dynamic),CE,mix,1078.6300912123393
+Nazara-Hewings spatial (dynamic),DF,mix,12450.704204183947
+Nazara-Hewings spatial (dynamic),ES,mix,-845.8990898867706
+Nazara-Hewings spatial (dynamic),GO,mix,5491.696964851078
+Nazara-Hewings spatial (dynamic),MA,mix,1113.8937430343929
+Nazara-Hewings spatial (dynamic),MT,mix,-16798.29548804243
+Nazara-Hewings spatial (dynamic),MS,mix,-2452.2311129238687
+Nazara-Hewings spatial (dynamic),MG,mix,11479.003723054913
+Nazara-Hewings spatial (dynamic),PA,mix,779.7298922492691
+Nazara-Hewings spatial (dynamic),PB,mix,3346.738822095109
+Nazara-Hewings spatial (dynamic),PR,mix,-11499.053104756234
+Nazara-Hewings spatial (dynamic),PE,mix,1305.8916697286234
+Nazara-Hewings spatial (dynamic),PI,mix,7710.734606623459
+Nazara-Hewings spatial (dynamic),RJ,mix,38183.93073766343
+Nazara-Hewings spatial (dynamic),RN,mix,2574.495963945822
+Nazara-Hewings spatial (dynamic),RS,mix,-26270.893335820536
+Nazara-Hewings spatial (dynamic),RO,mix,-3999.9666886067976
+Nazara-Hewings spatial (dynamic),RR,mix,315.77827997964056
+Nazara-Hewings spatial (dynamic),SC,mix,-32428.711623981297
+Nazara-Hewings spatial (dynamic),SP,mix,-6200.932726554678
+Nazara-Hewings spatial (dynamic),SE,mix,2181.8235486299445
+Nazara-Hewings spatial (dynamic),TO,mix,6690.235008667789
+Nazara-Hewings spatial (dynamic),AC,competitive,1032.031483112275
+Nazara-Hewings spatial (dynamic),AL,competitive,-2698.4917381735268
+Nazara-Hewings spatial (dynamic),AP,competitive,9972.585474704783
+Nazara-Hewings spatial (dynamic),AM,competitive,-16695.60821534534
+Nazara-Hewings spatial (dynamic),BA,competitive,7588.05857703105
+Nazara-Hewings spatial (dynamic),CE,competitive,7759.693002721746
+Nazara-Hewings spatial (dynamic),DF,competitive,-26989.69812270307
+Nazara-Hewings spatial (dynamic),ES,competitive,-10003.340875956208
+Nazara-Hewings spatial (dynamic),GO,competitive,-5709.403002970303
+Nazara-Hewings spatial (dynamic),MA,competitive,27691.342096573466
+Nazara-Hewings spatial (dynamic),MT,competitive,6598.8623027802905
+Nazara-Hewings spatial (dynamic),MS,competitive,-20413.57142210735
+Nazara-Hewings spatial (dynamic),MG,competitive,62026.585062921935
+Nazara-Hewings spatial (dynamic),PA,competitive,26622.525441993283
+Nazara-Hewings spatial (dynamic),PB,competitive,32367.43204854865
+Nazara-Hewings spatial (dynamic),PR,competitive,-20236.37672414299
+Nazara-Hewings spatial (dynamic),PE,competitive,15730.443903213614
+Nazara-Hewings spatial (dynamic),PI,competitive,41236.72760324205
+Nazara-Hewings spatial (dynamic),RJ,competitive,-62137.33206110814
+Nazara-Hewings spatial (dynamic),RN,competitive,8250.722098691296
+Nazara-Hewings spatial (dynamic),RS,competitive,-128621.0742661866
+Nazara-Hewings spatial (dynamic),RO,competitive,4407.8411529932755
+Nazara-Hewings spatial (dynamic),RR,competitive,11261.436338054524
+Nazara-Hewings spatial (dynamic),SC,competitive,-12125.652920525841
+Nazara-Hewings spatial (dynamic),SP,competitive,1843.7706601057725
+Nazara-Hewings spatial (dynamic),SE,competitive,9641.944912078598
+Nazara-Hewings spatial (dynamic),TO,competitive,31598.547190453854
+Nazara-Hewings spatial (dynamic),AC,neighborhood,709.1525819005049
+Nazara-Hewings spatial (dynamic),AL,neighborhood,6715.733357294994
+Nazara-Hewings spatial (dynamic),AP,neighborhood,1342.4724450682313
+Nazara-Hewings spatial (dynamic),AM,neighborhood,26123.13209068743
+Nazara-Hewings spatial (dynamic),BA,neighborhood,61480.24947821375
+Nazara-Hewings spatial (dynamic),CE,neighborhood,64644.34495141971
+Nazara-Hewings spatial (dynamic),DF,neighborhood,10980.259650838196
+Nazara-Hewings spatial (dynamic),ES,neighborhood,-1913.2607919459906
+Nazara-Hewings spatial (dynamic),GO,neighborhood,16647.19129609028
+Nazara-Hewings spatial (dynamic),MA,neighborhood,48380.31876236551
+Nazara-Hewings spatial (dynamic),MT,neighborhood,12727.243680514337
+Nazara-Hewings spatial (dynamic),MS,neighborhood,1726.474677707598
+Nazara-Hewings spatial (dynamic),MG,neighborhood,-65843.22426194527
+Nazara-Hewings spatial (dynamic),PA,neighborhood,78215.17691246579
+Nazara-Hewings spatial (dynamic),PB,neighborhood,6880.4306999648425
+Nazara-Hewings spatial (dynamic),PR,neighborhood,-23524.3726052856
+Nazara-Hewings spatial (dynamic),PE,neighborhood,56172.73676064083
+Nazara-Hewings spatial (dynamic),PI,neighborhood,9809.193604074793
+Nazara-Hewings spatial (dynamic),RJ,neighborhood,-69.1348894205039
+Nazara-Hewings spatial (dynamic),RN,neighborhood,22456.93757477746
+Nazara-Hewings spatial (dynamic),RS,neighborhood,-14636.72382400335
+Nazara-Hewings spatial (dynamic),RO,neighborhood,4412.761945076689
+Nazara-Hewings spatial (dynamic),RR,neighborhood,1777.3830242251938
+Nazara-Hewings spatial (dynamic),SC,neighborhood,-56182.12689670403
+Nazara-Hewings spatial (dynamic),SP,neighborhood,-112065.44208007352
+Nazara-Hewings spatial (dynamic),SE,neighborhood,3.212767219573834
+Nazara-Hewings spatial (dynamic),TO,neighborhood,2856.6548715037907
+Nazara-Hewings spatial (dynamic),AC,own_net,322.8789012117701
+Nazara-Hewings spatial (dynamic),AL,own_net,-9414.22509546852
+Nazara-Hewings spatial (dynamic),AP,own_net,8630.113029636552
+Nazara-Hewings spatial (dynamic),AM,own_net,-42818.74030603277
+Nazara-Hewings spatial (dynamic),BA,own_net,-53892.1909011827
+Nazara-Hewings spatial (dynamic),CE,own_net,-56884.65194869797
+Nazara-Hewings spatial (dynamic),DF,own_net,-37969.95777354127
+Nazara-Hewings spatial (dynamic),ES,own_net,-8090.080084010218
+Nazara-Hewings spatial (dynamic),GO,own_net,-22356.594299060584
+Nazara-Hewings spatial (dynamic),MA,own_net,-20688.976665792045
+Nazara-Hewings spatial (dynamic),MT,own_net,-6128.3813777340465
+Nazara-Hewings spatial (dynamic),MS,own_net,-22140.04609981495
+Nazara-Hewings spatial (dynamic),MG,own_net,127869.80932486721
+Nazara-Hewings spatial (dynamic),PA,own_net,-51592.651470472505
+Nazara-Hewings spatial (dynamic),PB,own_net,25487.001348583806
+Nazara-Hewings spatial (dynamic),PR,own_net,3287.9958811426113
+Nazara-Hewings spatial (dynamic),PE,own_net,-40442.292857427215
+Nazara-Hewings spatial (dynamic),PI,own_net,31427.53399916726
+Nazara-Hewings spatial (dynamic),RJ,own_net,-62068.197171687636
+Nazara-Hewings spatial (dynamic),RN,own_net,-14206.215476086165
+Nazara-Hewings spatial (dynamic),RS,own_net,-113984.35044218325
+Nazara-Hewings spatial (dynamic),RO,own_net,-4.920792083413517
+Nazara-Hewings spatial (dynamic),RR,own_net,9484.05331382933
+Nazara-Hewings spatial (dynamic),SC,own_net,44056.47397617819
+Nazara-Hewings spatial (dynamic),SP,own_net,113909.2127401793
+Nazara-Hewings spatial (dynamic),SE,own_net,9638.732144859023
+Nazara-Hewings spatial (dynamic),TO,own_net,28741.892318950064
+Knudsen MDI (static),AC,competitive,986.0710826076341
+Knudsen MDI (static),AL,competitive,-2650.491304678989
+Knudsen MDI (static),AP,competitive,9143.520678653626
+Knudsen MDI (static),AM,competitive,-17477.06096676508
+Knudsen MDI (static),BA,competitive,5065.625816891744
+Knudsen MDI (static),CE,competitive,6085.151141672243
+Knudsen MDI (static),DF,competitive,-28177.749611331306
+Knudsen MDI (static),ES,competitive,-10179.215521406808
+Knudsen MDI (static),GO,competitive,-4887.44170767763
+Knudsen MDI (static),MA,competitive,27110.38669437358
+Knudsen MDI (static),MT,competitive,6836.911707394916
+Knudsen MDI (static),MS,competitive,-19885.530303220185
+Knudsen MDI (static),MG,competitive,64588.60186004881
+Knudsen MDI (static),PA,competitive,25129.498588673974
+Knudsen MDI (static),PB,competitive,29345.648607482843
+Knudsen MDI (static),PR,competitive,-21437.479801877213
+Knudsen MDI (static),PE,competitive,13390.893472953
+Knudsen MDI (static),PI,competitive,38292.47443264039
+Knudsen MDI (static),RJ,competitive,-58648.06949978725
+Knudsen MDI (static),RN,competitive,7407.853379092389
+Knudsen MDI (static),RS,competitive,-123678.70771456171
+Knudsen MDI (static),RO,competitive,4398.6536130919285
+Knudsen MDI (static),RR,competitive,11096.678308392418
+Knudsen MDI (static),SC,competitive,-13470.415029276515
+Knudsen MDI (static),SP,competitive,25216.543916707902
+Knudsen MDI (static),SE,competitive,8578.074991828003
+Knudsen MDI (static),TO,competitive,29968.926622055922
+Knudsen MDI (dynamic),AC,competitive,1155.6361703987384
+Knudsen MDI (dynamic),AL,competitive,-2004.5082807803901
+Knudsen MDI (dynamic),AP,competitive,9731.729383493654
+Knudsen MDI (dynamic),AM,competitive,-13330.979303818016
+Knudsen MDI (dynamic),BA,competitive,10021.128167911675
+Knudsen MDI (dynamic),CE,competitive,9130.052077945431
+Knudsen MDI (dynamic),DF,competitive,-24867.340584425376
+Knudsen MDI (dynamic),ES,competitive,-8141.471276943247
+Knudsen MDI (dynamic),GO,competitive,-3665.2700188324143
+Knudsen MDI (dynamic),MA,competitive,27117.276578046938
+Knudsen MDI (dynamic),MT,competitive,7514.23161569615
+Knudsen MDI (dynamic),MS,competitive,-17641.17587524889
+Knudsen MDI (dynamic),MG,competitive,56822.878118339715
+Knudsen MDI (dynamic),PA,competitive,27131.23939930088
+Knudsen MDI (dynamic),PB,competitive,32301.083179899244
+Knudsen MDI (dynamic),PR,competitive,-17059.68483918451
+Knudsen MDI (dynamic),PE,competitive,16735.253572232843
+Knudsen MDI (dynamic),PI,competitive,39576.27499416286
+Knudsen MDI (dynamic),RJ,competitive,-54949.85550566949
+Knudsen MDI (dynamic),RN,competitive,8993.587557960289
+Knudsen MDI (dynamic),RS,competitive,-123170.55629036947
+Knudsen MDI (dynamic),RO,competitive,4510.220968816237
+Knudsen MDI (dynamic),RR,competitive,10955.698396390622
+Knudsen MDI (dynamic),SC,competitive,-11277.731772805048
+Knudsen MDI (dynamic),SP,competitive,-21280.39961166917
+Knudsen MDI (dynamic),SE,competitive,9854.454291500006
+Knudsen MDI (dynamic),TO,competitive,29739.620010419007

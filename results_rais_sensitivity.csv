@@ -1,0 +1,8 @@
+test,variant,pearson,spearman,nrmse_vs_baseline,max_abs_diff_jobs,state_max_diff
+pesos (base = Dunn pesos-base),pesos terminal,0.7967901457064577,0.9322344322344323,1.1600763852232268,186537.78657867527,SP
+pesos (base = Dunn pesos-base),pesos average,0.918679979713356,0.9829059829059829,0.5800381926116133,93268.89328933759,SP
+agregação (base = 18 seções),5 setores vs. 18 seções · Dunn pesos-base,0.9239159620637518,0.8785103785103784,0.4285407165785209,74246.2028941249,SP
+agregação (base = 18 seções),5 setores vs. 18 seções · Barff-Knight,0.9476772958501657,0.9578754578754578,0.3820885110500605,58608.57894807018,SP
+quebra de série (base = sem seção O),com administração pública · Dunn pesos-base,0.1404218026043831,0.3345543345543345,3.9836455448572106,589018.457627325,SP
+quebra de série (base = sem seção O),com administração pública · Barff-Knight,0.26627561072960143,0.44017094017094016,3.815877173386751,529465.5714124473,SP
+quebra de série (base = sem seção O),com administração pública · Nazara-Hewings,0.14042180260438292,0.3345543345543345,3.9836455448572106,589018.4576273251,SP

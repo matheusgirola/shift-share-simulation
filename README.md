@@ -17,12 +17,19 @@ construction**, and then test which shift-share variant best recovers them.
 | `results_single_run.csv` | Truth vs. estimates, seed 42 |
 | `results_recovery.csv` / `results_montecarlo.csv` / `results_morans_i.csv` | Recovery and spatial metrics |
 | `recovery_chart.png` | Visual summary (stress scenario) |
-| `evolucao_shift_share.ipynb` | Teaching notebook (in Portuguese): every variant in chronological order, formula plus result for seed 42 |
-| `gerar_apresentacao.py` | Builds the slide deck (in Portuguese): each variant's estimate side by side with the DGP truth, state by state (seed 42) |
+| `rais_data.py` | Real data: downloads the RAIS establishment microdata (2022-2025) and aggregates it to states × CNAE sections |
+| `rais_uf_secao.csv` | The committed aggregate: 27 states × 21 CNAE 2.0 sections × 4 years of active formal jobs |
+| `run_rais.py` | Runs every variant on the real panel and writes the `results_rais_*.csv` tables |
+| `evolucao_shift_share.ipynb` | Teaching notebook (in Portuguese): every variant in chronological order, formula plus result for seed 42, then the same variants on RAIS 2022-2025 (section 13) |
+| `gerar_apresentacao.py` | Builds the slide deck (in Portuguese): each variant's estimate side by side with the DGP truth, state by state (seed 42), plus the real-data section |
 | `apresentacao_shift_share.html` | The generated deck, standalone (← → to navigate, N for speaker notes) |
-| `tests/` | pytest checks of the identities and model equivalences |
+| `tests/` | pytest checks of the identities and model equivalences, on both the simulated and the real panel |
 
-Run with: `uv run python run_comparison.py` (dependencies are in `pyproject.toml`; `uv run pytest` runs the tests).
+Run with: `uv run python run_comparison.py` for the simulation and
+`uv run python run_rais.py` for the real data (dependencies are in
+`pyproject.toml`; `uv run pytest` runs the tests). `rais_uf_secao.csv` is
+committed, so only `uv run python rais_data.py build` needs the ~0.5 GB of
+downloads.
 
 ## How the artificial data solves the "which parameters?" problem
 
@@ -155,10 +162,65 @@ false-flag diagnostic on their significance tests.
    counterpart of the annual identity); the ANOVA form simply adds standard
    errors. This replicates Knudsen-Barff (1991) exactly.
 
+## The real-data counterpart: RAIS 2022-2025
+
+The simulation can score the variants because it knows the answer. To see what
+they do when nobody does, the same thirteen variants run on formal employment
+in the 27 states by CNAE 2.0 section, from the RAIS establishment microdata
+(`ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/<year>/RAIS_ESTAB_PUB.7z`,
+active links on 31 December): 44.1 million jobs in 2022 to 48.7 million in
+2025, +10.5%. Two layouts ship under the same filename — semicolon-separated
+with a 5-digit CNAE class up to 2022, quoted comma-separated with a 7-digit
+subclass from 2023 — and `rais_data._dialect` detects which.
+
+With no truth to score against, the questions become how far the variants
+disagree with each other and what the answer depends on. Headline results
+(`run_rais.py`):
+
+1. **They rank the states almost identically and disagree on magnitude** —
+   the same split as the simulation, but wider: Pearson 0.72-1.00 against the
+   Barff-Knight reference, while terminal weights sit 1.37 reference standard
+   deviations away and move a state up to 15 places out of 27.
+2. **In three states the sign is the analyst's choice.** São Paulo's
+   competitive effect runs from −23.6k (full-analogue regression) to +212.6k
+   (terminal weights) around a median of +13.5k; AM and AL also flip.
+3. **A series break beats every methodological refinement.** From base year
+   2023 the whole RAIS is collected through eSocial, and the re-labelling of
+   public employment that came with it makes section O (administração
+   pública) grow +176% in DF and −9% in SP. Including it shifts the
+   competitive effect by nRMSE 3.8-4.0 — about four times the worst weighting
+   choice and ten times the aggregation effect — and drops the rank
+   correlation to 0.33-0.44. Section O is therefore out of the default panel
+   (`rais_data.DROP_DEFAULT`, which documents the screen); shift-share is an
+   identity and cannot tell a coverage break from a competitive gain.
+4. **Aggregation bias is real, not theoretical** (Houston 1967): collapsing
+   18 CNAE sections into 5 broad sectors moves the competitive effect by
+   nRMSE 0.38-0.43.
+5. **Almost nothing is significant.** Of 27 states, the full-analogue
+   regression flags none at 5%, dynamic Knudsen 2, static Knudsen 3 and
+   Berzeg 4 — against 100% power on the strong-advantage states in the
+   simulation. The deterministic variants produce 27 precise-looking numbers
+   per component with no way to know that most of them are indistinguishable
+   from zero.
+6. **No spatial clustering.** Moran's I of the estimated competitive rates is
+   0.06-0.19 with p between 0.18 and 0.68 — none significant at 10%. This is
+   the `no_space` scenario occurring in the wild: the Nazara-Hewings split
+   stays correct (its total competitive effect equals Dunn's) but its
+   neighborhood component carries no information about a state's own
+   advantage, so the extra structure does not pay for itself at this
+   geographic scale.
+
+Caveats, stated in full in section 13 of the notebook: the counts come from
+the establishment file rather than the links file and so run about 1% below
+the ministry's published totals; sections P (education) and Q (health) carry
+the same eSocial break as section O, smaller but not absent, and are kept
+because their private employment is too large to discard.
+
 ## Interpreting / extending
 
-- To make the test *harder*, raise `sd_eps` or shorten the panel; to test
-  aggregation sensitivity (Houston 1967), re-run with sectors merged.
+- To make the test *harder*, raise `sd_eps` or shorten the panel; the
+  aggregation-sensitivity test of Houston (1967) now runs on real data, via
+  `rais_data.load_panel(level="grande")`.
 - Natural next spatial experiments: alternative W specifications (k-nearest,
   inverse distance) to probe the Nazara-Hewings weight-matrix sensitivity;
   spatially autocorrelated *industry-specific* advantages (SAR on `d_ri`);
@@ -167,3 +229,7 @@ false-flag diagnostic on their significance tests.
   effects are unstable over time (Brown 1969; Stevens-Moore 1980), so
   recovery in this sandbox is an upper bound on real-world performance —
   none of this validates SSA as a forecasting or causal tool.
+- Natural next steps on the real panel: a longer window that does not
+  straddle the eSocial migration; a municipal cut, where spatial dependence
+  is more likely to exist than it does across 27 states; and the same
+  decomposition on wages rather than headcount.
