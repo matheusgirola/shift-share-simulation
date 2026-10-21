@@ -18,6 +18,8 @@ construction**, and then test which shift-share variant best recovers them.
 | `results_recovery.csv` / `results_montecarlo.csv` / `results_morans_i.csv` | Recovery and spatial metrics |
 | `recovery_chart.png` | Visual summary (stress scenario) |
 | `evolucao_shift_share.ipynb` | Teaching notebook (in Portuguese): every variant in chronological order, formula plus result for seed 42 |
+| `gerar_apresentacao.py` | Builds the slide deck (in Portuguese): each variant's estimate side by side with the DGP truth, state by state (seed 42) |
+| `apresentacao_shift_share.html` | The generated deck, standalone (← → to navigate, N for speaker notes) |
 | `tests/` | pytest checks of the identities and model equivalences |
 
 Run with: `uv run python run_comparison.py` (dependencies are in `pyproject.toml`; `uv run pytest` runs the tests).
