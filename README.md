@@ -127,13 +127,25 @@ ten-year transition, lands behind classic Dunn with base weights on average
 
 ## Rebuilding the methodological note
 
-`nota_metodologica_shift_share_PT-BR.md` is the source. The PDF is produced
-with pandoc and xelatex (pdflatex fails on the U+2212 minus sign used in the
-tables):
+`nota_metodologica_shift_share_PT-BR.md` is the source. Sections 4-11 derive
+each variant on the synthetic five-region example; **section 12 carries the
+RAIS 2022-2025 application**, whose argument is that the analyst's own
+choices - how the eSocial series break is handled (nRMSE 3.8-4.0), which
+weighting year is used (1.16), how finely sectors are cut (0.38-0.43) - move
+the competitive effect by an order of magnitude more than the choice of
+variant (0.00-0.16). Sao Paulo ranges from 1st to 24th of 27 depending on the
+variant. Every number there comes from `results_rais_*.csv`, so rerunning
+`run_rais.py` and editing the note keeps the two in step.
+
+The PDF is produced with pandoc and xelatex (pdflatex fails on the U+2212
+minus sign used in the tables):
 
 ```
 pandoc nota_metodologica_shift_share_PT-BR.md   -o nota_metodologica_shift_share_PT-BR.pdf   --pdf-engine=xelatex --toc --toc-depth=2   -V colorlinks=true -V linkcolor=blue -V toccolor=blue   -V lang=pt-BR -V geometry:margin=1in
 ```
+
+The .docx alongside it is `pandoc nota_metodologica_shift_share_PT-BR.md -o
+nota_metodologica_shift_share_PT-BR.docx --toc --toc-depth=2 -V lang=pt-BR`.
 
 ## Scoring
 

@@ -1,13 +1,13 @@
 # NOTA METODOLÓGICA: A EVOLUÇÃO DOS MÉTODOS DE ANÁLISE *SHIFT-SHARE* (SSA)
 
-**Resumo** — Este documento descreve, formaliza e ilustra numericamente a evolução metodológica da análise *shift-share* (SSA), da decomposição clássica de Dunn (1960) às reformulações homotéticas (Esteban-Marquillas, 1972; Arcelus, 1984), à forma dinâmica (Barff-Knight, 1988), às formalizações inferenciais (Berzeg, 1978, 1984) e à extensão espacial (Nazara-Hewings, 2004). Cada etapa é apresentada segundo o ciclo justificar–formalizar–interpretar e ilustrada com um exemplo numérico único, construído com dados sintéticos para cinco regiões e três setores, de modo que o leitor acompanhe como cada fórmula se deriva da anterior e o que cada nova camada de decomposição corrige. O documento não relata resultados de uma aplicação empírica real — define e sustenta teoricamente as escolhas de método.
-**Palavras-chave:** *Shift-share analysis*. Decomposição de crescimento regional. Efeito competitivo. Efeito alocação. *Shift-share* espacial.
+**Resumo** — Este documento descreve, formaliza e ilustra numericamente a evolução metodológica da análise *shift-share* (SSA), da decomposição clássica de Dunn (1960) às reformulações homotéticas (Esteban-Marquillas, 1972; Arcelus, 1984), à forma dinâmica (Barff-Knight, 1988), às formalizações inferenciais (Berzeg, 1978, 1984) e à extensão espacial (Nazara-Hewings, 2004). Cada etapa é apresentada segundo o ciclo justificar–formalizar–interpretar e ilustrada com um exemplo numérico único, construído com dados sintéticos para cinco regiões e três setores, de modo que o leitor acompanhe como cada fórmula se deriva da anterior e o que cada nova camada de decomposição corrige. Às seções formais segue-se uma aplicação a dados reais — o emprego formal das 27 unidades federativas brasileiras na RAIS de 2022 a 2025 —, cujo resultado central é metodológico: a discordância entre escolhas igualmente defensáveis do analista (tratamento de quebras de série, ano de ponderação, nível de agregação setorial) é de uma ordem de magnitude superior à diferença entre as variantes do método, de modo que o efeito competitivo de uma região, e sua posição em um ordenamento, são em parte decididos por quem calcula.
+**Palavras-chave:** *Shift-share analysis*. Decomposição de crescimento regional. Efeito competitivo. Efeito alocação. *Shift-share* espacial. Robustez metodológica. RAIS.
 
 ## 1 INTRODUÇÃO
 
 A análise *shift-share* (SSA) é, desde sua formulação original, uma identidade contábil que reparte a variação do emprego regional em componentes atribuíveis ao crescimento nacional, à composição setorial da região e a um resíduo dito "competitivo". Como observam Loveridge e Selting (1998), "SSA é apenas uma identidade contábil praticável: nunca pretendeu ser uma teoria" — afirmação que orienta toda a leitura deste documento. Se a SSA não é um modelo causal, o valor de cada variante está em quão bem ela isola, do resíduo, os efeitos que não deveriam nele estar: a estrutura setorial da região, o viés de ponderação temporal, a ausência de significância estatística e, mais recentemente, a dependência espacial entre regiões vizinhas.
 
-Este documento cobre a fundamentação teórica de cada camada de reformulação, a formalização matemática associada e a tradução de cada fórmula para um exemplo numérico único e recorrente. Ele não cobre a implementação computacional das rotinas (tratada em código separado), nem pretende ser uma revisão exaustiva da literatura — para isso, ver o levantamento bibliográfico que fundamenta esta nota. O objetivo aqui é estritamente pedagógico-metodológico: mostrar, com números, *por que* cada variante surgiu e *o que* ela corrige na anterior.
+Este documento cobre a fundamentação teórica de cada camada de reformulação, a formalização matemática associada e a tradução de cada fórmula para um exemplo numérico único e recorrente. Ele não cobre a implementação computacional das rotinas (tratada em código separado), nem pretende ser uma revisão exaustiva da literatura — para isso, ver o levantamento bibliográfico que fundamenta esta nota. O objetivo das Seções 4 a 11 é estritamente pedagógico-metodológico: mostrar, com números, *por que* cada variante surgiu e *o que* ela corrige na anterior. A Seção 12 fecha o documento com a contraprova em dados reais: aplicadas ao emprego formal das 27 unidades federativas brasileiras na RAIS de 2022 a 2025, as catorze variantes implementadas produzem para São Paulo efeitos competitivos que vão de −23,6 mil a +212,6 mil vínculos, e posições no ordenamento nacional que vão da 1ª à 24ª entre 27 — sem que nenhuma dessas estimativas seja indefensável à luz da literatura. A leitura que se pretende transmitir é, portanto, dupla: cada camada de reformulação corrige um defeito real, e nenhuma delas protege o resultado das escolhas discricionárias de quem o calcula.
 
 ## 2 FUNDAMENTAÇÃO TEÓRICA
 
@@ -317,7 +317,7 @@ Fonte: elaboração própria, Equação 10, mínimos quadrados ordinários com 1
 
 Fonte: elaboração própria, Equação 11.
 
-Nenhuma região atinge significância convencional de 5% neste exemplo — o mais próximo é o Maranhão, com $t=-1,70$ e valor-*p*=0,11, sugerindo desvantagem competitiva sistemática, mas não conclusiva na amostra. Esse resultado ilustra, mais do que qualquer conclusão substantiva sobre as regiões fictícias, a própria lição metodológica da Seção 9.1: a decomposição clássica (Tabela 4) mostraria o efeito competitivo do Maranhão como um número aparentemente grande e "real" (−23,25), mas a formalização de Berzeg revela que, com apenas três observações setoriais por região, esse número não é estatisticamente distinguível de zero ao nível de 5% — exatamente o tipo de afirmação que a SSA clássica é incapaz de fazer e que o limiar de significância listado no Quadro de Parâmetros Consolidados (Seção 13) torna operacional.
+Nenhuma região atinge significância convencional de 5% neste exemplo — o mais próximo é o Maranhão, com $t=-1,70$ e valor-*p*=0,11, sugerindo desvantagem competitiva sistemática, mas não conclusiva na amostra. Esse resultado ilustra, mais do que qualquer conclusão substantiva sobre as regiões fictícias, a própria lição metodológica da Seção 9.1: a decomposição clássica (Tabela 4) mostraria o efeito competitivo do Maranhão como um número aparentemente grande e "real" (−23,25), mas a formalização de Berzeg revela que, com apenas três observações setoriais por região, esse número não é estatisticamente distinguível de zero ao nível de 5% — exatamente o tipo de afirmação que a SSA clássica é incapaz de fazer e que o limiar de significância listado no Quadro de Parâmetros Consolidados (Seção 14) torna operacional.
 
 ## 10 KNUDSEN (2000): AS DUAS FORMAS PROBABILÍSTICAS, ANOVA E TEORIA DA INFORMAÇÃO
 
@@ -435,7 +435,7 @@ A malha de contiguidade das cinco regiões deste exemplo segue as fronteiras ter
 | BA | 0,500 | 0,000 | 0,000 | 0,000 | 0,500 |
 | PE | 0,333 | 0,333 | 0,000 | 0,333 | 0,000 |
 
-Fonte: elaboração própria a partir de fronteiras terrestres reais entre as cinco unidades federativas (subconjunto ilustrativo; ver Seção 14).
+Fonte: elaboração própria a partir de fronteiras terrestres reais entre as cinco unidades federativas (subconjunto ilustrativo; ver Seção 15). A matriz completa das 27 unidades federativas é usada na aplicação empírica da Seção 12.6.
 
 **Tabela 16 — Taxa competitiva local, defasagem espacial e hiato (Equações 16–17)**
 
@@ -449,9 +449,277 @@ Fonte: elaboração própria a partir de fronteiras terrestres reais entre as ci
 
 Fonte: elaboração própria, Equações 16 e 17.
 
-O caso do Maranhão é o mais informativo: sua taxa competitiva local é a mais negativa do conjunto (−5,17%), mas seu único vizinho na malha, o Piauí, tem a taxa mais positiva (4,33%) — um hiato de −9,5 pontos percentuais em relação à própria vizinhança. Isso é o oposto do padrão que a hipótese de *spillover* positivo prediria (vizinhos com desempenho parecido) e resulta, para este pequeno conjunto de cinco regiões, em um I de Moran global de $I=-0{,}4852$, abaixo do valor esperado sob aleatoriedade $E[I]=-0{,}25$ — um sinal de dissimilaridade, e não de agrupamento espacial positivo, entre vizinhos. Como discutido na Seção 14, um I de Moran com apenas cinco unidades tem poder estatístico praticamente nulo; o valor é reportado aqui unicamente para ilustrar o cálculo da Equação 18, não como evidência substantiva de dependência espacial.
+O caso do Maranhão é o mais informativo: sua taxa competitiva local é a mais negativa do conjunto (−5,17%), mas seu único vizinho na malha, o Piauí, tem a taxa mais positiva (4,33%) — um hiato de −9,5 pontos percentuais em relação à própria vizinhança. Isso é o oposto do padrão que a hipótese de *spillover* positivo prediria (vizinhos com desempenho parecido) e resulta, para este pequeno conjunto de cinco regiões, em um I de Moran global de $I=-0{,}4852$, abaixo do valor esperado sob aleatoriedade $E[I]=-0{,}25$ — um sinal de dissimilaridade, e não de agrupamento espacial positivo, entre vizinhos. Como discutido na Seção 15, um I de Moran com apenas cinco unidades tem poder estatístico praticamente nulo; o valor é reportado aqui unicamente para ilustrar o cálculo da Equação 18, não como evidência substantiva de dependência espacial.
 
-## 12 SÍNTESE: A LÓGICA DA EVOLUÇÃO METODOLÓGICA
+## 12 APLICAÇÃO EMPÍRICA: AS UNIDADES FEDERATIVAS BRASILEIRAS NA RAIS, 2022–2025
+
+As Seções 4 a 11 usaram dados sintéticos porque o objetivo era didático: com uma verdade conhecida por construção, é possível mostrar o que cada variante corrige. Dados reais não têm verdade conhecida, e a pergunta muda. O que se pode ainda perguntar — e é exatamente o que a literatura aplicada discute — é **quanto as variantes discordam entre si sobre os mesmos números**. Esta seção responde a essa pergunta com o emprego formal das 27 unidades federativas brasileiras entre 2022 e 2025, e sua conclusão central é metodológica, não substantiva: no painel real, a discordância entre escolhas igualmente defensáveis do analista é maior do que os defeitos que as reformulações das Seções 5 a 11 se propõem a corrigir.
+
+### 12.1 Base de dados, medida e recorte
+
+A fonte é a Relação Anual de Informações Sociais (RAIS), arquivo de estabelecimentos, divulgada pelo Ministério do Trabalho e Emprego por meio do Programa de Disseminação de Estatísticas do Trabalho (BRASIL, 2026). A medida de emprego é a **quantidade de vínculos ativos em 31 de dezembro** de cada ano, agregada por unidade federativa (código de UF do IBGE) e por **seção da CNAE 2.0**, derivada dos dois primeiros dígitos da divisão econômica do estabelecimento. O painel cobre quatro anos — 2022, 2023, 2024 e 2025 —, e não apenas os dois extremos, porque as formas dinâmica (Seção 8) e inferenciais (Seções 9 e 10) degeneram em suas formas estáticas quando há apenas dois pontos no tempo; a janela de referência de todos os resultados reportados, contudo, é 2022→2025.
+
+Das 21 seções da CNAE 2.0, três são excluídas do painel-padrão, restando $R=27$ regiões e $N=18$ setores. As seções T (serviços domésticos, 1.283 vínculos no país) e U (organismos internacionais, 2.319) são pequenas demais para sustentar uma taxa de crescimento e estão vazias em diversas células região-ano. A seção O (administração pública) é excluída por uma razão de natureza diferente, tratada na Seção 12.2 — e é o achado mais importante desta aplicação.
+
+No painel resultante, o emprego formal passa de 44,073 milhões de vínculos em 2022 para 48,697 milhões em 2025 ($g_n = 10{,}49\%$), com trajetória anual de 44,073 → 45,651 → 47,335 → 48,697 milhões. A Tabela 17 apresenta as taxas nacionais setoriais $g_{ni}$ — a "ponta" contra a qual cada unidade federativa é comparada, no papel que as taxas da Seção 3 cumpriam no exemplo sintético.
+
+**Tabela 17 — Taxa nacional de crescimento do emprego formal por seção da CNAE 2.0, Brasil, 2022–2025**
+
+| Seção | Atividade | $g_{ni}$ (%) |
+|:---|:---|---:|
+| P | Educação | 38,98 |
+| R | Artes e recreação | 30,71 |
+| Q | Saúde e serviços sociais | 16,40 |
+| N | Administrativas | 15,28 |
+| M | Profissionais e técnicas | 14,79 |
+| B | Extrativa | 13,24 |
+| H | Transporte | 11,26 |
+| F | Construção | 10,80 |
+| I | Alojamento e alimentação | 9,57 |
+| E | Água e resíduos | 8,99 |
+| L | Imobiliárias | 7,91 |
+| S | Outros serviços | 7,61 |
+| D | Eletricidade e gás | 7,17 |
+| J | Informação e comunicação | 6,00 |
+| C | Transformação | 5,24 |
+| G | Comércio | 4,28 |
+| K | Financeiro e seguros | 4,02 |
+| A | Agropecuária | 3,39 |
+| — | **Agregado ($g_n$)** | **10,49** |
+
+Fonte: elaboração própria a partir da RAIS 2022–2025 (MTE/PDET), arquivo de estabelecimentos, vínculos ativos em 31/12.
+
+### 12.2 A quebra de série do eSocial e o custo de ignorá-la
+
+Entre as bases 2022 e 2023 da RAIS houve migração da coleta para o eSocial, com reclassificação dos tipos de vínculo do setor público. A nota técnica da RAIS 2023 registra, no agregado nacional, queda de 907.224 vínculos estatutários (−15,4%) e aumento de 927.463 vínculos regidos por contrato de legislação municipal (+260,7%) — isto é, praticamente o mesmo contingente mudando de rótulo. O efeito sobre a seção O é incompatível com qualquer leitura econômica: entre 2022 e 2025 ela cresce 175,8% no Distrito Federal, 110,4% em Roraima e 80,0% em Mato Grosso, enquanto **cai 8,9% em São Paulo** (Tabela 18). A seção respondia por 16,5% dos vínculos do país em 2022, de modo que não se trata de um detalhe periférico do painel.
+
+**Tabela 18 — Crescimento da seção O (administração pública): as cinco maiores e as cinco menores variações entre as unidades federativas, 2022–2025 (%)**
+
+| UF | Variação | Posição |
+|:---|---:|:---|
+| DF | +175,8 | 1ª (maior) |
+| RR | +110,4 | 2ª |
+| MT | +80,0 | 3ª |
+| AM | +70,4 | 4ª |
+| CE | +63,9 | 5ª |
+| PR | +14,4 | 23ª |
+| RS | +13,0 | 24ª |
+| RN | +11,5 | 25ª |
+| RO | +8,9 | 26ª |
+| **SP** | **−8,9** | **27ª (menor)** |
+
+Fonte: elaboração própria a partir da RAIS 2022–2025 (MTE/PDET).
+
+A SSA não distingue uma quebra de cobertura de um ganho de competitividade. Sendo uma identidade contábil, tudo o que não é crescimento nacional nem composição setorial vai para o resíduo competitivo: a mudança de rótulo contratual **aparece como vantagem competitiva**. Para medir quanto resíduo essa quebra fabrica, define-se o erro quadrático médio normalizado entre duas versões do mesmo componente, $x$ e $x^{\text{ref}}$, calculado sobre as $R$ regiões:
+
+$$ \mathrm{nRMSE}\!\left(x, x^{\text{ref}}\right) = \frac{\sqrt{R^{-1}\sum_{r}\left(x_r - x_r^{\text{ref}}\right)^2}}{\sigma\!\left(x^{\text{ref}}\right)} \tag{19} $$
+
+A normalização pelo desvio-padrão da própria referência torna a medida interpretável: $\mathrm{nRMSE}=0{,}30$ significa que a discordância típica equivale a um terço da dispersão que a referência reporta entre as unidades federativas; valores acima de 1 significam que a discordância excede toda a variação que se pretende explicar. A Tabela 19 aplica a Equação 19 ao painel com e sem a seção O.
+
+**Tabela 19 — Custo de incluir a administração pública no painel (base de comparação: painel sem a seção O; maior diferença em vínculos)**
+
+| Modelo | Pearson | Spearman | nRMSE | Maior dif. | UF |
+|:---|---:|---:|---:|---:|:---|
+| Dunn, pesos-base | 0,140 | 0,335 | 3,98 | 589.018 | SP |
+| Barff-Knight dinâmico | 0,266 | 0,440 | 3,82 | 529.466 | SP |
+| Nazara-Hewings estático | 0,140 | 0,335 | 3,98 | 589.018 | SP |
+
+Fonte: elaboração própria, Equação 19 aplicada à RAIS 2022–2025 (MTE/PDET).
+
+Incluir a seção O multiplica a discordância por quase quatro desvios-padrão da própria série e desmancha a ordenação das unidades federativas: a correlação de Spearman entre as duas versões cai para 0,33 (Dunn) ou 0,44 (Barff-Knight). São Paulo, a UF mais afetada, muda em mais de meio milhão de vínculos o seu efeito competitivo. Nenhuma economia estadual ganhou ou perdeu competitividade nessa escala entre 2022 e 2025 — mudou o formulário. Como a Tabela 24 mostrará, esse é o maior de todos os efeitos medidos nesta aplicação, cerca de três vezes o da escolha de pesos e dez vezes o do nível de agregação setorial.
+
+### 12.3 A decomposição de referência (Barff-Knight, 2022–2025)
+
+Adota-se como referência a decomposição dinâmica de Barff-Knight (Seção 8), somada sobre os três subperíodos anuais do painel, por ser a variante que não exige escolha de ano de ponderação (Seção 5) e que não impõe reponderação homotética (Seção 6) — portanto a menos dependente de decisões discricionárias entre as variantes aplicáveis. A Tabela 20 apresenta seus componentes.
+
+**Tabela 20 — Decomposição dinâmica de Barff-Knight, unidades federativas, RAIS 2022–2025 (mil vínculos)**
+
+| UF | $\Delta E_r$ | $NE_r$ | $IM_r$ | $CE_r$ |
+|:---|---:|---:|---:|---:|
+| MG | 571,7 | 498,2 | 11,5 | 62,0 |
+| PI | 87,2 | 38,2 | 7,7 | 41,2 |
+| PB | 87,5 | 51,8 | 3,3 | 32,4 |
+| TO | 65,2 | 26,9 | 6,7 | 31,6 |
+| MA | 91,0 | 62,2 | 1,1 | 27,7 |
+| PA | 124,6 | 97,2 | 0,8 | 26,6 |
+| PE | 161,3 | 144,3 | 1,3 | 15,7 |
+| RR | 19,8 | 8,2 | 0,3 | 11,3 |
+| AP | 21,3 | 9,2 | 2,1 | 10,0 |
+| SE | 44,7 | 32,9 | 2,2 | 9,6 |
+| RN | 61,4 | 50,5 | 2,6 | 8,3 |
+| CE | 140,4 | 131,6 | 1,1 | 7,8 |
+| BA | 208,2 | 202,2 | −1,6 | 7,6 |
+| MT | 81,9 | 92,1 | −16,8 | 6,6 |
+| RO | 29,1 | 28,7 | −4,0 | 4,4 |
+| SP | 1.404,0 | 1.408,4 | −6,2 | 1,8 |
+| AC | 11,5 | 10,2 | 0,2 | 1,0 |
+| AL | 39,2 | 42,8 | −0,9 | −2,7 |
+| GO | 159,9 | 160,1 | 5,5 | −5,7 |
+| ES | 80,4 | 91,3 | −0,8 | −10,0 |
+| SC | 203,7 | 248,2 | −32,4 | −12,1 |
+| AM | 44,0 | 54,7 | 5,9 | −16,7 |
+| PR | 289,0 | 320,7 | −11,5 | −20,2 |
+| MS | 44,8 | 67,7 | −2,5 | −20,4 |
+| DF | 82,9 | 97,4 | 12,5 | −27,0 |
+| RJ | 348,0 | 372,0 | 38,2 | −62,1 |
+| RS | 121,7 | 276,6 | −26,3 | −128,6 |
+
+Fonte: elaboração própria, Equações 1 e 9 aplicadas à RAIS 2022–2025 (MTE/PDET). Soma nacional: $\sum_r NE_r = 4.624{,}3$; $\sum_r IM_r = \sum_r CE_r = 0$, por construção.
+
+Três leituras se destacam, e todas valem apenas sob esta variante. Primeira: o efeito de crescimento nacional domina em toda parte — São Paulo cresce 1,404 milhão de vínculos, dos quais 1,408 milhão são a maré nacional, e seu resíduo competitivo é de apenas 1,8 mil, essencialmente nulo em termos relativos. Segunda: o efeito de composição setorial é pequeno — em nenhuma UF ele chega a um quarto do efeito nacional —, o que confirma, com dados reais, por que a literatura concentrou quatro décadas de reformulação no resíduo competitivo e não no *industry mix*. Terceira: os efeitos competitivos positivos estão fortemente concentrados no Norte e Nordeste (PI, PB, TO, MA, PA) e os negativos no Sul e Sudeste (RS, RJ, PR, SC), padrão de convergência que a Seção 12.6 testa quanto a agrupamento espacial.
+
+### 12.4 O impacto da escolha do analista
+
+Esta é a subseção central do documento, e seu resultado deve ser lido como uma advertência operacional: **as decisões discricionárias do analista movem o resultado da SSA mais do que os defeitos que as variantes das Seções 5 a 11 corrigem**. A Tabela 21 ilustra o problema no caso extremo. São Paulo tem, nos mesmos dados, nos mesmos anos e no mesmo nível de agregação, catorze estimativas de efeito competitivo — de −23,6 mil a +212,6 mil vínculos.
+
+**Tabela 21 — Efeito competitivo de São Paulo e sua posição no ordenamento nacional sob cada variante, RAIS 2022–2025 (mil vínculos)**
+
+| Variante | $CE_{\text{SP}}$ | Posição de SP no ordenamento |
+|:---|---:|---:|
+| Regressão análoga completa | −23,6 | 24ª |
+| Knudsen MDI (dinâmico) | −21,3 | 24ª |
+| Berzeg ANOVA | 1,8 | 16ª |
+| Nazara-Hewings dinâmico | 1,8 | 16ª |
+| **Barff-Knight dinâmico (referência)** | **1,8** | **16ª** |
+| Knudsen MDI (estático) | 25,2 | 6ª |
+| Dunn, pesos-base | 26,0 | 7ª |
+| Nazara-Hewings estático | 26,0 | 7ª |
+| Arcelus II (estático) | 26,0 | 7ª |
+| Esteban-Marquillas dinâmico* | 88,9 | 1ª |
+| Dunn, pesos médios (Fuchs) | 119,3 | 2ª |
+| Esteban-Marquillas estático* | 127,3 | 1ª |
+| Arcelus I (estático)* | 127,3 | 1ª |
+| Dunn, pesos terminais | 212,6 | 1ª |
+| **Amplitude** | **236,2** | **23 posições** |
+
+Fonte: elaboração própria, RAIS 2022–2025 (MTE/PDET). Mediana: 25,2 mil vínculos entre as onze variantes de alvo comparável; 26,0 mil entre as catorze. (*) Variantes homotéticas, cujo efeito competitivo é, por construção, uma grandeza diferente (Seção 6.2) e que não são estritamente comparáveis às demais; ainda assim são reportadas pela literatura aplicada como "o efeito competitivo" da região.
+
+O ponto não é que uma dessas estimativas esteja certa e as outras erradas. É que **o sinal do resultado é uma escolha do analista, não uma leitura dos dados**: São Paulo é competitivamente favorecido ou desfavorecido no período conforme a variante adotada, e nenhuma das catorze é indefensável à luz da literatura das Seções 4 a 11. Entre as onze variantes de alvo comparável, três das 27 unidades federativas trocam de sinal — São Paulo, Amazonas e Alagoas —, e Goiás junta-se a elas quando as três variantes homotéticas são incluídas, totalizando quatro; as demais preservam o sinal, o que confirma a estabilidade relativa de sinal observada por Fuchs (1959) para a maioria das regiões, mas não para aquelas cujo resíduo é pequeno em relação à sua escala.
+
+A instabilidade de **ordenação** é mais severa do que a de sinal, porque é sobre o ranking que se costuma construir o argumento de política. A Tabela 22 reporta a posição mínima e máxima que cada UF ocupa no ordenamento do efeito competitivo, de 1 (maior) a 27 (menor), à medida que se troca de variante.
+
+**Tabela 22 — Amplitude da posição no ordenamento do efeito competitivo entre as 14 variantes (UFs com oscilação de 3 ou mais posições)**
+
+| UF | Melhor posição | Pior posição | Amplitude |
+|:---|---:|---:|---:|
+| SP | 1 | 24 | 23 |
+| AM | 11 | 22 | 11 |
+| BA | 9 | 17 | 8 |
+| PA | 3 | 8 | 5 |
+| SE | 9 | 14 | 5 |
+| MT | 10 | 14 | 4 |
+| TO | 3 | 7 | 4 |
+| RN | 11 | 15 | 4 |
+| AP | 9 | 13 | 4 |
+| AL / AC / RO / SC / PR / GO / ES / CE / PE | — | — | 3 |
+
+Fonte: elaboração própria, RAIS 2022–2025 (MTE/PDET). Rio de Janeiro e Rio Grande do Sul são as únicas UFs com posição invariante (26ª e 27ª em todas as variantes).
+
+São Paulo pode ser apresentado como a unidade federativa **mais** competitiva do país (1ª posição, sob pesos terminais) ou como a 24ª entre 27 (regressão análoga completa) a partir do mesmo painel. Esse é o resultado que esta nota considera o mais importante a transmitir: um ranking de competitividade estadual derivado de SSA, reportado sem a variante, os pesos, o nível de agregação e as exclusões que o produziram, não é um resultado verificável.
+
+A Tabela 23 ordena as variantes pela distância até a referência, separando as homotéticas, que miram grandeza distinta.
+
+**Tabela 23 — Concordância de cada variante com a referência dinâmica de Barff-Knight, RAIS 2022–2025**
+
+| Variante | Pearson | Spearman | nRMSE | Salto máx. | Sinal |
+|:---|---:|---:|---:|---:|:---|
+| Nazara-Hewings dinâmico | 1,000 | 1,000 | 0,00 | 0 | 27/27 |
+| Berzeg ANOVA | 1,000 | 1,000 | 0,00 | 0 | 27/27 |
+| Knudsen MDI (estático) | 0,990 | 0,963 | 0,14 | 10 | 27/27 |
+| Knudsen MDI (dinâmico) | 0,990 | 0,970 | 0,15 | 8 | 26/27 |
+| Regressão análoga completa | 0,989 | 0,973 | 0,15 | 8 | 26/27 |
+| Dunn, pesos-base | 0,991 | 0,968 | 0,16 | 9 | 27/27 |
+| Nazara-Hewings estático | 0,991 | 0,968 | 0,16 | 9 | 27/27 |
+| Arcelus II (estático) | 0,991 | 0,968 | 0,16 | 9 | 27/27 |
+| Dunn, pesos médios (Fuchs) | 0,864 | 0,921 | 0,75 | 14 | 27/27 |
+| Dunn, pesos terminais | 0,719 | 0,861 | 1,37 | 15 | 25/27 |
+| Esteban-Marquillas dinâmico* | 0,886 | 0,902 | 0,52 | 15 | 25/27 |
+| Esteban-Marquillas estático* | 0,819 | 0,893 | 0,73 | 15 | 25/27 |
+| Arcelus I (estático)* | 0,819 | 0,893 | 0,73 | 15 | 25/27 |
+
+Fonte: elaboração própria, RAIS 2022–2025 (MTE/PDET). nRMSE conforme a Equação 19; "salto máx." é o maior deslocamento de posição de uma UF entre os dois ordenamentos; "sinal" é o número de UFs em que a variante e a referência concordam quanto ao sinal. (*) Variantes homotéticas, de alvo distinto.
+
+Dois padrões merecem registro. Primeiro, a escolha da **família de modelos** importa pouco entre as variantes de alvo comparável: Berzeg e Nazara-Hewings dinâmico reproduzem a referência à precisão de máquina (como a álgebra prediz — ver Seções 9.2 e 11.2), e Knudsen, a regressão análoga e Dunn com pesos-base ficam todos entre 0,14 e 0,16 de nRMSE. Segundo, a escolha dos **pesos temporais** importa muito: pesos terminais ficam a 1,37 — a discordância excede em 37% toda a dispersão entre as 27 UFs. A título de comparação, no Monte Carlo sintético do cenário benigno do projeto, o pior nRMSE **contra a verdade conhecida** era 0,37, também dos pesos terminais. Isto é, a discordância entre duas convenções de ponderação em dados reais é quase quatro vezes maior do que o erro que qualquer variante comete em um desenho controlado.
+
+A Tabela 24 consolida a hierarquia das decisões discricionárias, agora medindo cada uma contra sua própria linha de base.
+
+**Tabela 24 — Hierarquia do impacto das escolhas do analista sobre o efeito competitivo (maior diferença em vínculos)**
+
+| Decisão | Comparação | Spearman | nRMSE | Maior dif. | UF |
+|:---|:---|---:|---:|---:|:---|
+| Tratamento da quebra de série | com vs. sem seção O (Dunn) | 0,335 | 3,98 | 589.018 | SP |
+| Tratamento da quebra de série | com vs. sem seção O (Barff-Knight) | 0,440 | 3,82 | 529.466 | SP |
+| Ano de ponderação | pesos terminais vs. base | 0,932 | 1,16 | 186.538 | SP |
+| Ano de ponderação | pesos médios vs. base | 0,983 | 0,58 | 93.269 | SP |
+| Nível de agregação setorial | 5 setores vs. 18 seções (Dunn) | 0,879 | 0,43 | 74.246 | SP |
+| Nível de agregação setorial | 5 setores vs. 18 seções (Barff-Knight) | 0,958 | 0,38 | 58.609 | SP |
+| Família de modelos | variantes de alvo comparável vs. referência | 0,963–1,000 | 0,00–0,16 | — | — |
+
+Fonte: elaboração própria, Equação 19 aplicada à RAIS 2022–2025 (MTE/PDET).
+
+A ordenação é inequívoca e inverte a hierarquia implícita na literatura. O tratamento da quebra de série — uma decisão sobre os **dados**, raramente documentada em trabalhos aplicados — domina tudo, com nRMSE de 3,8 a 4,0. Em seguida vem a convenção de ponderação (1,16), a crítica mais antiga do campo (FUCHS, 1959; ASHBY, 1970) e, ainda hoje, a menos resolvida. Depois o nível de agregação setorial (0,38 a 0,43), exatamente o viés que Houston (1967) apontou: passar de 18 seções da CNAE a 5 setores agregados desloca o efeito competitivo em até 74 mil vínculos em São Paulo, porque o resíduo absorve a heterogeneidade intrassetorial que a agregação apaga. Só por último, e com folga, vem a escolha da **variante do método** — aquilo a que as Seções 4 a 11 dedicam toda a sua formalização.
+
+A consequência prática é que a atenção metodológica está mal alocada. Discutir Esteban-Marquillas contra Arcelus contra Knudsen é legítimo e bem fundamentado, mas um trabalho aplicado que faça essa escolha com rigor e trate a quebra de série, os pesos e a agregação como detalhes de implementação estará reportando um número cuja incerteza é, em ordem de magnitude, dez vezes maior do que a diferença que escolheu discutir. Daí um protocolo mínimo de transparência para aplicações da SSA, que esta nota recomenda: **(i)** declarar a variante e sua equação; **(ii)** declarar o ano de ponderação e justificar a escolha teoricamente, não por conveniência; **(iii)** declarar o nível de agregação setorial e verificar a sensibilidade a um nível mais fino; **(iv)** declarar e justificar toda célula excluída, com atenção especial a quebras de cobertura administrativa; e **(v)** reportar a **amplitude** do componente competitivo entre as variantes defensáveis, e não apenas uma estimativa pontual. A Tabela 21 é um exemplo do item (v): o resultado honesto para São Paulo não é "+26 mil vínculos", mas "entre −24 mil e +213 mil, mediana +25 mil, sinal indeterminado".
+
+### 12.5 Inferência: o que sobrevive a um teste estatístico
+
+As Seções 9 e 10 introduziram variantes que permitem testar se um efeito competitivo difere de zero. Aplicadas ao painel da RAIS, elas convergem em um resultado desconfortável: quase nada é significativo.
+
+**Tabela 25 — Unidades federativas com efeito competitivo significativo a 5%, RAIS 2022–2025**
+
+| Modelo | Nº de UFs | Proporção | UFs |
+|:---|---:|---:|:---|
+| Berzeg ANOVA (Seção 9) | 4 | 14,8% | AP, PI, RS, TO |
+| Knudsen MDI, forma estática (Seção 10) | 3 | 11,1% | PI, RS, TO |
+| Knudsen MDI, forma dinâmica (Seção 10) | 2 | 7,4% | PI, RS |
+| Regressão análoga completa (Seção 9.2) | 0 | 0,0% | — |
+
+Fonte: elaboração própria, RAIS 2022–2025 (MTE/PDET), nível de significância de 5%.
+
+Apenas Piauí e Rio Grande do Sul são sinalizados por todos os modelos que sinalizam algo, e a regressão análoga completa — a especificação mais exigente, com o conjunto completo de interações região-setor — não encontra nenhuma UF significativa. A leitura correta não é que o Brasil não tenha diferenciais regionais de competitividade, e sim que, com 18 setores por UF e três subperíodos anuais, a variação intrassetorial é grande o bastante para que a maior parte dos resíduos competitivos da Tabela 20 não seja distinguível de zero. Isso qualifica diretamente as Tabelas 20 a 22: a instabilidade de ordenação documentada na Seção 12.4 se dá, em boa medida, entre números que não são estatisticamente diferentes entre si — o que a torna ao mesmo tempo mais compreensível e mais grave, porque rankings são publicados como se fossem.
+
+### 12.6 Dependência espacial: a ausência de agrupamento
+
+Nazara e Hewings (2004) motivam a extensão espacial supondo que o desempenho competitivo de regiões vizinhas seja correlacionado. A matriz $W$ aqui é a contiguidade de fronteira terrestre real entre as 27 unidades federativas, padronizada em linha — a matriz completa, e não o subconjunto de cinco regiões da Seção 11.3. A Tabela 26 reporta o I de Moran (Equação 18) das taxas competitivas, com valores-*p* por permutação (999 permutações).
+
+**Tabela 26 — I de Moran das taxas competitivas estimadas, RAIS 2022–2025 ($E[I]=-0{,}0385$)**
+
+| Série | $I$ | Valor-*p* |
+|:---|---:|---:|
+| Crescimento total observado | 0,164 | 0,268 |
+| Esteban-Marquillas / Arcelus I (estático) | 0,190 | 0,183 |
+| Esteban-Marquillas dinâmico | 0,166 | 0,235 |
+| Knudsen MDI (dinâmico) | 0,155 | 0,307 |
+| Barff-Knight dinâmico (referência) | 0,142 | 0,339 |
+| Dunn, pesos-base | 0,128 | 0,389 |
+| Dunn, pesos médios (Fuchs) | 0,074 | 0,608 |
+| Dunn, pesos terminais | 0,056 | 0,679 |
+| Barff-Knight, sobre o **nível** do efeito competitivo | 0,101 | 0,427 |
+
+Fonte: elaboração própria, Equação 18 aplicada à RAIS 2022–2025 (MTE/PDET), 999 permutações.
+
+Todas as estimativas são positivas e todas estão acima de $E[I]$, o que é consistente com o padrão de convergência Norte-Nordeste observado na Tabela 20, mas **nenhuma é significativa**: os valores-*p* vão de 0,18 a 0,68. Para o emprego formal brasileiro agregado por UF nesta janela, portanto, a dependência espacial que motiva a extensão de Nazara-Hewings não é detectável. Convém notar que a coincidência entre as variantes espaciais e suas contrapartes não espaciais na Tabela 23 não é consequência disso: a decomposição de Nazara-Hewings reparte o efeito competitivo em uma parcela de vizinhança e uma parcela própria sem alterar seu total (Seção 11.2), de modo que o nRMSE nulo ali é algébrico. O que o teste de Moran acrescenta é que a repartição, neste recorte, não carrega sinal sistemático — a camada espacial é informativa sobre a composição do resíduo, não sobre sua magnitude. Isso não refuta a proposta: com $n=27$ unidades grandes e heterogêneas, o I de Moran tem poder modesto, e transbordamentos de mercado de trabalho operam plausivelmente em escala municipal ou microrregional, não estadual. A conclusão é de escala, não de método: a camada espacial deve ser adotada quando há motivo para esperar interação na unidade geográfica efetivamente usada, e sua adoção testada, não presumida. Note-se ainda que o I calculado sobre o **nível** do efeito competitivo (0,101) difere do calculado sobre a taxa (0,142), confirmando em dados reais a advertência da Seção 11.2 contra o uso de níveis.
+
+### 12.7 Síntese da aplicação
+
+**Quadro 2 — O que a aplicação à RAIS acrescenta a cada camada metodológica**
+
+| Camada (Seção) | O que o exemplo sintético mostrava | O que a RAIS 2022–2025 mostra |
+|:---|:---|:---|
+| Identidade clássica (4) | A identidade fecha; o resíduo mistura estrutura e desempenho | A identidade fecha em dados reais; o componente nacional domina em todas as 27 UFs e o *industry mix* é pequeno em todas |
+| Pesos temporais (5) | Magnitude muda, sinal não | Segunda maior fonte de discordância do estudo (nRMSE 1,16); Alagoas e Amazonas trocam de sinal entre pesos-base e terminais, e SP se desloca 187 mil vínculos |
+| Homotetização (6, 7) | Separa competitividade de estrutura | Afasta-se mais da referência (nRMSE 0,52–0,73) do que qualquer variante de alvo comparável, e mede grandeza distinta — comparabilidade que a literatura aplicada frequentemente ignora |
+| Dinâmica (8) | Corrige o viés de ponto a ponto | Adotada como referência justamente por não exigir escolha de pesos; diverge da forma estática em 0,16 |
+| Inferência (9, 10) | Com $n$ pequeno, nada é significativo | Com $n=27$ e 18 setores, ainda assim 0 a 4 UFs significativas a 5% — a maior parte dos rankings publicáveis não é estatisticamente distinguível |
+| Espacial (11) | Ilustra o cálculo com 5 regiões | Com a matriz completa de 27 UFs, $I$ entre 0,06 e 0,19 e nenhum valor-*p* abaixo de 0,18: a dependência espacial não é detectável nesta escala |
+| Agregação (Houston, 1967) | Não exercitada | 18 seções vs. 5 setores desloca o resíduo em até 74 mil vínculos (nRMSE 0,38–0,43) |
+| Qualidade do dado | Não exercitada | **Maior efeito de todos**: a quebra do eSocial na seção O produz nRMSE de 3,8 a 4,0 e derruba a correlação de ordenação a 0,33 |
+
+Fonte: elaboração própria, síntese da Seção 12.
+
+A lição que atravessa o Quadro 2 é a que a Seção 12.4 formula: a SSA é robusta no que tem de contábil — a identidade fecha, o componente nacional é inequívoco — e frágil exatamente onde é usada para fundamentar decisão, isto é, no resíduo competitivo e em sua ordenação entre regiões. Essa fragilidade não é um defeito de uma variante específica a ser corrigido por uma variante melhor; é uma propriedade do método, e a resposta disponível não é algébrica, mas de transparência: declarar cada escolha e reportar a amplitude que ela gera.
+
+## 13 SÍNTESE: A LÓGICA DA EVOLUÇÃO METODOLÓGICA
 
 O Quadro 1 resume, para cada variante tratada, qual falha da variante anterior ela ataca e o que permanece em aberto depois dela — a mesma lógica de "problema → correção → novo limite" que estruturou as Seções 4 a 11.
 
@@ -471,7 +739,7 @@ O Quadro 1 resume, para cada variante tratada, qual falha da variante anterior e
 
 Fonte: elaboração própria, síntese das Seções 4 a 11.
 
-## 13 QUADRO DE PARÂMETROS CONSOLIDADOS
+## 14 QUADRO DE PARÂMETROS CONSOLIDADOS
 
 | Parâmetro | Valor adotado |
 |:---|:---|
@@ -488,8 +756,16 @@ Fonte: elaboração própria, síntese das Seções 4 a 11.
 | Diagnóstico de dispersão (Seção 10) | $\hat\phi \gg 1$ indica sobredispersão; modelo binomial negativo como alternativa |
 | Critério de vizinhança espacial (Seção 11) | Contiguidade de fronteira terrestre real entre as 5 unidades federativas, padronizada em linha |
 | Base de cálculo do I de Moran (Seção 11) | Taxa competitiva $c_r=CE_r/E_{0,r\bullet}$, nunca o emprego em nível |
+| **Aplicação empírica (Seção 12) — fonte** | RAIS, arquivo de estabelecimentos (MTE/PDET), bases 2022 a 2025 |
+| Medida de emprego (Seção 12) | Quantidade de vínculos ativos em 31 de dezembro de cada ano |
+| Unidades e setores (Seção 12) | $R$ = 27 unidades federativas; $N$ = 18 seções da CNAE 2.0 |
+| Seções CNAE excluídas (Seção 12.1) | O (administração pública, quebra do eSocial), T e U (escala insuficiente) |
+| Janela de referência e painel (Seção 12.1) | 2022→2025; painel anual de quatro pontos para as formas dinâmica e inferenciais |
+| Variante de referência (Seção 12.3) | Barff-Knight dinâmico (Equação 9), soma de três subperíodos anuais |
+| Métrica de discordância (Seção 12.2) | nRMSE da Equação 19: RMSE entre regiões dividido pelo desvio-padrão da referência |
+| Matriz espacial da aplicação (Seção 12.6) | Contiguidade de fronteira terrestre das 27 UFs, padronizada em linha; 999 permutações |
 
-## 14 LIMITAÇÕES
+## 15 LIMITAÇÕES
 
 **Escala do exemplo numérico.** Cinco regiões e três setores foram escolhidos exclusivamente por clareza expositiva — o quadro é pequeno demais para qualquer inferência estatística com poder adequado. Os testes *t* e de Wald das Seções 9 e 10, e o I de Moran da Seção 11, devem ser lidos como demonstrações do cálculo, não como evidência substantiva; com $n=5$, o I de Moran em particular tem variância amostral elevada e não deve ser interpretado como teste confiável de dependência espacial.
 
@@ -503,7 +779,13 @@ Fonte: elaboração própria, síntese das Seções 4 a 11.
 
 **Matriz de contiguidade reduzida.** A malha espacial da Seção 11 usa apenas cinco das 26 unidades federativas mais o Distrito Federal — um subconjunto ilustrativo, não a matriz de contiguidade completa da federação brasileira (que integra o código computacional do projeto mais amplo do qual esta nota deriva). Padrões de dependência espacial identificados em um subconjunto de cinco regiões não são generalizáveis à matriz completa.
 
-**Sensibilidade a escolha não neutra de pesos.** Como demonstrado na Seção 5 e na Seção 6.3, tanto o efeito competitivo clássico quanto — de forma mais acentuada, e inclusive com inversão de sinal — o efeito de alocação de Esteban-Marquillas são sensíveis à escolha do ano de ponderação. Essa sensibilidade é uma propriedade do método, não um artefato deste exemplo específico, e já havia sido documentada empiricamente por Herzog e Olsen (1977) em dados reais das regiões do U.S. Bureau of Economic Analysis.
+**A aplicação à RAIS mede discordância, não acerto.** A Seção 12 não tem verdade conhecida contra a qual avaliar as variantes: todas as suas métricas são de concordância entre modelos, tomando o Barff-Knight dinâmico como referência por convenção justificada na Seção 12.3, não por superioridade demonstrada. Que uma variante se afaste da referência não significa que erre; significa apenas que a escolha entre as duas altera a conclusão. Pela mesma razão, nenhum resultado da Seção 12 deve ser lido como diagnóstico de competitividade das economias estaduais brasileiras — e a Seção 12.5 mostra que, a 5%, de zero a quatro das 27 unidades federativas têm efeito competitivo distinguível de zero.
+
+**Quebra de série e cobertura da RAIS.** A migração da coleta para o eSocial entre as bases 2022 e 2023 afeta a comparabilidade de toda a série, não só da seção O. A exclusão da administração pública (Seção 12.1) remove o caso extremo e mensurável, mas as seções P (educação) e Q (saúde e serviços sociais) carregam versão atenuada do mesmo problema e foram mantidas por terem emprego privado grande demais para ser descartado — suas taxas nacionais de 38,98% e 16,40% na Tabela 17 devem, por isso, ser lidas com reserva. Além disso, a RAIS cobre apenas o emprego formal declarado: a informalidade, heterogênea entre unidades federativas, fica inteiramente fora do painel, e o efeito competitivo estimado é o do mercado formal, não o da economia estadual.
+
+**Escala geográfica da aplicação espacial.** O resultado da Seção 12.6 — ausência de autocorrelação espacial significativa — é condicional à unidade geográfica. Com 27 unidades grandes e internamente heterogêneas, o I de Moran tem poder modesto, e transbordamentos de mercado de trabalho operam plausivelmente em escala municipal ou microrregional. O achado não deve ser lido como evidência contra a proposta de Nazara e Hewings (2004), e sim como demonstração de que sua adoção deve ser testada na escala efetivamente usada.
+
+**Sensibilidade a escolha não neutra de pesos.** Como demonstrado na Seção 5 e na Seção 6.3, tanto o efeito competitivo clássico quanto — de forma mais acentuada, e inclusive com inversão de sinal — o efeito de alocação de Esteban-Marquillas são sensíveis à escolha do ano de ponderação. Essa sensibilidade é uma propriedade do método, não um artefato deste exemplo específico, e já havia sido documentada empiricamente por Herzog e Olsen (1977) em dados reais das regiões do U.S. Bureau of Economic Analysis — e é confirmada, em escala muito maior do que a deste exemplo, pela Tabela 24: na RAIS, a troca de pesos-base por pesos terminais desloca o efeito competitivo de São Paulo em 187 mil vínculos.
 
 ## REFERÊNCIAS
 
@@ -512,6 +794,10 @@ ARCELUS, Francisco J. An extension of shift-share analysis. **Growth and Change*
 BARFF, Richard A.; KNIGHT, Prentice L. Dynamic shift-share analysis. **Growth and Change**, v. 19, n. 2, p. 1-10, 1988.
 
 BERZEG, Korkut. The empirical content of shift-share analysis. **Journal of Regional Science**, v. 18, n. 3, p. 463-469, 1978.
+
+BRASIL. Ministério do Trabalho e Emprego. **Nota técnica: RAIS 2023**. Brasília: MTE, 2024. Disponível em: https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/rais. Acesso em: 21 out. 2026.
+
+BRASIL. Ministério do Trabalho e Emprego. **Relação Anual de Informações Sociais (RAIS): microdados de estabelecimentos, bases 2022 a 2025**. Brasília: Programa de Disseminação das Estatísticas do Trabalho (PDET), 2026. Disponível em: https://acesso.trabalho.gov.br/portal-pdet/o-pdet/portifolio-de-produtos/bases-de-dados.htm. Acesso em: 21 out. 2026.
 
 BERZEG, Korkut. A note on statistical approaches to shift-share analysis. **Journal of Regional Science**, v. 24, n. 2, p. 277-285, 1984.
 
@@ -555,4 +841,4 @@ SELTING, Anne C.; LOVERIDGE, Scott. **A summary of the literature on shift-share
 
 ---
 
-*Nota de transparência: este documento formaliza os dois modelos de Arcelus (1984) — o Modelo I, homotético (Equação 5, Seção 7.2), e o Modelo II, de deslocamento regional (Equação 6, Seção 7.4) —, mas o Modelo II foi reconstruído a partir de Knudsen (2000, equações 2 a 2c), fonte secundária, sem consulta ao artigo original de Arcelus; a álgebra foi verificada, a nomenclatura não. A Seção 10 foi revisada com base no texto integral de Knudsen (2000): as equações do artigo são citadas pela numeração original, e as adaptações da implementação de referência (erros quase-Poisson, recentragem ponderada de $D_r$ e conversão em empregos) estão identificadas como tais na Seção 10.2 e na Seção 14. A referência a Rosenfeld (1959), citada na literatura secundária como um dos primeiros a apontar o defeito do efeito competitivo clássico, não pôde ser completada com periódico, volume e página exatos e é sinalizada como incompleta na lista de referências, em vez de inventada. Todos os valores numéricos das Tabelas 1 a 16 são sintéticos e devem ser validados como tal antes de qualquer circulação do documento; as medidas de ajuste citadas na Seção 10.1 são as reportadas por Knudsen (2000) para dados reais dos Estados Unidos.*
+*Nota de transparência: este documento formaliza os dois modelos de Arcelus (1984) — o Modelo I, homotético (Equação 5, Seção 7.2), e o Modelo II, de deslocamento regional (Equação 6, Seção 7.4) —, mas o Modelo II foi reconstruído a partir de Knudsen (2000, equações 2 a 2c), fonte secundária, sem consulta ao artigo original de Arcelus; a álgebra foi verificada, a nomenclatura não. A Seção 10 foi revisada com base no texto integral de Knudsen (2000): as equações do artigo são citadas pela numeração original, e as adaptações da implementação de referência (erros quase-Poisson, recentragem ponderada de $D_r$ e conversão em empregos) estão identificadas como tais na Seção 10.2 e na Seção 15. A referência a Rosenfeld (1959), citada na literatura secundária como um dos primeiros a apontar o defeito do efeito competitivo clássico, não pôde ser completada com periódico, volume e página exatos e é sinalizada como incompleta na lista de referências, em vez de inventada. Todos os valores numéricos das Tabelas 1 a 16 são sintéticos e devem ser validados como tal antes de qualquer circulação do documento; os das Tabelas 17 a 26 e do Quadro 2, ao contrário, são calculados a partir dos microdados reais da RAIS 2022-2025 (MTE/PDET) e são reproduzíveis pelos scripts `rais_data.py` e `run_rais.py` do projeto, cujas saídas em `results_rais_*.csv` são a fonte de cada número reportado na Seção 12; a seção não foi revisada contra publicação oficial de resultados de SSA para o Brasil, e sua contribuição é de robustez metodológica, não de diagnóstico econômico estadual; as medidas de ajuste citadas na Seção 10.1 são as reportadas por Knudsen (2000) para dados reais dos Estados Unidos.*
