@@ -12,13 +12,15 @@ construction**, and then test which shift-share variant best recovers them.
 |---|---|
 | `brazil_geo.py` | Contiguity matrix of the 27 Brazilian states (real land borders) + Moran's I |
 | `ssa_dgp.py` | Data-generating process with embedded true parameters (optionally spatially autocorrelated) |
-| `ssa_models.py` | The shift-share variants (Dunn, Esteban-Marquillas, Arcelus, Barff-Knight dynamic, Berzeg ANOVA, full-analogue regression, Nazara-Hewings spatial static/dynamic) |
+| `ssa_models.py` | The shift-share variants (Dunn, Esteban-Marquillas, Arcelus, Barff-Knight dynamic, Berzeg ANOVA, full-analogue regression, Nazara-Hewings spatial static/dynamic, Knudsen information-theoretic static/dynamic) |
 | `run_comparison.py` | Runs everything: single detailed run + 50-seed Monte Carlo in *benign*, *stress* (volatile) and *no_space* (ρ = 0) scenarios |
 | `results_single_run.csv` | Truth vs. estimates, seed 42 |
 | `results_recovery.csv` / `results_montecarlo.csv` / `results_morans_i.csv` | Recovery and spatial metrics |
 | `recovery_chart.png` | Visual summary (stress scenario) |
+| `evolucao_shift_share.ipynb` | Teaching notebook (in Portuguese): every variant in chronological order, formula plus result for seed 42 |
+| `tests/` | pytest checks of the identities and model equivalences |
 
-Run with: `python run_comparison.py` (needs numpy, pandas, scipy, statsmodels, matplotlib).
+Run with: `uv run python run_comparison.py` (dependencies are in `pyproject.toml`; `uv run pytest` runs the tests).
 
 ## How the artificial data solves the "which parameters?" problem
 
@@ -88,6 +90,32 @@ Barff-Knight-style dynamic version are implemented.
   *worth the extra structure* when spatial dependence is actually present,
   echoing the weight-matrix-sensitivity caveat in the review.
 
+## Information-theoretic extension (Knudsen 2000)
+
+Knudsen (2000) casts shift-share as a minimum-discrimination-information
+(MDI) problem: minimize the Kullback-Leibler information gain of the terminal
+employment distribution relative to the base one, subject to sector and
+region totals. The Lagrangian solution is log-linear,
+`ln(E1/E0) = A + O_i + D_r` (static, his eq. 18) or
+`ln(E[t+1]/E[t]) = A + O_i + D_r + T_t` (dynamic, eq. 19), and the MDI
+estimates are maximum-likelihood ones, so `knudsen_mdi` fits a Poisson GLM
+with log link and offset `ln(E0)`. The regional effect `D_r` is re-centred to
+an employment-weighted mean of zero and converted to employment units as
+`(exp(D_r) − 1) · w_r`, as in the full-analogue regression.
+
+Employment is not a Poisson count: the estimated dispersion is about 5 for the
+dynamic form and over 400 for the static one (seed 42), and plain ML standard
+errors change with the unit of measure (96% of states significant in jobs,
+0% in thousands of jobs). `knudsen_mdi` therefore uses quasi-Poisson
+(Pearson χ²/df) standard errors by default; `scale=None` gives the plain ML
+errors of the paper. Point estimates are the same either way.
+
+**Findings:** the dynamic form tracks the full-analogue regression almost
+exactly (competitive rates correlate at 0.99999; Monte Carlo nRMSE 0.186
+benign / 0.247 stress, against 0.182 / 0.245). The static form, a single
+ten-year transition, lands behind classic Dunn with base weights on average
+(0.243 / 0.295 against 0.212 / 0.289).
+
 ## Scoring
 
 For each model, the estimated per-region **competitive effect** (the
@@ -95,7 +123,7 @@ component the whole literature fights about) is compared to the truth with
 Pearson/Spearman correlation, normalized RMSE, and sign accuracy. Models in
 the homothetic family (E-M, Arcelus) are scored against the *homothetic*
 truth, since that is the object they claim to estimate. The inferential
-models (Berzeg ANOVA, full-analogue regression) additionally get a power /
+models (Berzeg ANOVA, full-analogue regression, Knudsen MDI) additionally get a power /
 false-flag diagnostic on their significance tests.
 
 ## Headline results (50-seed Monte Carlo)
@@ -105,8 +133,9 @@ false-flag diagnostic on their significance tests.
    shift-share yield the same point conclusions.
 2. **Magnitudes differ, and the gap widens under stress.** By normalized
    RMSE the ordering is: dynamic E-M ≈ full-analogue regression ≈ dynamic
-   Barff-Knight ≈ Berzeg < classic (base weights) < E-M/Arcelus static <
-   Fuchs average weights < terminal weights. Under the volatile scenario the
+   Barff-Knight ≈ Berzeg ≈ dynamic Knudsen < classic (base weights) <
+   E-M/Arcelus static < static Knudsen < Fuchs average weights < terminal
+   weights. Under the volatile scenario the
    terminal-weight variant's error roughly doubles relative to the dynamic
    models — echoing Ashby's (1970) criticism of Stilwell and the
    Herzog-Olsen (1977) weight-sensitivity warning.
@@ -115,8 +144,8 @@ false-flag diagnostic on their significance tests.
    negative for `mis_allocated`, near zero for `neutral` — close to the true
    values.
 4. **Only the inferential models can say whether an effect is real.** Berzeg
-   ANOVA and the full-analogue regression flag 100% of the strongest-third
-   regions as significant; the deterministic variants produce numbers with
+   ANOVA, the full-analogue regression and dynamic Knudsen flag 100% of the
+   strongest-third regions as significant (seed 42); the deterministic variants produce numbers with
    no way to distinguish signal from noise — the core argument of Berzeg
    (1978) and Knudsen (2000).
 5. Berzeg ANOVA and dynamic Barff-Knight produce **identical point

@@ -40,3 +40,29 @@ def test_arcelus_extra_terms_vanish(data):
     arc = M.arcelus(data["E"], data["regions"])
     assert np.allclose(arc["differential_national"], 0)
     assert np.allclose(arc["expected_mix"], 0)
+
+
+@pytest.mark.parametrize("dynamic", [False, True])
+def test_knudsen_estimates_do_not_depend_on_units(data, dynamic):
+    E, regs, secs = data["E"], data["regions"], data["sectors"]
+    jobs, _ = M.knudsen_mdi(E, regs, secs, dynamic=dynamic)
+    thousands, _ = M.knudsen_mdi(E / 1000, regs, secs, dynamic=dynamic)
+    assert np.allclose(jobs["log_effect"], thousands["log_effect"])
+    assert np.allclose(jobs["comp_t"], thousands["comp_t"])
+
+
+def test_knudsen_regional_effects_are_weight_centred(data):
+    E, regs, secs = data["E"], data["regions"], data["sectors"]
+    est, _ = M.knudsen_mdi(E, regs, secs, dynamic=True)
+    w_r = E[:, :, :-1].sum(axis=(1, 2))
+    assert abs(np.average(est["log_effect"], weights=w_r)) < 1e-12
+
+
+@pytest.mark.filterwarnings(
+    "ignore::statsmodels.tools.sm_exceptions.SingularMatrixWarning"
+)
+def test_knudsen_dynamic_matches_full_analogue_rates(data):
+    E, regs, secs = data["E"], data["regions"], data["sectors"]
+    kn, _ = M.knudsen_mdi(E, regs, secs, dynamic=True)
+    far, _ = M.full_analogue_regression(E, regs, secs)
+    assert np.corrcoef(kn["comp_rate"], far["comp_rate"])[0, 1] > 0.999

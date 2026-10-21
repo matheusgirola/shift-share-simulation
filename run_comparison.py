@@ -10,10 +10,10 @@ Metrics (region-level, for the competitive component unless noted):
   nrmse     RMSE / std(truth)  -- < 1 means better than guessing the mean
   sign_acc  share of regions whose estimated sign matches the true sign
 
-For the inferential models (Berzeg ANOVA, full-analogue regression) we also
-report significance diagnostics: among regions whose TRUE competitive rate
-|c_bar| is in the top/bottom tercile, how often is the effect flagged
-significant (power proxy), and how often are near-zero regions flagged
+For the inferential models (Berzeg ANOVA, full-analogue regression, Knudsen
+MDI) we also report significance diagnostics: among regions whose TRUE
+competitive rate |c_bar| is in the top/bottom tercile, how often is the effect
+flagged significant (power proxy), and how often are near-zero regions flagged
 (false-positive proxy).
 
 Outputs (written next to this script):
@@ -22,6 +22,8 @@ Outputs (written next to this script):
   results_montecarlo.csv     metrics averaged over N_SIM seeds
   recovery_chart.png         visual summary
 """
+
+import re
 
 import numpy as np
 import pandas as pd
@@ -58,6 +60,10 @@ def run_all_models(data):
     out["Full-analogue regression"] = far
     out["Nazara-Hewings spatial (static)"] = M.nazara_hewings(E, regs, W)
     out["Nazara-Hewings spatial (dynamic)"] = M.dynamic_nazara_hewings(E, regs, W)
+    kn_static, _ = M.knudsen_mdi(E, regs, secs, dynamic=False)
+    out["Knudsen MDI (static)"] = kn_static
+    kn_dynamic, _ = M.knudsen_mdi(E, regs, secs, dynamic=True)
+    out["Knudsen MDI (dynamic)"] = kn_dynamic
     return out
 
 
@@ -223,7 +229,7 @@ if __name__ == "__main__":
     # save estimates side by side with truth
     wide = truth.copy()
     for name, est in models.items():
-        tag = name.split("(")[0].strip().replace(" ", "_").replace("-", "")
+        tag = re.sub(r"\W+", "_", name).strip("_")
         wide[f"comp__{tag}"] = (
             est.set_index("region")["competitive"].reindex(truth["region"]).values
         )

@@ -29,11 +29,18 @@ Implemented variants
                          year, industry-year and region effects with
                          employment-weighted sum-to-zero constraints;
                          delivers t-statistics for the regional effect.
+8. nazara_hewings / dynamic_nazara_hewings
+                         Nazara & Hewings (2004) spatial shift-share: the
+                         competitive effect split into a neighborhood effect
+                         and an own-net effect (static and annual versions).
+9. knudsen_mdi           Knudsen (2000) information-theoretic (MDI)
+                         shift-share: log-linear model estimated as a Poisson
+                         GLM with offset ln(E0); static (eq. 18) and dynamic
+                         (eq. 19) forms, with deviance and Wald tests.
 
-Not implemented (noted for reference): spatial shift-share (Nazara-Hewings
-2004) needs a spatial weight matrix, i.e., a geography for the artificial
-states; multifactor partitioning (Ray) and the Bartik IV serve different
-questions (aggregation bias / causal identification).
+Not implemented (noted for reference): multifactor partitioning (Ray) and
+the Bartik IV serve different questions (aggregation bias / causal
+identification).
 """
 
 import numpy as np
@@ -412,3 +419,82 @@ def dynamic_nazara_hewings(E, regions, W):
     )
     out["total_explained"] = out[["national", "mix", "competitive"]].sum(axis=1)
     return out
+
+
+# ----------------------------------------------------------------------
+# 9. Information-theoretic shift-share (Knudsen 2000)
+# ----------------------------------------------------------------------
+def knudsen_mdi(E, regions, sectors, dynamic=True, scale="X2"):
+    """Knudsen (2000) minimum-discrimination-information (MDI) shift-share.
+
+    Knudsen minimizes the information gain I(P:Q) = sum p ln(p/q) of the
+    terminal employment distribution P relative to the base distribution Q,
+    subject to sector and region marginal constraints. The Lagrangian
+    solution is log-linear (his eqs. 17-19):
+
+        static  (eq. 18):  ln(E1[r,i] / E0[r,i])    = A + O_i + D_r
+        dynamic (eq. 19):  ln(E[r,i,t+1] / E[r,i,t]) = A + O_i + D_r + T_t
+
+    and the MDI estimates are maximum-likelihood estimates, so the model is
+    calibrated as a Poisson GLM with log link and offset ln(E0). D_r is the
+    regional (competitive) effect in log growth; it is re-centred to an
+    employment-weighted mean of zero, and its standard error is computed for
+    that centred contrast from the full covariance matrix.
+
+    scale="X2" uses the Pearson chi2 / df dispersion (quasi-Poisson) for the
+    standard errors, because employment is not a Poisson count and the plain
+    ML standard errors are far too small; scale=None gives Knudsen's plain
+    ML errors. Point estimates are the same either way.
+
+    Conversion to employment units, as in the full-analogue regression:
+    comp_rate = exp(D_r) - 1 per period, competitive = comp_rate * w_r, where
+    w_r is the region's base employment summed over the periods used.
+    """
+    import statsmodels.api as sm
+
+    R, I, Tp1 = E.shape
+    T = Tp1 - 1
+    periods = [(t, t + 1) for t in range(T)] if dynamic else [(0, T)]
+    rows = []
+    for k, (t0, t1) in enumerate(periods):
+        for r in range(R):
+            for i in range(I):
+                rows.append((regions[r], sectors[i], k, E[r, i, t1], E[r, i, t0]))
+    df = pd.DataFrame(rows, columns=["region", "sector", "period", "E1", "E0"])
+
+    cols = ["sector", "region"] + (["period"] if dynamic else [])
+    X = pd.get_dummies(df[cols].astype(str), drop_first=False)
+    drop = [f"sector_{sectors[0]}", f"region_{regions[0]}"]
+    if dynamic:
+        drop.append("period_0")
+    X = sm.add_constant(X.drop(columns=drop).astype(float))
+    model = sm.GLM(df["E1"], X, family=sm.families.Poisson(), offset=np.log(df["E0"]))
+    res = model.fit(scale=scale)
+
+    # region effects D_r (reference region = 0), re-centred to a weighted
+    # mean of zero: D_c = M S theta, with S selecting the region coefficients
+    reg_cols = [f"region_{r}" for r in regions[1:]]
+    S = np.zeros((R, len(res.params)))
+    for r, c in enumerate(reg_cols, start=1):
+        S[r, X.columns.get_loc(c)] = 1.0
+    w_r = df.groupby("region")["E0"].sum().reindex(regions).to_numpy()
+    w = w_r / w_r.sum()
+    Mc = np.eye(R) - np.outer(np.ones(R), w)
+    L = Mc @ S
+    D_c = L @ res.params.to_numpy()
+    se = np.sqrt(np.diag(L @ res.cov_params().to_numpy() @ L.T))
+    z = D_c / se
+
+    comp_rate = np.exp(D_c) - 1.0
+    out = pd.DataFrame(
+        {
+            "region": regions,
+            "competitive": comp_rate * w_r,
+            "comp_rate": comp_rate,
+            "log_effect": D_c,
+            "log_effect_se": se,
+            "comp_t": z,
+            "significant_5pct": np.abs(z) > 1.96,
+        }
+    )
+    return out, res
