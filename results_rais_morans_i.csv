@@ -5,6 +5,7 @@ Classic Dunn (terminal wts) [rate],0.05623731019032954,0.679
 "Classic Dunn (avg wts, Fuchs) [rate]",0.073875635507267,0.608
 Esteban-Marquillas (static) [rate],0.18997077737753243,0.183
 Arcelus I (static) [rate],0.18997077737753243,0.183
+Arcelus II (static) [rate],0.12831214260635493,0.389
 Dynamic (Barff-Knight) [rate],0.1417783424486945,0.339
 Dynamic Esteban-Marquillas [rate],0.1663142413827746,0.235
 Berzeg ANOVA (stochastic) [rate],0.14177834244869453,0.339

@@ -69,6 +69,7 @@ NAMES = {
     "Classic Dunn (avg wts, Fuchs)": "Dunn, média (Fuchs)",
     "Esteban-Marquillas (static)": "Esteban-Marquillas",
     "Arcelus I (static)": "Arcelus I",
+    "Arcelus II (static)": "Arcelus II",
     "Dynamic (Barff-Knight)": "Barff-Knight",
     "Dynamic Esteban-Marquillas": "E-M dinâmico",
     "Berzeg ANOVA (stochastic)": "Berzeg ANOVA",
@@ -165,7 +166,14 @@ def collect():
         e = df.set_index("region").reindex(regs)
         est[name] = {
             col: e[col].tolist()
-            for col in ("competitive", "allocation", "neighborhood", "own_net")
+            for col in (
+                "competitive",
+                "allocation",
+                "neighborhood",
+                "own_net",
+                "regional_shift",
+                "differential_shift",
+            )
             if col in e.columns
         }
         if "significant_5pct" in e.columns:
@@ -433,6 +441,51 @@ def model_slide(
 
 
 # ----------------------------------------------------------------------
+# wave dividers (the three waves of reformulation plus the spatial one)
+# ----------------------------------------------------------------------
+DARK_CARD = "#24313F"
+DARK_RULE = "#3A4757"
+GOLD = "#E9A867"
+PALE = "#C3CBD4"
+FAINT = "#8A94A0"
+
+
+def footer_dark(n, source=None):
+    src = source or (
+        "Simulação semente 42 · 27 UFs × 5 setores × 10 anos · valores em mil empregos"
+    )
+    return (
+        f'<p style="position:absolute;left:128px;bottom:56px;width:1300px;font-size:24px;color:{FAINT}">'
+        f"{src}</p>"
+        f'<p style="position:absolute;right:128px;bottom:56px;width:120px;font-size:24px;color:{FAINT};text-align:right">{n}</p>'
+    )
+
+
+def dark_cards(cards):
+    return "".join(
+        f'<div style="flex:1;display:flex;flex-direction:column;gap:14px;'
+        f'background:{DARK_CARD};border-radius:16px;padding:32px">'
+        f'<p style="font-size:22px;font-weight:600;letter-spacing:2px;'
+        f'text-transform:uppercase;color:{GOLD}">{a}</p>'
+        f'<p style="font-size:27px;line-height:1.4;color:{PALE}">{b}</p></div>'
+        for a, b in cards
+    )
+
+
+def wave_slide(sid, section, n, eyebrow, title, lead, cards, ahead, notes):
+    """Dark divider opening one wave: problem, structural change, remaining limit."""
+    return f"""<section id="{sid}" data-transition="fade" data-section="{section}" style="background:{INK};color:{BG};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:26px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:{GOLD}">{eyebrow}</p>
+<h2 style="font-family:{SERIF};font-size:68px;font-weight:600;line-height:1.08;color:{BG};width:1520px">{title}</h2>
+<p style="font-size:30px;line-height:1.45;color:{PALE};width:1560px">{lead}</p>
+<div style="display:flex;gap:24px">{dark_cards(cards)}</div>
+<p style="font-size:26px;line-height:1.4;color:{FAINT};border-top:1px solid {DARK_RULE};padding:22px 0px 0px 0px">{ahead}</p>
+{footer_dark(n)}
+<aside>{notes}</aside>
+</section>"""
+
+
+# ----------------------------------------------------------------------
 # real-data slides (RAIS 2022-2025)
 # ----------------------------------------------------------------------
 def card_grid(cards, columns=3, dark=False):
@@ -629,7 +682,7 @@ def build_rais_slides(R, n, true_moran):
 </div>
 {hbar_chart(rows, 1180, 800, 612, 104, 1.5, [0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5], lambda v: br(v, 2), [(ORANGE, "nRMSE contra Barff-Knight")])}
 {footer_rais(n)}
-<aside>results_rais_agreement.csv. Esteban-Marquillas, Arcelus e E-M dinâmico estimam o competitivo homotético, que é outro objeto — a distância deles até a referência não é erro, é definição. A barra dos pesos terminais está truncada em 1,50; o valor é {br(term["nrmse_vs_ref"], 2)}.</aside>
+<aside>results_rais_agreement.csv. Esteban-Marquillas, Arcelus I e E-M dinâmico estimam o competitivo homotético, que é outro objeto — a distância deles até a referência não é erro, é definição. A barra dos pesos terminais está truncada em 1,50; o valor é {br(term["nrmse_vs_ref"], 2)}.</aside>
 </section>"""
     )
     n += 1
@@ -684,7 +737,7 @@ def build_rais_slides(R, n, true_moran):
                     (ORANGE, "Menor estimativa entre as variantes", False),
                 ],
             ),
-            "results_rais_spread.csv. As variantes homotéticas (Esteban-Marquillas, Arcelus) ficam fora da conta porque estimam outro objeto. A amplitude de São Paulo vem sobretudo dos pesos terminais, que reponderam a identidade pelo emprego de 2025 — e São Paulo é grande justamente nos setores que cresceram menos.",
+            "results_rais_spread.csv. São sete estimadores distintos: as variantes homotéticas (Esteban-Marquillas, Arcelus I) ficam fora porque estimam outro objeto, e as quatro que duplicam outra exatamente — Arcelus II e Nazara-Hewings estático reproduzem Dunn pesos-base; Berzeg e Nazara-Hewings dinâmico reproduzem Barff-Knight — são contadas uma vez só, para que a mediana não dependa de quantas vezes a literatura reformula o mesmo estimador. A amplitude de São Paulo vem sobretudo dos pesos terminais, que reponderam a identidade pelo emprego de 2025 — e São Paulo é grande justamente nos setores que cresceram menos.",
             RAIS_SOURCE,
         )
     )
@@ -793,6 +846,7 @@ def build_slides(D):
     REC, MC, SIG, EST = D["rec"], D["mc"], D["sigdiag"], D["est"]
     T = D["truth"]
     TC, TH = T["true_comp"], T["true_comp_homothetic"]
+    TRS = T["true_reg_shift"]
     CT = "Efeito competitivo por UF, ordenado pelo verdadeiro (mil empregos)"
     CTH = "Efeito competitivo homotético por UF (mil empregos)"
 
@@ -915,7 +969,7 @@ def build_slides(D):
 </div>
 <p style="font-size:28px;line-height:1.45;color:{SOFT}">Os gráficos mostram, para as 27 UFs ordenadas pelo valor verdadeiro, o par de barras verdadeiro × estimado. Ao lado, três medidas resumem a recuperação na semente 42, e uma linha traz a média de 50 simulações.</p>
 <div style="display:flex;gap:24px">{mc_html}</div>
-<p style="font-size:26px;line-height:1.45;color:{SOFT}">Cada modelo é avaliado contra o alvo que diz estimar: Esteban-Marquillas e Arcelus contra o efeito competitivo <b>homotético</b> verdadeiro; os demais contra o efeito competitivo verdadeiro.</p>
+<p style="font-size:26px;line-height:1.45;color:{SOFT}">Cada modelo é avaliado contra o alvo que diz estimar: Esteban-Marquillas e Arcelus I contra o efeito competitivo <b>homotético</b> verdadeiro; os demais contra o efeito competitivo verdadeiro.</p>
 {footer(3)}
 <aside>As métricas vêm de results_recovery.csv (semente 42) e results_montecarlo.csv (50 sementes, cenários benigno e de estresse). O cenário de estresse aumenta a volatilidade do ciclo nacional, as oscilações setoriais anuais e o ruído.</aside>
 </section>"""
@@ -939,9 +993,14 @@ def build_slides(D):
             "sinal de AE depende dos pesos",
         ),
         (
-            "Arcelus (1984)",
+            "Arcelus (1984) · I",
             "homotetia só no competitivo",
             "DN e EM nulos por construção",
+        ),
+        (
+            "Arcelus (1984) · II",
+            "competitivo mistura UF e setor",
+            "diferencial agregado é −IM por construção",
         ),
         ("Barff-Knight (1988)", "viés ponto a ponto", "ainda determinístico"),
         ("Berzeg (1978, 1984)", "nenhum teste estatístico", "supõe normalidade"),
@@ -969,7 +1028,27 @@ def build_slides(D):
 </section>"""
     )
 
-    n = 5
+    # 5 the central defect of the identity
+    defeito_cards = [
+        ("Onda 1 · homotética", "Mede vantagem e especialização no mesmo número."),
+        ("Onda 2 · temporal", "Só as duas pontas do período entram na conta."),
+        ("Onda 3 · inferencial", "Identidade determinística não tem erro-padrão."),
+        ("Extensão espacial", "Cada região é tratada como ilha, sem vizinhança."),
+    ]
+    slides.append(
+        f"""<section id="defeito" data-transition="fade" data-section="Linha de base" style="background:{INK};color:{BG};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:30px">
+<p style="font-size:26px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:{GOLD}">Linha de base · Dunn (1960)</p>
+<h2 style="font-family:{SERIF};font-size:68px;font-weight:600;line-height:1.08;color:{BG};width:1520px">O resíduo competitivo nasce contaminado</h2>
+<p style="font-family:{MONO};font-size:36px;color:{BG};background:{DARK_CARD};border-radius:16px;padding:26px 32px">ΔE = E₀·gₙ &#160;+&#160; E₀·(gₙᵢ − gₙ) &#160;+&#160; <span style="color:{GOLD}">E₀·(gᵣᵢ − gₙᵢ)</span></p>
+<p style="font-size:30px;line-height:1.45;color:{PALE};width:1620px">Rosenfeld (1959) e Houston (1967) apontaram, e Esteban-Marquillas (1972) formalizou: o terceiro termo é ponderado pelo emprego <b>observado</b> da região no setor. Duas regiões com a mesma taxa diferencial recebem efeitos competitivos diferentes só porque uma tem mais emprego ali — o componente que deveria medir vantagem pura mede vantagem × estrutura.</p>
+<div style="display:flex;gap:24px">{dark_cards(defeito_cards)}</div>
+<p style="font-size:26px;line-height:1.4;color:{FAINT};border-top:1px solid {DARK_RULE};padding:22px 0px 0px 0px">Loveridge e Selting (1998): “SSA é apenas uma identidade contábil praticável: nunca pretendeu ser uma teoria.”</p>
+{footer_dark(5)}
+<aside>Seções 2.1 e 2.2 da nota. O defeito central já estava descrito em Rosenfeld (1959) e Houston (1967), mas é Esteban-Marquillas (1972) que o demonstra formalmente. Cada uma das quatro falhas listadas abre uma parte deste deck: onda 1 (homotética), onda 2 (temporal), onda 3 (inferencial) e a extensão espacial de Nazara-Hewings (2004), posterior às três.</aside>
+</section>"""
+    )
+
+    n = 6
     M = "Classic Dunn (base wts)"
     slides.append(
         model_slide(
@@ -989,41 +1068,51 @@ def build_slides(D):
         )
     )
     n += 1
-    M = "Classic Dunn (terminal wts)"
     slides.append(
-        model_slide(
-            "terminal",
+        wave_slide(
+            "onda1",
+            "Onda 1 · homotética",
             n,
-            "Controvérsia dos pesos · Stilwell",
-            "Dunn: pesos do ano terminal",
-            "A mesma identidade, reponderada pelo emprego final com a taxa reversa. Stilwell (1969) propôs essa “composição reversa”; Ashby (1970) a criticou como excessiva.",
-            "g′ = (E₀ − E₁)/E₁<br>CE = −E₁·(g′ᵣᵢ − g′ₙᵢ)",
-            metrics(M),
+            "Onda 1 de 3 · 1972–1987",
+            "Homotética: tirar a estrutura de dentro do resíduo",
+            "A primeira onda aceita a identidade de Dunn e troca o <b>ponderador</b>. "
+            "Em lugar do emprego observado entra o emprego homotético E*, a estrutura "
+            "que a região teria se reproduzisse exatamente as participações setoriais "
+            "do país — e a diferença entre os dois pesos passa a ser um componente "
+            "próprio, o efeito alocação.",
             [
-                mc_line(M),
-                f"É a pior variante em magnitude na média de 50 simulações; a composição setorial cai para r = {br(REC[M]['mix_pearson'])}.",
+                (
+                    "Problema",
+                    (
+                        "O efeito competitivo mistura vantagem com especialização: "
+                        "vantagem × estrutura em um único número."
+                    ),
+                ),
+                (
+                    "Mudança",
+                    (
+                        "Peso contrafactual E* = E₀ᵣ·(E₀ᵢ/E₀); o competitivo se parte em "
+                        "puro (CE*) e alocação (AE)."
+                    ),
+                ),
+                (
+                    "Limite que sobra",
+                    (
+                        "O sinal de AE depende do ano de ponderação (Herzog-Olsen, 1977) e "
+                        "a homotetia se esgota no competitivo."
+                    ),
+                ),
             ],
-            chart(CT, TC, comp(M)),
-            "Seção 5 da nota. Na semente 42 o nRMSE dos pesos terminais é até baixo, mas o Monte Carlo mostra que, em média, é a variante que mais erra a magnitude, e o erro cresce no cenário volátil, como previa a crítica de Ashby e a advertência de Herzog-Olsen sobre sensibilidade aos pesos.",
-        )
-    )
-    n += 1
-    M = "Classic Dunn (avg wts, Fuchs)"
-    slides.append(
-        model_slide(
-            "fuchs",
-            n,
-            "Controvérsia dos pesos · Fuchs",
-            "Dunn: média dos pesos (Fuchs)",
-            "Fuchs (1959) mostrou que o efeito de composição é sensível ao ano de ponderação e propôs a média entre pesos-base e pesos-terminais.",
-            "CE = ½·(CE_base + CE_terminal)",
-            metrics(M),
-            [
-                mc_line(M),
-                "Fica entre as duas convenções: melhor que a terminal, pior que a base na média.",
-            ],
-            chart(CT, TC, comp(M)),
-            "Seção 5 da nota. A convenção cinquenta-cinquenta suaviza, mas não elimina, o viés de ponto a ponto: a média das duas pontas continua ignorando a trajetória do emprego entre elas.",
+            "Nos próximos quatro slides: Esteban-Marquillas (1972), o efeito alocação, "
+            "Arcelus I e Arcelus II (1984). Autores da onda: Esteban-Marquillas (1972), "
+            "Herzog-Olsen (1977), Arcelus (1984), Haynes-Machunda (1987).",
+            "Seções 6 e 7 da nota. Esteban-Marquillas e Arcelus I são avaliados contra o "
+            "efeito competitivo homotético verdadeiro do DGP, não contra o competitivo "
+            "clássico — são alvos diferentes. Keil (1992), com dados de Indiana "
+            "(1977–1986), concluiu que as extensões homotéticas lançam pouca luz sobre o "
+            "crescimento regional total, o que a Seção 7.3 da nota explica por álgebra: "
+            "dois dos quatro subcomponentes de Arcelus I são nulos por construção quando "
+            "somados por região.",
         )
     )
     n += 1
@@ -1084,8 +1173,8 @@ def build_slides(D):
             "arcelus",
             n,
             "Onda 1 · homotética · 1984",
-            "Arcelus I",
-            "Estende a partição homotética aos efeitos nacional e de composição. Somados por UF, dois dos quatro novos termos se anulam identicamente.",
+            "Arcelus I: a partição homotética",
+            "Estende a partição homotética aos efeitos nacional e de composição. Somados por UF, dois dos quatro novos termos se anulam identicamente. Não confundir com o Modelo II do mesmo autor, que parte a competitividade usando a taxa da própria UF como referência — é esse que Knudsen (2000) usa, dois slides adiante.",
             "NE = E*·gₙ + (E₀−E*)·gₙ<br>IM = E*·(gₙᵢ−gₙ) + (E₀−E*)·(gₙᵢ−gₙ)",
             metrics(M),
             [
@@ -1093,7 +1182,132 @@ def build_slides(D):
                 "Na simulação, |DN| e |EM| ficam abaixo de 10⁻⁹ em todas as UFs: o efeito competitivo é o mesmo de Esteban-Marquillas.",
             ],
             chart(CTH, TH, comp(M)),
-            "Seção 7 da nota. A propriedade algébrica da Seção 7.3 aparece na simulação: o termo diferencial nacional e o termo esperado de composição somam zero por UF. Por isso Arcelus I e Esteban-Marquillas estático têm exatamente as mesmas estimativas e as mesmas métricas.",
+            "Seção 7.2 da nota. A propriedade algébrica da Seção 7.3 aparece na simulação: o termo diferencial nacional e o termo esperado de composição somam zero por UF. Por isso Arcelus I e Esteban-Marquillas estático têm exatamente as mesmas estimativas e as mesmas métricas. O Modelo II (Seção 7.4) é outro objeto: reparte o competitivo de Dunn em deslocamento regional e diferencial, e tem slide próprio a seguir.",
+        )
+    )
+    n += 1
+    M = "Arcelus II (static)"
+    slides.append(
+        model_slide(
+            "arcelus2",
+            n,
+            "Onda 1 · deslocamento regional · 1984",
+            "Arcelus II: a partição do competitivo",
+            "Troca a referência, não o ponderador: separa o quanto a UF inteira cresce "
+            "acima do país do quanto um setor se destaca dentro dela.",
+            "r = E₀·(g_UF − gₙ)<br>d = E₀·[(g_rᵢ − g_UF) − (gₙᵢ − gₙ)]",
+            metrics(M, "regshift_"),
+            [
+                (
+                    "O competitivo total é <b>idêntico</b> ao de Dunn com pesos-base, "
+                    "à precisão de máquina: r + d = E₀·(g_rᵢ − gₙᵢ) célula a célula. "
+                    "O que o modelo acrescenta é a partição, não o total."
+                ),
+                (
+                    "Somado por UF, o deslocamento diferencial é −IM por construção, "
+                    "e as métricas mostram: r = "
+                    f"{br(REC[M]['diffshift_pearson'])}, nRMSE = "
+                    f"{br(REC[M]['diffshift_nrmse'], 2)}, sinal correto em "
+                    f"{pct(REC[M]['diffshift_sign_acc'])}. Pior que chutar a média."
+                ),
+            ],
+            chart(
+                "Deslocamento regional por UF, ordenado pelo verdadeiro (mil empregos)",
+                TRS,
+                EST[M]["regional_shift"],
+            ),
+            "Seção 7.4 da nota. O gráfico mostra o deslocamento regional, não o "
+            "competitivo — este seria cópia exata do slide de Dunn. O DGP constrói "
+            "c_rᵢ = c̄_r + d_rᵢ, então a verdade do deslocamento regional é a parcela "
+            "c̄_r e a do diferencial é d_rᵢ. O estimador recupera bem a primeira e "
+            "nada da segunda: é a degenerescência algébrica da Seção 7.4 aparecendo na "
+            "simulação, como os termos nulos de Arcelus I aparecem no slide anterior.",
+        )
+    )
+    n += 1
+    slides.append(
+        wave_slide(
+            "onda2",
+            "Onda 2 · temporal",
+            n,
+            "Onda 2 de 3 · 1959–1988",
+            "Temporal: a trajetória entre as duas pontas",
+            "A segunda onda não discute o ponderador, mas <b>quando</b> ele é medido. "
+            "Fuchs (1959) mostrou que o efeito de composição é sensível ao ano de "
+            "ponderação; Stilwell (1969) propôs o extremo terminal e Ashby (1970) o "
+            "criticou. Barff e Knight (1988), retomando Thirlwall (1967), foram além: "
+            "partiram o intervalo em subperíodos e somaram as decomposições.",
+            [
+                (
+                    "Problema",
+                    (
+                        "A comparação ponto a ponto ignora a trajetória e a escolha do ano "
+                        "de ponderação não é neutra."
+                    ),
+                ),
+                (
+                    "Mudança",
+                    (
+                        "Pesos terminais, média cinquenta-cinquenta ou soma de K "
+                        "decomposições subperiódicas."
+                    ),
+                ),
+                (
+                    "Limite que sobra",
+                    (
+                        "Continua determinística e exige dados de alta frequência para "
+                        "montar os subperíodos."
+                    ),
+                ),
+            ],
+            "Nos próximos quatro slides: Dunn com pesos terminais, Dunn com a média de "
+            "Fuchs, Barff-Knight (1988) e Esteban-Marquillas dinâmico, que soma as duas "
+            "primeiras ondas. Autores da onda: Fuchs (1959), Stilwell (1969), "
+            "Ashby (1970), Barff-Knight (1988).",
+            "Seções 5 e 8 da nota. A controvérsia dos pesos aparece na nota antes de "
+            "Esteban-Marquillas, por ser uma variação direta da mesma identidade, mas a "
+            "taxonomia da Seção 2.2 a classifica nesta onda — é por isso que esses dois "
+            "slides vêm aqui, e não junto ao de Dunn. Na simulação, a forma dinâmica é a "
+            "que reproduz a construção do DGP, em que o emprego evolui ano a ano, e por "
+            "isso supera as formas estáticas em magnitude.",
+        )
+    )
+    n += 1
+    M = "Classic Dunn (terminal wts)"
+    slides.append(
+        model_slide(
+            "terminal",
+            n,
+            "Onda 2 · pesos terminais · 1969",
+            "Dunn: pesos do ano terminal",
+            "A mesma identidade, reponderada pelo emprego final com a taxa reversa. Stilwell (1969) propôs essa “composição reversa”; Ashby (1970) a criticou como excessiva.",
+            "g′ = (E₀ − E₁)/E₁<br>CE = −E₁·(g′ᵣᵢ − g′ₙᵢ)",
+            metrics(M),
+            [
+                mc_line(M),
+                f"É a pior variante em magnitude na média de 50 simulações; a composição setorial cai para r = {br(REC[M]['mix_pearson'])}.",
+            ],
+            chart(CT, TC, comp(M)),
+            "Seção 5 da nota. Na semente 42 o nRMSE dos pesos terminais é até baixo, mas o Monte Carlo mostra que, em média, é a variante que mais erra a magnitude, e o erro cresce no cenário volátil, como previa a crítica de Ashby e a advertência de Herzog-Olsen sobre sensibilidade aos pesos.",
+        )
+    )
+    n += 1
+    M = "Classic Dunn (avg wts, Fuchs)"
+    slides.append(
+        model_slide(
+            "fuchs",
+            n,
+            "Onda 2 · média dos pesos · 1959",
+            "Dunn: média dos pesos (Fuchs)",
+            "Fuchs (1959) mostrou que o efeito de composição é sensível ao ano de ponderação e propôs a média entre pesos-base e pesos-terminais.",
+            "CE = ½·(CE_base + CE_terminal)",
+            metrics(M),
+            [
+                mc_line(M),
+                "Fica entre as duas convenções: melhor que a terminal, pior que a base na média.",
+            ],
+            chart(CT, TC, comp(M)),
+            "Seção 5 da nota. A convenção cinquenta-cinquenta suaviza, mas não elimina, o viés de ponto a ponto: a média das duas pontas continua ignorando a trajetória do emprego entre elas.",
         )
     )
     n += 1
@@ -1129,6 +1343,55 @@ def build_slides(D):
             ],
             chart(CTH, TH, comp(M)),
             "Variante implementada no código e não descrita na nota. Na média de 50 simulações é a de menor erro de magnitude no cenário de estresse, empatada com a regressão full-analogue.",
+        )
+    )
+    n += 1
+    slides.append(
+        wave_slide(
+            "onda3",
+            "Onda 3 · inferencial",
+            n,
+            "Onda 3 de 3 · 1976–2000",
+            "Inferencial: um número sem erro-padrão não é resultado",
+            "A terceira onda ataca o que as duas primeiras não podiam tocar. Como "
+            "observam Selting e Loveridge (1992), uma identidade determinística não tem "
+            "erro-padrão: não há como dizer se um efeito competitivo é vantagem ou "
+            "ruído amostral. Berzeg (1978, 1984) recasta a identidade como ANOVA, em que "
+            "o competitivo é o <b>resíduo</b> de uma regressão; Knudsen (2000) a deriva "
+            "da teoria da informação.",
+            [
+                (
+                    "Problema",
+                    (
+                        "Nenhum componente da SSA clássica admite teste de hipótese, "
+                        "porque nenhum tem distribuição."
+                    ),
+                ),
+                (
+                    "Mudança",
+                    (
+                        "Regressão das taxas em dummies (ANOVA) e mínima informação "
+                        "discriminante (GLM de Poisson log-linear)."
+                    ),
+                ),
+                (
+                    "Limite que sobra",
+                    (
+                        "Supõe normalidade; parâmetros em escala log; exige correção de "
+                        "dispersão (quase-Poisson)."
+                    ),
+                ),
+            ],
+            "Nos próximos quatro slides: Berzeg ANOVA, regressão full-analogue, Knudsen "
+            "estático e Knudsen dinâmico. Autores da onda: Buck-Atkins (1976), "
+            "Berzeg (1978, 1984), Patterson (1991), Knudsen (2000).",
+            "Seções 9 e 10 da nota. Na comparação empírica de Knudsen (2000), com emprego "
+            "do BLS nas nove divisões censitárias dos EUA (1970 e 1980), a forma "
+            "informacional ajustou melhor que a ANOVA correspondente: PNMD de 0,5163 e "
+            "0,6601 contra R² de 0,1836 e 0,2284 nos modelos simples e com a extensão de "
+            "Arcelus. Na forma dinâmica o ajuste foi fraco nos dois casos (0,0258 contra "
+            "0,0111). O próprio autor conclui com cautela: os parâmetros informacionais "
+            "são mais difíceis de interpretar e nem sempre ajustam melhor.",
         )
     )
     n += 1
@@ -1174,12 +1437,12 @@ def build_slides(D):
             n,
             "Onda 3 · teoria da informação · 2000",
             "Knudsen: forma estática",
-            "Mínima informação discriminante: modelo log-linear estimado como GLM de Poisson com offset ln E₀, uma única transição de dez anos.",
+            "Mínima informação discriminante com restrição de margens setoriais e regionais — a extensão de Arcelus II: modelo log-linear estimado como GLM de Poisson com offset ln E₀, uma única transição de dez anos.",
             "ln(E₁/E₀) = A + Oᵢ + Dᵣ<br>CE = (e^D̃ᵣ − 1)·Wᵣ",
             metrics(M),
             [sig_line(M), mc_line(M)],
             chart(CT, TC, comp(M), sig(M)),
-            "Seção 10 da nota, equação 18 de Knudsen (2000). Erros-padrão quase-Poisson (dispersão de Pearson), recentragem ponderada de D e conversão em empregos são adaptações da implementação. Na semente 42 tem a maior correlação de todas, mas no Monte Carlo fica atrás de Dunn com pesos-base em magnitude.",
+            "Seção 10 da nota, equação 18 de Knudsen (2000) — a forma com a extensão de Arcelus, que é o Modelo II (deslocamento regional), não a homotética do slide de Arcelus I. Dᵣ é a contraparte log-linear do deslocamento regional. Erros-padrão quase-Poisson (dispersão de Pearson), recentragem ponderada de D e conversão em empregos são adaptações da implementação. Na semente 42 tem a maior correlação de todas, mas no Monte Carlo fica atrás de Dunn com pesos-base em magnitude.",
         )
     )
     n += 1
@@ -1195,7 +1458,54 @@ def build_slides(D):
             metrics(M),
             [sig_line(M), mc_line(M)],
             chart(CT, TC, comp(M), sig(M)),
-            "Equação 19 de Knudsen (2000). A forma dinâmica acompanha quase exatamente a regressão full-analogue: as taxas competitivas se correlacionam a 0,99999. A dispersão estimada é cerca de 5, por isso a correção quase-Poisson importa.",
+            "Equação 19 de Knudsen (2000), a extensão de Arcelus (Modelo II) com a dimensão do tempo. A forma dinâmica acompanha quase exatamente a regressão full-analogue: as taxas competitivas se correlacionam a 0,99999. A dispersão estimada é cerca de 5, por isso a correção quase-Poisson importa.",
+        )
+    )
+    n += 1
+    slides.append(
+        wave_slide(
+            "espacial",
+            "Extensão espacial",
+            n,
+            "Extensão espacial · 2004",
+            "Vizinhos que não eram para existir",
+            "Nazara e Hewings (2004) atacam um pressuposto comum às três ondas: o de que "
+            "regiões vizinhas não interagem. Com uma matriz de pesos espaciais W, o país "
+            "deixa de ser a única referência — a vizinhança entra entre a região e a "
+            "média nacional, e o competitivo se parte em quanto a vizinhança supera o "
+            "país e quanto a região supera a vizinhança.",
+            [
+                (
+                    "Problema",
+                    (
+                        "Cada região é tratada como isolada, embora partilhe mercados de "
+                        "trabalho e transbordamentos com as vizinhas."
+                    ),
+                ),
+                (
+                    "Mudança",
+                    (
+                        "Matriz W de contiguidade; defasagem espacial (Wc)ᵣ e taxonomia de "
+                        "vinte estruturas de decomposição."
+                    ),
+                ),
+                (
+                    "Limite que sobra",
+                    (
+                        "Sensível à especificação de W e exige N grande: com 5 regiões o I "
+                        "de Moran não tem poder algum."
+                    ),
+                ),
+            ],
+            "Nos próximos dois slides: Nazara-Hewings estático e dinâmico. O I de Moran "
+            "é calculado sobre a taxa competitiva cᵣ = CEᵣ/E₀ᵣ, nunca sobre o emprego em "
+            "nível — em nível, o tamanho das UFs encobre inteiramente o padrão espacial.",
+            "Seção 11 da nota. A nota ilustra o cálculo com cinco UFs do Nordeste e um I "
+            "de Moran de −0,4852 contra E[I] = −0,25, explicitamente apresentado como "
+            "demonstração de cálculo e não como evidência: com n = 5 o teste não tem "
+            "poder. A simulação deste deck usa a matriz de contiguidade real das 27 UFs e "
+            "um processo SAR com rho = 0,5, de modo que existe dependência espacial "
+            "verdadeira a ser recuperada.",
         )
     )
     n += 1
@@ -1283,11 +1593,229 @@ def build_slides(D):
 </div>
 {rank_chart}
 {footer(n)}
-<aside>Monte Carlo de 50 sementes por cenário (results_montecarlo.csv), ordenado pelo nRMSE no cenário de estresse. Berzeg, Barff-Knight e Nazara-Hewings dinâmico têm o mesmo efeito competitivo total; Esteban-Marquillas e Arcelus também coincidem.</aside>
+<aside>Monte Carlo de 50 sementes por cenário (results_montecarlo.csv), ordenado pelo nRMSE no cenário de estresse. Berzeg, Barff-Knight e Nazara-Hewings dinâmico têm o mesmo efeito competitivo total; Esteban-Marquillas e Arcelus I também coincidem.</aside>
 </section>"""
     )
     n += 1
 
+    # five states: truth against estimate, case by case
+    COMP_TARGET = [m for m in NAMES if REC[m]["target"] == "true_comp"]
+    GRP = {
+        "well_allocated": "bem alocada",
+        "mis_allocated": "mal alocada",
+        "neutral": "neutra",
+    }
+    GRPS = D["group"]
+    idx = {r: i for i, r in enumerate(REGS)}
+    CBAR = T["c_bar"]
+
+    def mil(v):
+        """Employment-unit value in thousands of jobs."""
+        return v / 1000.0
+
+    def case_row(uf):
+        i = idx[uf]
+        vals = [comp(m)[i] for m in COMP_TARGET]
+        lo, hi = min(vals), max(vals)
+        errs = [abs(v - TC[i]) for v in vals]
+        return {
+            "uf": uf,
+            "grp": GRP[GRPS[i]],
+            "true": mil(TC[i]),
+            "rate": 100 * CBAR[i],
+            "alloc": mil(T["true_alloc"][i]),
+            "base": mil(comp("Classic Dunn (base wts)")[i]),
+            "term": mil(comp("Classic Dunn (terminal wts)")[i]),
+            "bk": mil(comp("Dynamic (Barff-Knight)")[i]),
+            "knud": mil(comp("Knudsen MDI (static)")[i]),
+            "lo": mil(lo),
+            "hi": mil(hi),
+            "span": mil(hi - lo),
+            "emin": mil(min(errs)),
+            "emax": mil(max(errs)),
+            "signs": sum(1 for v in vals if (v > 0) == (TC[i] > 0)),
+            "nsig": sum(
+                1
+                for m in (
+                    "Berzeg ANOVA (stochastic)",
+                    "Full-analogue regression",
+                    "Knudsen MDI (static)",
+                    "Knudsen MDI (dynamic)",
+                )
+                if not sig(m)[i]
+            ),
+        }
+
+    C = {uf: case_row(uf) for uf in ("AC", "ES", "GO", "MG", "AP")}
+    nvar = len(COMP_TARGET)
+    read = {
+        "AC": (
+            f"<b>Primeira colocada nas {nvar}</b> variantes \u2014 mas a faixa abre "
+            f"{br(C['AC']['span'], 1)} mil empregos, "
+            f"{pct(C['AC']['span'] / C['AC']['true'])} do valor verdadeiro."
+        ),
+        "ES": (
+            f"Mal alocada, <b>sinal correto nas {nvar}</b>. Knudsen erra "
+            f"{br(C['ES']['emin'], 1)} mil; Dunn com pesos-base, "
+            f"{br(C['ES']['emax'], 1)} mil."
+        ),
+        "GO": (
+            f"Aloca\u00e7\u00e3o de {br(C['GO']['alloc'], 1)} mil: <b>todas as {nvar}</b> "
+            f"subestimam a vantagem, de {br(C['GO']['emin'], 1)} a "
+            f"{br(C['GO']['emax'], 1)} mil."
+        ),
+        "MG": (
+            f"Taxa de {br(C['MG']['rate'], 2)}% contra {br(C['AC']['rate'], 2)}% do "
+            f"AC, e efeitos da mesma ordem em n\u00edvel: \u00e9 <b>escala</b>, n\u00e3o desempenho."
+        ),
+        "AP": (
+            f"Vantagem nula ({br(C['AP']['rate'], 2)}%): "
+            f"<b>{C['AP']['nsig']} dos 4</b> modelos inferenciais recusam "
+            f"signific\u00e2ncia a 5%."
+        ),
+    }
+    chead = [
+        ("UF", "5%", "left"),
+        ("Verdadeiro", "9%", "right"),
+        ("Dunn-base", "9%", "right"),
+        ("Terminal", "9%", "right"),
+        ("Barff-Knight", "10%", "right"),
+        ("Knudsen est.", "10%", "right"),
+        (f"Faixa das {nvar}", "12%", "right"),
+        ("O que o caso revela", "38%", "left"),
+    ]
+    crows = [
+        (
+            c["uf"],
+            br(c["true"], 1),
+            br(c["base"], 1),
+            br(c["term"], 1),
+            br(c["bk"], 1),
+            br(c["knud"], 1),
+            f"{br(c['lo'], 1)} a {br(c['hi'], 1)}",
+            read[c["uf"]],
+        )
+        for c in C.values()
+    ]
+    slides.append(
+        f"""<section id="casos" data-transition="fade" style="background:{BG};color:{INK};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:{BLUE}">S\u00edntese \u00b7 cinco casos</p>
+<h2 style="font-family:{SERIF};font-size:54px;font-weight:600;line-height:1.08">Cinco UFs, verdade e estimativa lado a lado</h2>
+<p style="font-size:26px;line-height:1.4;color:{SOFT}">Efeito competitivo em mil empregos, semente 42. A <i>faixa</i> \u00e9 o m\u00ednimo e o m\u00e1ximo entre as {nvar} variantes de alvo cl\u00e1ssico; Esteban-Marquillas, Arcelus I e E-M din\u00e2mico estimam outro alvo, o homot\u00e9tico.</p>
+{table_html(chead, crows, 23)}
+<p style="font-size:26px;line-height:1.4;color:{SOFT}"><b>Ordena\u00e7\u00e3o e sinal s\u00e3o consensuais; a magnitude n\u00e3o.</b> Onde a UF \u00e9 mal alocada (GO, ES) ou grande com taxa pequena (MG), o res\u00edduo absorve o que n\u00e3o deveria \u2014 e nenhuma variante de alvo cl\u00e1ssico corrige isso.</p>
+{footer(n)}
+<aside>Casos escolhidos entre as 27 UFs da semente 42 para cobrir os extremos e os defeitos conhecidos: AC (maior vantagem), ES (maior desvantagem), GO (m\u00e1 aloca\u00e7\u00e3o forte), MG (taxa pequena sobre base grande) e AP (vantagem praticamente nula). \u00c9 a mesma estrat\u00e9gia das Tabelas 4 a 7 da nota, que usam cinco UFs do Nordeste para exibir um caso de vantagem concentrada, um de desvantagem generalizada, um neutro e um de especializa\u00e7\u00e3o mal alocada \u2014 com a diferen\u00e7a de que aqui existe gabarito contra o qual comparar.</aside>
+</section>"""
+    )
+    n += 1
+    # what the approach delivers and where it fails
+    fortes = [
+        (
+            "Ordena\u00e7\u00e3o sobrevive a tudo",
+            (
+                f"Na semente 42, correla\u00e7\u00e3o com a verdade entre "
+                f"{br(min(REC[m]['pearson'] for m in COMP_TARGET), 2)} e "
+                f"{br(max(REC[m]['pearson'] for m in COMP_TARGET), 2)} nas {nvar} variantes, "
+                "e sinal correto em todas elas nos cinco casos do slide anterior."
+            ),
+        ),
+        (
+            "A identidade fecha",
+            (
+                "A soma dos componentes reproduz \u0394E \u00e0 precis\u00e3o de m\u00e1quina. Nada do "
+                "resultado depende de converg\u00eancia, ajuste ou escolha de estimador."
+            ),
+        ),
+        (
+            "A aloca\u00e7\u00e3o faz o que promete",
+            (
+                "As m\u00e9dias do efeito aloca\u00e7\u00e3o por grupo do DGP \u2014 bem alocadas, neutras, "
+                "mal alocadas \u2014 praticamente coincidem com as verdadeiras."
+            ),
+        ),
+        (
+            "A infer\u00eancia separa sinal de ru\u00eddo",
+            (
+                f"No AP, de vantagem verdadeira de {br(C['AP']['rate'], 2)}%, "
+                f"{C['AP']['nsig']} dos 4 modelos inferenciais recusam signific\u00e2ncia a 5%."
+            ),
+        ),
+        (
+            "A forma din\u00e2mica compensa volatilidade",
+            (
+                "Somar decomposi\u00e7\u00f5es anuais reduz o erro de magnitude, e a vantagem "
+                "sobre as formas est\u00e1ticas cresce no cen\u00e1rio de estresse."
+            ),
+        ),
+    ]
+    fracos = [
+        (
+            "Magnitude \u00e9 conven\u00e7\u00e3o",
+            (
+                f"Mudar s\u00f3 o ano de pondera\u00e7\u00e3o abre {br(C['AC']['span'], 1)} mil empregos "
+                f"de faixa no AC, {pct(C['AC']['span'] / C['AC']['true'])} do valor verdadeiro."
+            ),
+        ),
+        (
+            "O res\u00edduo absorve a m\u00e1 aloca\u00e7\u00e3o",
+            (
+                f"No GO, com aloca\u00e7\u00e3o de {br(C['GO']['alloc'], 1)} mil, todas as {nvar} "
+                f"variantes subestimam a vantagem em {br(C['GO']['emin'], 1)} a "
+                f"{br(C['GO']['emax'], 1)} mil."
+            ),
+        ),
+        (
+            "O n\u00edvel premia tamanho",
+            (
+                f"MG tem taxa de {br(C['MG']['rate'], 2)}% e AC de {br(C['AC']['rate'], 2)}%; "
+                "em empregos os dois efeitos ficam na mesma ordem. \u00c9 o defeito que E* corrige."
+            ),
+        ),
+        (
+            "Duas extens\u00f5es degeneram por \u00e1lgebra",
+            (
+                "Em Arcelus I, DN e EM s\u00e3o nulos por UF; em Arcelus II, o diferencial "
+                f"somado \u00e9 \u2212IM, com sinal correto em s\u00f3 "
+                f"{pct(REC['Arcelus II (static)']['diffshift_sign_acc'])} das UFs."
+            ),
+        ),
+        (
+            "Fora do laborat\u00f3rio, quase nada \u00e9 significativo",
+            (
+                "Na RAIS 2022\u20132025, de 27 UFs apenas 0 a 4 t\u00eam efeito competitivo "
+                "distingu\u00edvel de zero a 5% \u2014 e uma quebra de s\u00e9rie desloca mais que a "
+                "pior escolha de variante."
+            ),
+        ),
+    ]
+
+    def ledger(title, items, accent):
+        rows = "".join(
+            f'<p style="font-size:25px;line-height:1.4;color:{SOFT};'
+            f'border-top:1px solid {RULE};padding:16px 0px 0px 0px">'
+            f'<b style="color:{INK}">{a}</b> \u2014 {b}</p>'
+            for a, b in items
+        )
+        return (
+            f'<div style="flex:1;display:flex;flex-direction:column;gap:16px">'
+            f'<h3 style="font-size:34px;font-weight:600;color:{accent}">{title}</h3>'
+            f"{rows}</div>"
+        )
+
+    slides.append(
+        f"""<section id="balanco" data-transition="fade" style="background:{BG};color:{INK};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:30px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:{BLUE}">S\u00edntese \u00b7 balan\u00e7o</p>
+<h2 style="font-family:{SERIF};font-size:54px;font-weight:600;line-height:1.08">Pontos fortes e pontos fracos da abordagem</h2>
+<div style="display:flex;gap:56px">
+{ledger("O que a abordagem entrega", fortes, BLUE)}
+{ledger("Onde ela falha", fracos, ORANGE)}
+</div>
+{footer(n)}
+<aside>Lado esquerdo: o que a simula\u00e7\u00e3o confirma, com gabarito. Lado direito: as limita\u00e7\u00f5es da Se\u00e7\u00e3o 14 da nota, aqui quantificadas nos cinco casos do slide anterior. A limita\u00e7\u00e3o de fundo permanece a da Se\u00e7\u00e3o 1: a SSA \u00e9 uma identidade cont\u00e1bil, n\u00e3o um modelo causal, e nenhum destes resultados a torna preditiva. A pr\u00f3pria simula\u00e7\u00e3o tem um teto: nela o efeito competitivo verdadeiro \u00e9 constante no tempo, o que favorece todos os modelos.</aside>
+</section>"""
+    )
+    n += 1
     # Moran's I
     mor = D["moran"]
     true_I = mor[0]["morans_I"]
@@ -1396,6 +1924,64 @@ def build_slides(D):
 <aside>Nenhum destes resultados valida a SSA como ferramenta de previsão ou causal: ela continua sendo uma identidade contábil. A simulação mostra que os métodos funcionam quando existe verdade; a RAIS mostra onde o resultado é frágil quando não existe. A nota sugere, como próximos passos, testar outras matrizes W, vantagens específicas por setor com estrutura espacial e um passo de econometria espacial.</aside>
 </section>"""
     )
+    n += 1
+
+    # annex: the note's parameters beside this deck's
+    phead = [
+        ("Par\u00e2metro", "26%", "left"),
+        ("Nota metodol\u00f3gica (exemplo did\u00e1tico)", "36%", "left"),
+        ("Simula\u00e7\u00e3o deste deck", "38%", "left"),
+    ]
+    prows = [
+        ("Regi\u00f5es", "5: PI, CE, MA, BA, PE", "27 unidades federativas"),
+        (
+            "Setores",
+            "3: agropecu\u00e1ria, ind\u00fastria, servi\u00e7os",
+            "5 setores agregados",
+        ),
+        (
+            "Per\u00edodos",
+            "t\u2080 \u2192 t\u2081, dois pontos",
+            "10 anos, 9 transi\u00e7\u00f5es anuais",
+        ),
+        (
+            "Natureza dos dados",
+            "sint\u00e9ticos ilustrativos, sem verdade conhecida",
+            "sint\u00e9ticos com verdade embutida, semente 42",
+        ),
+        ("Repeti\u00e7\u00f5es", "nenhuma", "50 sementes \u00d7 2 cen\u00e1rios"),
+        (
+            "Subper\u00edodos din\u00e2micos",
+            "2, trajet\u00f3ria hipot\u00e9tica",
+            "9 subper\u00edodos anuais",
+        ),
+        (
+            "Regress\u00e3o de Berzeg",
+            "MQO, dummies de setor, sem pondera\u00e7\u00e3o",
+            "MQP nas taxas anuais, a vers\u00e3o que reproduz a identidade",
+        ),
+        (
+            "Modelo de Knudsen",
+            "GLM Poisson, offset ln E\u2080, refer\u00eancias BA e AGR",
+            "idem, com erros quase-Poisson (dispers\u00e3o \u2248 5 na forma din\u00e2mica)",
+        ),
+        (
+            "Vizinhan\u00e7a e I de Moran",
+            "contiguidade entre as 5 UFs, I sobre a taxa competitiva",
+            "contiguidade real das 27 UFs, rho = 0,5 no DGP, 999 permuta\u00e7\u00f5es",
+        ),
+    ]
+    slides.append(
+        f"""<section id="parametros" data-transition="fade" data-section="Anexo" style="background:{BG};color:{INK};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:{BLUE}">Anexo</p>
+<h2 style="font-family:{SERIF};font-size:54px;font-weight:600;line-height:1.08">Quadro de par\u00e2metros consolidados</h2>
+<p style="font-size:26px;line-height:1.4;color:{SOFT}">A nota mostra <i>como</i> cada f\u00f3rmula se deriva da anterior, com um exemplo pequeno o suficiente para conferir \u00e0 m\u00e3o; a simula\u00e7\u00e3o mede <i>quanto</i> cada f\u00f3rmula recupera, com um painel grande o suficiente para ter poder. Signific\u00e2ncia de 5% em ambas.</p>
+{table_html(phead, prows, 22)}
+{footer(n, "Se\u00e7\u00e3o 13 da nota metodol\u00f3gica \u00b7 ssa_dgp.py e run_comparison.py para a simula\u00e7\u00e3o")}
+<aside>Se\u00e7\u00e3o 13 da nota, com a coluna da simula\u00e7\u00e3o acrescentada. Duas diferen\u00e7as merecem aten\u00e7\u00e3o. A regress\u00e3o de Berzeg da nota \u00e9 estimada por MQO sem pondera\u00e7\u00e3o, que n\u00e3o reproduz a identidade cont\u00e1bil: segundo Knudsen (2000), as estimativas s\u00f3 coincidem sob MQP com pesos w = E\u2080/\u03a3E\u2080, que \u00e9 o que a simula\u00e7\u00e3o usa. E a nota, com 5 regi\u00f5es, n\u00e3o tem poder para o I de Moran nem para os testes t, limita\u00e7\u00e3o que ela pr\u00f3pria declara na Se\u00e7\u00e3o 14.</aside>
+</section>"""
+    )
+    n += 1
     return slides
 
 
@@ -1515,30 +2101,39 @@ def write_deck(slides, root):
                 "description": "O experimento e como ler os resultados",
                 "start": "cover",
             },
-            "classico": {
-                "description": "Decomposição clássica e a controvérsia dos pesos",
-                "start": "dunn",
+            "base": {
+                "description": "Linha de base: a identidade de Dunn e seu defeito central",
+                "start": "defeito",
             },
-            "homotetica": {
-                "description": "Reformulação homotética: Esteban-Marquillas e Arcelus",
-                "start": "em",
+            "onda1": {
+                "description": "Onda 1, homotética: Esteban-Marquillas, efeito alocação "
+                "e os dois modelos de Arcelus",
+                "start": "onda1",
             },
-            "dinamica": {"description": "Shift-share dinâmico", "start": "bk"},
-            "inferencial": {
-                "description": "Formas inferenciais: Berzeg, full-analogue e Knudsen",
-                "start": "berzeg",
+            "onda2": {
+                "description": "Onda 2, temporal: a controvérsia dos pesos e o "
+                "shift-share dinâmico",
+                "start": "onda2",
+            },
+            "onda3": {
+                "description": "Onda 3, inferencial: Berzeg, full-analogue e Knudsen",
+                "start": "onda3",
             },
             "espacial": {
                 "description": "Extensão espacial de Nazara-Hewings",
-                "start": "nh-s",
+                "start": "espacial",
             },
             "sintese": {
-                "description": "Síntese do Monte Carlo",
+                "description": "Monte Carlo, cinco casos de UF e o balanço da abordagem",
                 "start": "ranking",
             },
             "rais": {
                 "description": "As mesmas variantes na RAIS 2022–2025, sem gabarito",
                 "start": "rais-intro",
+            },
+            "anexo": {
+                "description": "Quadro de parâmetros consolidados",
+                "start": "parametros",
             },
         },
         "faces": FACES,

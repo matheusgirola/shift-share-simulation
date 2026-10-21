@@ -177,7 +177,7 @@ $$ NE_{ri} = \underbrace{E^{*}_{ri}\,g_n}_{EN_{ri}} + \underbrace{(E_{0,ri}-E^{*
 
 Somando a Equação 5 sobre os setores *i* de uma mesma região *r*, duas propriedades emergem diretamente da definição de $E^{*}$ na Equação 3: primeiro, $\sum_i (E_{0,ri}-E^{*}_{ri}) \equiv 0$ para qualquer região, porque o emprego homotético é construído para preservar exatamente o total regional ($\sum_i E^{*}_{ri}=E_{0,r\bullet}$); segundo, $\sum_i E^{*}_{ri}(g_{ni}-g_n) \equiv 0$ para qualquer região, porque os pesos $E^{*}_{ri}/E_{0,r\bullet}$ reproduzem exatamente as participações setoriais nacionais, e a média nacional ponderada por essas participações é, por definição, $g_n$. Segue que, somados por região, $DN_r \equiv 0$ e $EM_r \equiv 0$ **identicamente**, para qualquer conjunto de dados — não é um resultado deste exemplo específico, mas uma propriedade algébrica da construção. A Tabela 8 confirma isso numericamente.
 
-**Tabela 8 — Extensão de Arcelus (1984): totais regionais**
+**Tabela 8 — Arcelus I (Equação 5): totais regionais**
 
 | Região | $EN_r$ | $DN_r$ | $EM_r$ | $DM_r$ | $CE^{*}_r$ | $AE_r$ |
 |:---|---:|---:|---:|---:|---:|---:|
@@ -189,7 +189,45 @@ Somando a Equação 5 sobre os setores *i* de uma mesma região *r*, duas propri
 
 Fonte: elaboração própria, Equação 5.
 
-Em outras palavras: ao nível regional agregado (a soma sobre setores), a homotetização de $NE$ e $IM$ não produz informação nova — $EN_r$ reproduz $NE_r$ e $DM_r$ reproduz $IM_r$ da Tabela 4, célula a célula. O ganho analítico da homotetização, como Esteban-Marquillas já havia percebido, está concentrado no efeito competitivo, onde $(g_{ri}-g_{ni})$ varia célula a célula e não se anula ao somar. Esse resultado algébrico é consistente com — e ajuda a explicar — o achado empírico de Keil (1992), que, usando dados de Indiana (1977–1986), concluiu que as extensões homotéticas de Esteban-Marquillas e Arcelus "lançam pouca luz sobre o crescimento regional total" mesmo quando esclarecem taxas de indústrias individuais: o próprio arcabouço algébrico garante que dois dos quatro novos subcomponentes de Arcelus sejam nulos quando agregados por região. Arcelus (1984) propôs ainda um segundo modelo (Arcelus II), com um efeito de crescimento regional endógeno e um efeito de composição regional, que usa a taxa de crescimento *da própria região* como referência em vez da taxa nacional; por não termos acesso à formulação algébrica original da fonte primária, essa extensão é tratada aqui apenas conceitualmente, sem exemplo numérico — ver a ressalva na Seção 14.
+Em outras palavras: ao nível regional agregado (a soma sobre setores), a homotetização de $NE$ e $IM$ não produz informação nova — $EN_r$ reproduz $NE_r$ e $DM_r$ reproduz $IM_r$ da Tabela 4, célula a célula. O ganho analítico da homotetização, como Esteban-Marquillas já havia percebido, está concentrado no efeito competitivo, onde $(g_{ri}-g_{ni})$ varia célula a célula e não se anula ao somar. Esse resultado algébrico é consistente com — e ajuda a explicar — o achado empírico de Keil (1992), que, usando dados de Indiana (1977–1986), concluiu que as extensões homotéticas de Esteban-Marquillas e Arcelus "lançam pouca luz sobre o crescimento regional total" mesmo quando esclarecem taxas de indústrias individuais: o próprio arcabouço algébrico garante que dois dos quatro novos subcomponentes de Arcelus sejam nulos quando agregados por região. Arcelus (1984) propôs ainda um segundo modelo (Arcelus II), que não parte do emprego homotético, mas da taxa de crescimento *da própria região* como referência adicional; é a variante formalizada na Seção 7.4.
+
+### 7.4 Arcelus II: deslocamento regional e deslocamento diferencial
+
+O segundo modelo de Arcelus (1984) ataca um problema diferente do da Seção 7.2. Ali, a referência contra a qual cada célula é avaliada continua sendo nacional, e o que muda é o ponderador, substituído pelo emprego homotético. Aqui, o que muda é a própria referência: parte do desempenho de uma célula pode decorrer de a região inteira estar crescendo acima ou abaixo do país, e não de uma vantagem no setor $i$ especificamente. O modelo separa esses dois níveis, acrescentando à identidade de Dunn um **deslocamento regional** e um **deslocamento diferencial**, medido contra a taxa da própria região.
+
+Seja $g_r = (\sum_i E_{1,ri} - \sum_i E_{0,ri})/\sum_i E_{0,ri}$ a taxa de crescimento agregada da região $r$. A identidade passa a ter quatro termos:
+
+$$ \Delta E_{ri} = \underbrace{E_{0,ri}\,g_n}_{n_{ri}} + \underbrace{E_{0,ri}\,(g_{ni}-g_n)}_{s_{ri}} + \underbrace{E_{0,ri}\,(g_r-g_n)}_{r_{ri}} + \underbrace{E_{0,ri}\,\big[(g_{ri}-g_r)-(g_{ni}-g_n)\big]}_{d_{ri}} \tag{6} $$
+
+em que $n_{ri}$ e $s_{ri}$ são o crescimento nacional e a composição setorial da Equação 1, inalterados; $r_{ri}$ é o **deslocamento regional**, o quanto a célula se move por a região como um todo crescer acima ou abaixo do país; e $d_{ri}$ é o **deslocamento diferencial**, o quanto o setor $i$ se destaca *dentro* da região, líquido do que esse mesmo setor se destaca dentro do país. A soma dos quatro termos recupera $E_{0,ri}\,g_{ri} = \Delta E_{ri}$: os termos $g_n$, $g_{ni}$ e $g_r$ se cancelam dois a dois, e a identidade fecha à precisão de máquina, como a de Dunn.
+
+A relação com as Seções 4 e 7.2 é direta e vale célula a célula:
+
+$$ r_{ri} + d_{ri} = E_{0,ri}\,(g_{ri}-g_{ni}) = CE_{ri} \tag{7} $$
+
+Ou seja: **Arcelus II é uma partição do efeito competitivo de Dunn**, que ele reparte entre um componente de desempenho da região inteira e um componente de desempenho setorial líquido. Arcelus I, por contraste, não toca no competitivo total — ele repondera os componentes nacional e de composição pelo emprego homotético. São dois objetos distintos, e a confusão entre eles tem consequência prática, discutida na Seção 10.1: a "extensão de Arcelus" a que Knudsen (2000) recorre para construir suas formas probabilísticas é esta, a da Equação 6, não a da Equação 5.
+
+Somando a Equação 6 sobre os setores de uma mesma região, emerge uma propriedade algébrica análoga à da Seção 7.3, e igualmente desfavorável à extensão. Como $g_r$ é, por construção, a taxa que reproduz o total da região, vale $\sum_i E_{0,ri}(g_{ri}-g_r) \equiv 0$, e portanto:
+
+$$ d_r \equiv -\,IM_r, \qquad r_r \equiv IM_r + CE_r, \qquad \sum_r r_r \equiv 0 \tag{8} $$
+
+para qualquer conjunto de dados. Ao nível regional agregado, portanto, o deslocamento diferencial não é informação nova: é o efeito de composição setorial da Tabela 4 com o sinal trocado. E o deslocamento regional é a soma dos efeitos de composição e competitivo, isto é, todo o desvio da região em relação ao crescimento nacional. A Tabela 9 confirma as três identidades numericamente. A consequência prática aparece na simulação de 27 unidades federativas do projeto, cujo processo gerador constrói a taxa competitiva como $c_{ri} = \bar c_r + d_{ri}$ e portanto oferece gabarito separado para os dois deslocamentos: o deslocamento regional estimado recupera a vantagem verdadeira da região com correlação de 0,84, enquanto o diferencial, somado por região, tem correlação de −0,20, nRMSE de 1,16 e sinal correto em 44% das unidades — desempenho pior que o de chutar a média, exatamente como a identidade $d_r \equiv -IM_r$ prevê.
+
+**Tabela 9 — Arcelus II (Equação 6): totais regionais**
+
+| Região | $n_r$ | $s_r$ | $r_r$ | $d_r$ | $r_r+d_r$ | $CE_r$ (Tab. 4) |
+|:---|---:|---:|---:|---:|---:|---:|
+| PI | 101,96 | −9,62 | 12,04 | 9,62 | 21,65 | 21,65 |
+| CE | 163,14 | 8,79 | 32,86 | −8,79 | 24,07 | 24,07 |
+| MA | 91,77 | −16,52 | −39,77 | 16,52 | −23,25 | −23,25 |
+| BA | 230,44 | 0,85 | −3,44 | −0,85 | −4,29 | −4,29 |
+| PE | 191,69 | 16,49 | −1,69 | −16,49 | −18,18 | −18,18 |
+
+Fonte: elaboração própria, Equação 6 aplicada às Tabelas 1–3.
+
+A leitura substantiva, ainda assim, difere da de Dunn. Piauí e Ceará têm efeitos competitivos quase iguais (21,65 e 24,07), mas Arcelus II mostra que eles vêm de fontes opostas: no Ceará, o deslocamento regional (32,86) mais do que explica o total, e o diferencial o puxa para baixo (−8,79) — é um estado crescendo acima do país em bloco, não por um setor; no Piauí, o deslocamento regional é modesto (12,04) e quase metade do resultado é deslocamento diferencial (9,62), concentrado em serviços. Maranhão é o inverso simétrico do Ceará: um deslocamento regional fortemente negativo (−39,77) parcialmente compensado por um diferencial positivo. Essa é exatamente a distinção que a Seção 4 apontou como ausente no $CE_r$ de Dunn — e que Esteban-Marquillas responde por outro caminho, o da especialização.
+
+**Procedência da formalização.** O artigo original de Arcelus (1984) não foi consultado diretamente. A Equação 6 reproduz as equações 2, 2a, 2b e 2c de Knudsen (2000, p. 179), que apresenta essa identidade de quatro termos como "a extensão de Arcelus" e a credita a Arcelus (1984, *Growth and Change* 15:3–8) na referência [23] de sua lista. Trata-se, portanto, de uma fonte secundária, mas com a álgebra explícita e verificável — e verificada aqui, pelo fechamento da identidade e pelas três propriedades da Equação 8. Duas ressalvas. Primeira: as equações 1a–1c e 2a–2b aparecem impressas em Knudsen (2000) com $\acute{E}^{\,r}_i$, o emprego do **ano terminal**, como ponderador; com esses pesos a soma dos componentes dá $E_{1,ri}\,g_{ri}$, e não $\Delta E_{ri}$, de modo que a identidade não fecha. Esta nota adota $E_{0,ri}$, coerente com a Equação 1 e com a prática corrente. Segunda: Arcelus (1984) descreve seu segundo modelo em termos de efeitos de crescimento e de composição *regionais*; a correspondência desses nomes com $r_{ri}$ e $d_{ri}$ é a leitura natural da álgebra, mas não foi conferida contra a nomenclatura do original. Antes de qualquer uso formal, recomenda-se a consulta direta à fonte primária.
 
 ## 8 SHIFT-SHARE DINÂMICO: BARFF-KNIGHT (1988)
 
@@ -201,15 +239,15 @@ Todas as decomposições até aqui são "estáticas comparativas": comparam apen
 
 Particiona-se o intervalo $[t_0,t_1]$ em $K$ subperíodos. Para cada subperíodo $k$, calcula-se a decomposição clássica (Equação 1) usando o emprego do início do subperíodo como peso-base; o efeito competitivo dinâmico é a soma dos efeitos competitivos de cada subperíodo:
 
-$$ CE^{\text{din}}_{ri} = \sum_{k=1}^{K} E_{k-1,ri}\left(g^{(k)}_{ri}-g^{(k)}_{ni}\right) \tag{6} $$
+$$ CE^{\text{din}}_{ri} = \sum_{k=1}^{K} E_{k-1,ri}\left(g^{(k)}_{ri}-g^{(k)}_{ni}\right) \tag{9} $$
 
 em que $g^{(k)}_{ri}$ e $g^{(k)}_{ni}$ são as taxas regional-setorial e nacional-setorial calculadas apenas dentro do subperíodo $k$, com peso-base $E_{k-1,ri}$ (o emprego no início daquele subperíodo, não o do início do período total). Compara-se $CE^{\text{din}}_{ri}$ ao efeito competitivo estático $CE^{\text{est}}_{ri}$ (Equação 1, aplicada diretamente a $t_0$ e $t_1$) para medir a magnitude da distorção de trajetória.
 
 ### 8.3 Aplicação
 
-Para ilustrar, o intervalo $[t_0,t_1]$ foi dividido em dois subperíodos ($K=2$) com uma trajetória setorial deliberadamente desigual — crescimento industrial concentrado no primeiro subperíodo e crescimento de serviços concentrado no segundo, um padrão plausível de transição estrutural. A Tabela 9 compara o efeito competitivo dinâmico (soma dos dois subperíodos, Equação 6) ao estático (Equação 1).
+Para ilustrar, o intervalo $[t_0,t_1]$ foi dividido em dois subperíodos ($K=2$) com uma trajetória setorial deliberadamente desigual — crescimento industrial concentrado no primeiro subperíodo e crescimento de serviços concentrado no segundo, um padrão plausível de transição estrutural. A Tabela 10 compara o efeito competitivo dinâmico (soma dos dois subperíodos, Equação 9) ao estático (Equação 1).
 
-**Tabela 9 — Efeito competitivo: decomposição dinâmica versus estática, totais regionais**
+**Tabela 10 — Efeito competitivo: decomposição dinâmica versus estática, totais regionais**
 
 | Região | $CE^{\text{din}}_r$ (soma de 2 subperíodos) | $CE^{\text{est}}_r$ | Diferença |
 |:---|---:|---:|---:|
@@ -219,7 +257,7 @@ Para ilustrar, o intervalo $[t_0,t_1]$ foi dividido em dois subperíodos ($K=2$)
 | BA | −4,96 | −4,86 | −0,09 |
 | PE | −19,71 | −21,75 | 2,04 |
 
-Fonte: elaboração própria, Equações 1 e 6, com trajetória hipotética de dois subperíodos.
+Fonte: elaboração própria, Equações 1 e 9, com trajetória hipotética de dois subperíodos.
 
 A diferença entre as duas formas não é uniforme entre regiões — nem em magnitude, nem em sinal. Para Piauí e Ceará, a forma estática superestima o efeito competitivo em relação à forma dinâmica (diferenças negativas); para Maranhão e Pernambuco, ocorre o oposto: a forma estática *subestima* o desempenho competitivo real ao concentrar toda a comparação nos dois pontos extremos. Isso confirma, neste exemplo reduzido, a advertência de Barff e Knight (1988): a decomposição ponto a ponto pode inverter o sinal relativo da vantagem competitiva entre regiões dependendo de como a mudança estrutural se distribuiu dentro do intervalo, sobretudo quando o período é longo ou volátil.
 
@@ -233,19 +271,19 @@ Como observam Selting e Loveridge (1992), por ser uma identidade determinística
 
 Considere a regressão da taxa de crescimento regional-setorial em variáveis binárias (*dummies*) de setor, sem intercepto separado (conjunto completo de *dummies*):
 
-$$ g_{ri} = \sum_{i=1}^{N} \beta_i D_i + u_{ri} \tag{7} $$
+$$ g_{ri} = \sum_{i=1}^{N} \beta_i D_i + u_{ri} \tag{10} $$
 
 em que $D_i$ é uma *dummy* igual a 1 se a observação pertence ao setor $i$ e $\beta_i$, estimado por mínimos quadrados ordinários, é a média amostral de $g_{ri}$ no setor $i$ — o análogo, nesta formulação, do parâmetro de composição setorial $g_{ni}$. O resíduo $u_{ri} = g_{ri}-\hat\beta_i$ é a **taxa competitiva estimada**: sob a hipótese de erros normais e homocedásticos, a razão entre a média de $u_{ri}$ em uma região e seu erro-padrão segue distribuição *t* de Student,
 
-$$ t_r = \frac{\bar{u}_r}{s/\sqrt{n_r}} \tag{8} $$
+$$ t_r = \frac{\bar{u}_r}{s/\sqrt{n_r}} \tag{11} $$
 
-com $s$ o desvio-padrão residual do modelo (Equação 7) e $n_r$ o número de observações setoriais na região $r$ — permitindo testar $H_0: \bar u_r = 0$, isto é, se a região tem, em média, desempenho competitivo estatisticamente distinguível de zero.
+com $s$ o desvio-padrão residual do modelo (Equação 10) e $n_r$ o número de observações setoriais na região $r$ — permitindo testar $H_0: \bar u_r = 0$, isto é, se a região tem, em média, desempenho competitivo estatisticamente distinguível de zero.
 
 ### 9.3 Aplicação
 
-A Tabela 10 mostra a decomposição célula a célula da Equação 7 aplicada ao painel de 15 observações (5 regiões × 3 setores) das Tabelas 1–2. A Tabela 11 aplica o teste da Equação 8 por região.
+A Tabela 11 mostra a decomposição célula a célula da Equação 10 aplicada ao painel de 15 observações (5 regiões × 3 setores) das Tabelas 1–2. A Tabela 12 aplica o teste da Equação 11 por região.
 
-**Tabela 10 — Regressão de Berzeg: taxa observada, componente de composição estimado e resíduo competitivo**
+**Tabela 11 — Regressão de Berzeg: taxa observada, componente de composição estimado e resíduo competitivo**
 
 | Região | Setor | $g_{ri}$ | $\hat\beta_i$ (mix estimado) | $u_{ri}$ (competitivo) |
 |:---|:---|---:|---:|---:|
@@ -265,9 +303,9 @@ A Tabela 10 mostra a decomposição célula a célula da Equação 7 aplicada ao
 | PE | IND | 0,1500 | 0,1622 | −0,0122 |
 | PE | SER | 0,2500 | 0,3000 | −0,0500 |
 
-Fonte: elaboração própria, Equação 7, mínimos quadrados ordinários com 15 observações.
+Fonte: elaboração própria, Equação 10, mínimos quadrados ordinários com 15 observações.
 
-**Tabela 11 — Teste *t* do desempenho competitivo médio por região ($H_0: \bar u_r=0$; graus de liberdade = 12)**
+**Tabela 12 — Teste *t* do desempenho competitivo médio por região ($H_0: \bar u_r=0$; graus de liberdade = 12)**
 
 | Região | $\bar u_r$ | $t_r$ | valor-*p* |
 |:---|---:|---:|---:|
@@ -277,7 +315,7 @@ Fonte: elaboração própria, Equação 7, mínimos quadrados ordinários com 15
 | BA | −0,0067 | −0,2039 | 0,8418 |
 | PE | 0,0033 | 0,1008 | 0,9213 |
 
-Fonte: elaboração própria, Equação 8.
+Fonte: elaboração própria, Equação 11.
 
 Nenhuma região atinge significância convencional de 5% neste exemplo — o mais próximo é o Maranhão, com $t=-1,70$ e valor-*p*=0,11, sugerindo desvantagem competitiva sistemática, mas não conclusiva na amostra. Esse resultado ilustra, mais do que qualquer conclusão substantiva sobre as regiões fictícias, a própria lição metodológica da Seção 9.1: a decomposição clássica (Tabela 4) mostraria o efeito competitivo do Maranhão como um número aparentemente grande e "real" (−23,25), mas a formalização de Berzeg revela que, com apenas três observações setoriais por região, esse número não é estatisticamente distinguível de zero ao nível de 5% — exatamente o tipo de afirmação que a SSA clássica é incapaz de fazer e que o limiar de significância listado no Quadro de Parâmetros Consolidados (Seção 13) torna operacional.
 
@@ -287,19 +325,21 @@ Nenhuma região atinge significância convencional de 5% neste exemplo — o mai
 
 Knudsen (2000) classifica os métodos de SSA em três famílias: os modelos contábeis tradicionais, os modelos de análise de variância (ANOVA) e os modelos de teoria da informação. As duas últimas são as "duas formas probabilísticas" que o artigo apresenta. A primeira é a ANOVA de Berzeg (1978, 1984), que o autor reescreve nas versões simples, com a extensão de Arcelus e dinâmica (equações 4 a 6 do artigo). A segunda é o *shift-share* de teoria da informação, derivado do princípio de mínima informação discriminante (MDI) (equações 7 a 19), ao qual o artigo acrescenta um modelo misto, com variável exógena contínua, para mostrar a flexibilidade da abordagem (equações 20 a 24). A ideia de fundo é ler o problema da SSA como a partição da variação de uma tabela de contingência com três dimensões (setor, região e ano). Assim lida, a SSA é um caso particular da classe de modelos para dados tabulares agregados usada em planejamento, geografia e ciência regional, e passa a admitir testes de hipótese sobre a variação do emprego por região ou setor.
 
-O artigo também qualifica a equivalência entre a identidade contábil (Equação 1) e a forma ANOVA (Equação 7). As duas são matematicamente equivalentes, mas a regressão estimada não reproduz os componentes contábeis, por duas razões: ela é medida em taxas, e não em empregos, de modo que os termos diferem pelo fator $E_{0,ri}$; e seus erros são heterocedásticos. Segundo Knudsen (2000), Berzeg (1978, 1984) mostra que as estimativas coincidem quando se supõe $E[e_{ri}^2] = \sigma^2/w_{ri}$, com $w_{ri} = E_{0,ri}/\sum_{r,i}E_{0,ri}$, e se estima por mínimos quadrados ponderados. A regressão da Seção 9, estimada por mínimos quadrados ordinários sem ponderação, não tem essa propriedade: nela, a taxa $g_{ri}$ de uma célula de emprego-base pequeno, cuja variância tende a ser maior, pesa tanto quanto a de uma célula grande.
+**A "extensão de Arcelus" a que Knudsen se refere, aqui e em todo o artigo, é a identidade de quatro termos da equação 2 — deslocamento regional e deslocamento diferencial —, formalizada na Seção 7.4 desta nota, e não a decomposição homotética da Seção 7.2, que o artigo não utiliza.** A distinção importa porque as duas levam a objetos diferentes: o que a extensão acrescenta às formas probabilísticas é um efeito principal de região ($G_r$ na ANOVA, $D_r$ na forma informacional), que é a contraparte estatística do deslocamento regional $r_{ri}$ — não do efeito competitivo homotético $CE^{*}_r$ da Seção 6.
+
+O artigo também qualifica a equivalência entre a identidade contábil (Equação 1) e a forma ANOVA (Equação 10). As duas são matematicamente equivalentes, mas a regressão estimada não reproduz os componentes contábeis, por duas razões: ela é medida em taxas, e não em empregos, de modo que os termos diferem pelo fator $E_{0,ri}$; e seus erros são heterocedásticos. Segundo Knudsen (2000), Berzeg (1978, 1984) mostra que as estimativas coincidem quando se supõe $E[e_{ri}^2] = \sigma^2/w_{ri}$, com $w_{ri} = E_{0,ri}/\sum_{r,i}E_{0,ri}$, e se estima por mínimos quadrados ponderados. A regressão da Seção 9, estimada por mínimos quadrados ordinários sem ponderação, não tem essa propriedade: nela, a taxa $g_{ri}$ de uma célula de emprego-base pequeno, cuja variância tende a ser maior, pesa tanto quanto a de uma célula grande.
 
 Na comparação empírica do artigo (emprego do Bureau of Labor Statistics agregado nas divisões setoriais do BLS e nas nove divisões censitárias dos Estados Unidos, anos de 1970 e 1980), a forma informacional teve ajuste superior e discriminou melhor os parâmetros nos modelos simples e com a extensão de Arcelus: a porcentagem da *deviance* do modelo nulo explicada (PNMD, uma medida do tipo $R^2$) foi de 0,5163 e 0,6601, contra $R^2$ de 0,1836 e 0,2284 da ANOVA correspondente. Na forma dinâmica, o ajuste foi fraco nos dois casos (0,0258 contra 0,0111). O autor conclui com cautela. Os modelos informacionais exigem pouca manipulação prévia dos dados, permitem incorporar a informação disponível sob a forma de restrições, colocam a SSA no campo da análise estatística de dados tabulares nominais e parecem úteis em dados com poucos valores extremos grandes; em contrapartida, seus parâmetros são mais difíceis de interpretar e nem sempre ajustam melhor que a ANOVA.
 
 ### 10.2 Formalização
 
-**Forma I (ANOVA).** É a regressão da Equação 7 (Seção 9.2). Knudsen (2000) a escreve com intercepto, $g_{ri} = a + B_i + e_{ri}$ (sua equação 4), em que $a$ estima $g_n$, $B_i$ estima $g_{ni}-g_n$ e o erro $e_{ri}$ estima o termo competitivo $g_{ri}-g_{ni}$; a Equação 7 usa o conjunto completo de *dummies* de setor no lugar do intercepto, o que é apenas outra parametrização. A extensão de Arcelus acrescenta um efeito de região, $g_{ri} = a + B_i + G_r + e_{ri}$ (equação 5), e a forma dinâmica acrescenta ainda um efeito de período $V_k$ (equação 6). Sob normalidade dos erros, a razão entre cada parâmetro e seu erro-padrão segue a distribuição *t* de Student.
+**Forma I (ANOVA).** É a regressão da Equação 10 (Seção 9.2). Knudsen (2000) a escreve com intercepto, $g_{ri} = a + B_i + e_{ri}$ (sua equação 4), em que $a$ estima $g_n$, $B_i$ estima $g_{ni}-g_n$ e o erro $e_{ri}$ estima o termo competitivo $g_{ri}-g_{ni}$; a Equação 10 usa o conjunto completo de *dummies* de setor no lugar do intercepto, o que é apenas outra parametrização. A extensão de Arcelus acrescenta um efeito de região, $g_{ri} = a + B_i + G_r + e_{ri}$ (equação 5), com $G_r = g_r - g_n$ e $e_{ri} = (g_{ri}-g_r)-(g_{ni}-g_n)$ — isto é, exatamente o deslocamento regional e o deslocamento diferencial da Equação 6, agora em taxas e com o segundo deslocado para o termo de erro. A forma dinâmica acrescenta ainda um efeito de período $V_k$ (equação 6). Sob normalidade dos erros, a razão entre cada parâmetro e seu erro-padrão segue a distribuição *t* de Student.
 
 **Forma II (teoria da informação).** Sejam $q_{ri} = E_{0,ri}/\sum_{r,i}E_{0,ri}$ a distribuição *a priori* (participações no ano-base) e $p_{ri} = E_{1,ri}/\sum_{r,i}E_{1,ri}$ a distribuição *a posteriori* (participações no ano terminal). O ganho de informação de Kullback e Leibler (1951), equação 7 do artigo, mede a informação obtida ao observar $P$ dado $Q$:
 
 $$ I(P:Q) = \sum_{r,i} p_{ri}\,\ln\frac{p_{ri}}{q_{ri}} \tag{12} $$
 
-O modelo de mínima informação discriminante escolhe $P$ minimizando $I(P:Q)$ sujeito a restrições lineares que representam o que se sabe sobre a distribuição final, além de $\sum_{r,i}p_{ri}=1$ e $p_{ri}\ge 0$ (equação 8). O problema pode ser resolvido pelo dual, um programa geométrico sem restrições (equação 9), mas, com restrições de igualdade lineares, o método de Lagrange leva diretamente a um modelo log-linear em $p_{ri}$ (equação 10), e as quantidades resultantes são estimadores assintóticos de máxima verossimilhança. Na forma básica, a restrição fixa os totais setoriais, $\sum_r p_{ri} = o_i$ (equação 11), e a solução é $p_{ri} = q_{ri}\exp(a + o_i + f_{ri})$ (equação 12 do artigo). Na extensão de Arcelus, acrescenta-se a restrição dos totais regionais, $\sum_i p_{ri} = d_r$ (equação 15), e a solução passa a ser $p_{ri} = q_{ri}\exp(a + o_i + d_r + f_{ri})$ (equação 16). Reescrita em níveis de emprego (equação 17) e linearizada, ela dá a **forma estática** (equação 18 do artigo):
+O modelo de mínima informação discriminante escolhe $P$ minimizando $I(P:Q)$ sujeito a restrições lineares que representam o que se sabe sobre a distribuição final, além de $\sum_{r,i}p_{ri}=1$ e $p_{ri}\ge 0$ (equação 8). O problema pode ser resolvido pelo dual, um programa geométrico sem restrições (equação 9), mas, com restrições de igualdade lineares, o método de Lagrange leva diretamente a um modelo log-linear em $p_{ri}$ (equação 10), e as quantidades resultantes são estimadores assintóticos de máxima verossimilhança. Na forma básica, a restrição fixa os totais setoriais, $\sum_r p_{ri} = o_i$ (equação 11), e a solução é $p_{ri} = q_{ri}\exp(a + o_i + f_{ri})$ (equação 12 do artigo). Na extensão de Arcelus — a da Seção 7.4 —, acrescenta-se a restrição dos totais regionais, $\sum_i p_{ri} = d_r$ (equação 15), e a solução passa a ser $p_{ri} = q_{ri}\exp(a + o_i + d_r + f_{ri})$ (equação 16). Reescrita em níveis de emprego (equação 17) e linearizada, ela dá a **forma estática** (equação 18 do artigo):
 
 $$ \ln\frac{E_{1,ri}}{E_{0,ri}} = A + O_i + D_r + \ln F_{ri} \tag{13} $$
 
@@ -321,9 +361,9 @@ Os parâmetros são assintoticamente normais, de modo que a razão entre o coefi
 
 ### 10.3 Aplicação
 
-A Tabela 15 estima a forma estática (Equações 13 e 15) sobre o mesmo painel de 15 observações das Tabelas 1 e 2, com Bahia (a região "neutra" do exemplo) e Agropecuária como categorias de referência, isto é, como os níveis *aliased* de cada dimensão. Para manter a comparação com o artigo, os erros-padrão da tabela são os de máxima verossimilhança pura, com dispersão fixada em 1.
+A Tabela 13 estima a forma estática (Equações 13 e 15) sobre o mesmo painel de 15 observações das Tabelas 1 e 2, com Bahia (a região "neutra" do exemplo) e Agropecuária como categorias de referência, isto é, como os níveis *aliased* de cada dimensão. Para manter a comparação com o artigo, os erros-padrão da tabela são os de máxima verossimilhança pura, com dispersão fixada em 1.
 
-**Tabela 15 — Forma informacional estática de Knudsen (Equações 13 e 15): coeficientes, erro-padrão e teste de Wald**
+**Tabela 13 — Forma informacional estática de Knudsen (Equações 13 e 15): coeficientes, erro-padrão e teste de Wald**
 
 | Termo | Coeficiente ($\hat D_r$ ou $\hat O_i$) | Erro-padrão | $z$ | valor-*p* |
 |:---|---:|---:|---:|---:|
@@ -337,15 +377,15 @@ A Tabela 15 estima a forma estática (Equações 13 e 15) sobre o mesmo painel d
 
 Fonte: elaboração própria, Equações 13 e 15, GLM Poisson com *offset* $\ln E_{0,ri}$ e erros-padrão de máxima verossimilhança pura, 15 observações, 8 graus de liberdade residuais. *Deviance*/g.l. = 0,49; PNMD = 0,90.
 
-A razão *deviance*/g.l. de 0,49, e a dispersão de Pearson de valor semelhante ($\hat\phi \approx 0{,}50$), não indicam sobredispersão neste painel. Com os erros quase-Poisson que a implementação usa por padrão, os erros-padrão da Tabela 15 seriam multiplicados por $\hat\phi^{1/2} \approx 0{,}70$, e nenhuma conclusão mudaria: os efeitos regionais continuam não significativos a 5%, e os dois efeitos setoriais continuam significativos.
+A razão *deviance*/g.l. de 0,49, e a dispersão de Pearson de valor semelhante ($\hat\phi \approx 0{,}50$), não indicam sobredispersão neste painel. Com os erros quase-Poisson que a implementação usa por padrão, os erros-padrão da Tabela 13 seriam multiplicados por $\hat\phi^{1/2} \approx 0{,}70$, e nenhuma conclusão mudaria: os efeitos regionais continuam não significativos a 5%, e os dois efeitos setoriais continuam significativos.
 
 O primeiro resultado notável não está nos efeitos de região, mas nos de setor. Na Seção 9, os coeficientes setoriais da Forma I foram usados apenas como médias amostrais, sem teste; a Forma II testa formalmente a composição setorial e a rejeita como nula com folga (Indústria: $p=0,017$; Serviços: $p<0,001$). O componente de composição setorial deste exemplo não é apenas numericamente grande: é estatisticamente bem determinado, ao contrário do componente competitivo, discutido a seguir. O padrão lembra o resultado empírico de Knudsen (2000), em que a forma informacional discriminou melhor os parâmetros setoriais do que a ANOVA.
 
-Os efeitos de região reproduzem a conclusão substantiva da Seção 9: nenhuma região diverge de forma estatisticamente significativa da região de referência ao nível de 5%, e o Maranhão tem o coeficiente mais negativo do conjunto ($-0,0426$), embora com $p=0,420$, distante do limiar. A recentragem ponderada da implementação (Seção 10.2) mudaria o nível desses efeitos, porque subtrai a mesma constante de todos os $\hat D_r$, mas não as diferenças entre regiões nem sua ordenação. A Tabela 16 compara diretamente as duas formas.
+Os efeitos de região reproduzem a conclusão substantiva da Seção 9: nenhuma região diverge de forma estatisticamente significativa da região de referência ao nível de 5%, e o Maranhão tem o coeficiente mais negativo do conjunto ($-0,0426$), embora com $p=0,420$, distante do limiar. A recentragem ponderada da implementação (Seção 10.2) mudaria o nível desses efeitos, porque subtrai a mesma constante de todos os $\hat D_r$, mas não as diferenças entre regiões nem sua ordenação. A Tabela 14 compara diretamente as duas formas.
 
-**Tabela 16 — Comparação Forma I (ANOVA) versus Forma II (teoria da informação): efeito regional e significância**
+**Tabela 14 — Comparação Forma I (ANOVA) versus Forma II (teoria da informação): efeito regional e significância**
 
-| Região | Forma I: $\bar u_r$ (Tabela 11) | Forma I: valor-*p* | Forma II: $\hat D_r$ (rel. a BA) | Forma II: valor-*p* |
+| Região | Forma I: $\bar u_r$ (Tabela 12) | Forma I: valor-*p* | Forma II: $\hat D_r$ (rel. a BA) | Forma II: valor-*p* |
 |:---|---:|---:|---:|---:|
 | PI | 0,0253 | 0,459 | 0,0388 | 0,427 |
 | CE | 0,0343 | 0,319 | 0,0277 | 0,507 |
@@ -353,7 +393,7 @@ Os efeitos de região reproduzem a conclusão substantiva da Seção 9: nenhuma 
 | BA | −0,0067 | 0,842 | (referência) | — |
 | PE | 0,0033 | 0,921 | −0,0126 | 0,754 |
 
-Fonte: elaboração própria, Tabela 11 e Tabela 15.
+Fonte: elaboração própria, Tabela 12 e Tabela 13.
 
 As duas formas não são diretamente comparáveis célula a célula. A Forma I deixa a região no termo de erro e reporta o desvio médio de cada região em relação às médias setoriais não ponderadas, em unidades de taxa; a Forma II reporta um coeficiente log-multiplicativo relativo à Bahia. A comparação que o próprio Knudsen (2000) faz entre parâmetros regionais usa a ANOVA com efeito de região explícito (sua equação 5) frente à equação 18. Ainda assim, as duas formas concordam no essencial: Piauí e Ceará ficam acima da Bahia, o Maranhão é sempre o mais negativo, e nenhuma região é estatisticamente distinguível de zero, ou da referência, a 5%. Elas divergem nas posições intermediárias: o Ceará supera o Piauí na Forma I e fica atrás dele na Forma II, e Pernambuco fica acima da Bahia na Forma I e abaixo dela na Forma II.
 
@@ -369,23 +409,23 @@ Todas as reformulações anteriores tratam cada região como uma unidade isolada
 
 Seja $w_{rs}$ o elemento da matriz de pesos espaciais $W$ — aqui, contiguidade de fronteira terrestre entre as unidades federativas, padronizada em linha ($\sum_s w_{rs}=1$ para toda região $r$ com ao menos um vizinho). Define-se a **taxa competitiva** regional (para distinguir do efeito competitivo em nível, $CE_r$, que depende da escala de emprego da região):
 
-$$ c_r = \frac{CE_r}{E_{0,r\bullet}} \tag{9} $$
+$$ c_r = \frac{CE_r}{E_{0,r\bullet}} \tag{16} $$
 
 O componente espacial central da abordagem de Nazara-Hewings é a **defasagem espacial** da taxa competitiva — a média (ponderada pela contiguidade) da taxa competitiva das regiões vizinhas:
 
-$$ (Wc)_r = \sum_{s} w_{rs}\,c_s \tag{10} $$
+$$ (Wc)_r = \sum_{s} w_{rs}\,c_s \tag{17} $$
 
 A diferença $c_r - (Wc)_r$ indica se a região tem desempenho competitivo destoante de sua vizinhança imediata (positiva: melhor que os vizinhos; negativa: pior). Para testar se essa dependência espacial é sistemática — e não um artefato de amostra pequena —, calcula-se o **I de Moran global** sobre as taxas competitivas (nunca sobre o emprego em nível, cuja heterogeneidade de escala entre regiões mascara inteiramente o padrão espacial):
 
-$$ I = \frac{n}{S_0}\cdot\frac{z'Wz}{z'z}, \qquad z_r = c_r - \bar c, \qquad S_0=\sum_r\sum_s w_{rs} \tag{11} $$
+$$ I = \frac{n}{S_0}\cdot\frac{z'Wz}{z'z}, \qquad z_r = c_r - \bar c, \qquad S_0=\sum_r\sum_s w_{rs} \tag{18} $$
 
 com valor esperado sob a hipótese nula de aleatoriedade espacial $E[I]=-1/(n-1)$. Valores de $I$ acima de $E[I]$ indicam autocorrelação espacial positiva (regiões vizinhas com taxas competitivas parecidas); valores abaixo indicam autocorrelação negativa (vizinhos dissimilares).
 
 ### 11.3 Aplicação
 
-A malha de contiguidade das cinco regiões deste exemplo segue as fronteiras terrestres reais entre as unidades federativas: Piauí faz fronteira com as quatro demais (Ceará, Maranhão, Bahia e Pernambuco), Ceará e Pernambuco fazem fronteira entre si, e Bahia e Pernambuco também. Maranhão e Bahia, apesar de ambos vizinhos do Piauí, não fazem fronteira uma com a outra. A Tabela 12 apresenta a matriz padronizada em linha.
+A malha de contiguidade das cinco regiões deste exemplo segue as fronteiras terrestres reais entre as unidades federativas: Piauí faz fronteira com as quatro demais (Ceará, Maranhão, Bahia e Pernambuco), Ceará e Pernambuco fazem fronteira entre si, e Bahia e Pernambuco também. Maranhão e Bahia, apesar de ambos vizinhos do Piauí, não fazem fronteira uma com a outra. A Tabela 15 apresenta a matriz padronizada em linha.
 
-**Tabela 12 — Matriz de pesos espaciais $W$ (contiguidade de fronteira, padronizada em linha)**
+**Tabela 15 — Matriz de pesos espaciais $W$ (contiguidade de fronteira, padronizada em linha)**
 
 | | PI | CE | MA | BA | PE |
 |:---|---:|---:|---:|---:|---:|
@@ -397,7 +437,7 @@ A malha de contiguidade das cinco regiões deste exemplo segue as fronteiras ter
 
 Fonte: elaboração própria a partir de fronteiras terrestres reais entre as cinco unidades federativas (subconjunto ilustrativo; ver Seção 14).
 
-**Tabela 13 — Taxa competitiva local, defasagem espacial e hiato (Equações 9–10)**
+**Tabela 16 — Taxa competitiva local, defasagem espacial e hiato (Equações 16–17)**
 
 | Região | $c_r$ (taxa competitiva local) | $(Wc)_r$ (média dos vizinhos) | Hiato $c_r-(Wc)_r$ |
 |:---|---:|---:|---:|
@@ -407,9 +447,9 @@ Fonte: elaboração própria a partir de fronteiras terrestres reais entre as ci
 | BA | −0,38% | 1,20% | −1,58 p.p. |
 | PE | −1,93% | 2,32% | −4,25 p.p. |
 
-Fonte: elaboração própria, Equações 9 e 10.
+Fonte: elaboração própria, Equações 16 e 17.
 
-O caso do Maranhão é o mais informativo: sua taxa competitiva local é a mais negativa do conjunto (−5,17%), mas seu único vizinho na malha, o Piauí, tem a taxa mais positiva (4,33%) — um hiato de −9,5 pontos percentuais em relação à própria vizinhança. Isso é o oposto do padrão que a hipótese de *spillover* positivo prediria (vizinhos com desempenho parecido) e resulta, para este pequeno conjunto de cinco regiões, em um I de Moran global de $I=-0{,}4852$, abaixo do valor esperado sob aleatoriedade $E[I]=-0{,}25$ — um sinal de dissimilaridade, e não de agrupamento espacial positivo, entre vizinhos. Como discutido na Seção 14, um I de Moran com apenas cinco unidades tem poder estatístico praticamente nulo; o valor é reportado aqui unicamente para ilustrar o cálculo da Equação 11, não como evidência substantiva de dependência espacial.
+O caso do Maranhão é o mais informativo: sua taxa competitiva local é a mais negativa do conjunto (−5,17%), mas seu único vizinho na malha, o Piauí, tem a taxa mais positiva (4,33%) — um hiato de −9,5 pontos percentuais em relação à própria vizinhança. Isso é o oposto do padrão que a hipótese de *spillover* positivo prediria (vizinhos com desempenho parecido) e resulta, para este pequeno conjunto de cinco regiões, em um I de Moran global de $I=-0{,}4852$, abaixo do valor esperado sob aleatoriedade $E[I]=-0{,}25$ — um sinal de dissimilaridade, e não de agrupamento espacial positivo, entre vizinhos. Como discutido na Seção 14, um I de Moran com apenas cinco unidades tem poder estatístico praticamente nulo; o valor é reportado aqui unicamente para ilustrar o cálculo da Equação 18, não como evidência substantiva de dependência espacial.
 
 ## 12 SÍNTESE: A LÓGICA DA EVOLUÇÃO METODOLÓGICA
 
@@ -422,7 +462,8 @@ O Quadro 1 resume, para cada variante tratada, qual falha da variante anterior e
 | Dunn (1960) — clássico | (linha de base) | Identidade aditiva de 3 componentes | Efeito competitivo contaminado por estrutura; sem inferência |
 | Fuchs (1959) / pesos terminais | Viés do ano de ponderação | Média ou reversão de pesos | Sensibilidade permanece no efeito de alocação (Seção 6) |
 | Esteban-Marquillas (1972) | Contaminação estrutural do efeito competitivo | Emprego homotético; efeito de alocação | Sinal de $AE$ sensível à escolha de pesos (Herzog-Olsen, 1977) |
-| Arcelus (1984) | Homotetização restrita ao efeito competitivo | Extensão a todos os componentes | Dois dos quatro novos subcomponentes são nulos por construção ao nível regional (Seção 7.3) |
+| Arcelus (1984), Modelo I | Homotetização restrita ao efeito competitivo | Extensão da partição homotética a todos os componentes | Dois dos quatro novos subcomponentes são nulos por construção ao nível regional (Seção 7.3) |
+| Arcelus (1984), Modelo II | Competitivo de Dunn não distingue desempenho da região do desempenho do setor | Partição de $CE_r$ em deslocamento regional e diferencial, com $g_r$ como referência | Somado por região, o diferencial é $-IM_r$ por construção (Seção 7.4); base das formas probabilísticas de Knudsen (2000) |
 | Barff-Knight (1988) | Viés de ponto-a-ponto e crescimento composto | Soma de decomposições anuais/subperiódicas | Ainda determinístico; exige dados de alta frequência |
 | Berzeg (1978, 1984) | Impossibilidade de teste estatístico | Identidade recastada como ANOVA/regressão | Pressupõe normalidade; erro absorve toda variação não sistemática |
 | Knudsen (2000) | ANOVA heterocedástica, que depende de pesos impostos para reproduzir a identidade | *Shift-share* de mínima informação discriminante: modelo log-linear estimado por máxima verossimilhança (GLM de Poisson com *offset* pelo emprego-base) | Parâmetros em escala log, de interpretação mais difícil; erros de máxima verossimilhança pura exigem correção de dispersão (quase-Poisson) |
@@ -443,7 +484,7 @@ Fonte: elaboração própria, síntese das Seções 4 a 11.
 | Nível de significância de referência (Seção 9) | 5% |
 | Graus de liberdade da regressão de Berzeg | $n-k = 15-3 = 12$ |
 | Especificação do modelo de Knudsen (Seção 10) | Forma estática (equação 18 de Knudsen, 2000): GLM Poisson, ligação log, *offset* $\ln E_{0,ri}$, categorias de referência BA (região) e AGR (setor) |
-| Erros-padrão do modelo de Knudsen (Seção 10) | Máxima verossimilhança pura na Tabela 15; quase-Poisson ($\hat\phi$ = qui-quadrado de Pearson/g.l.) por padrão na implementação |
+| Erros-padrão do modelo de Knudsen (Seção 10) | Máxima verossimilhança pura na Tabela 13; quase-Poisson ($\hat\phi$ = qui-quadrado de Pearson/g.l.) por padrão na implementação |
 | Diagnóstico de dispersão (Seção 10) | $\hat\phi \gg 1$ indica sobredispersão; modelo binomial negativo como alternativa |
 | Critério de vizinhança espacial (Seção 11) | Contiguidade de fronteira terrestre real entre as 5 unidades federativas, padronizada em linha |
 | Base de cálculo do I de Moran (Seção 11) | Taxa competitiva $c_r=CE_r/E_{0,r\bullet}$, nunca o emprego em nível |
@@ -456,7 +497,7 @@ Fonte: elaboração própria, síntese das Seções 4 a 11.
 
 **Trajetória do exemplo dinâmico é arbitrária.** A divisão em dois subperíodos e a distribuição de crescimento setorial entre eles (Seção 8) foram escolhidas para exibir divergência entre a forma dinâmica e a estática, não estimadas a partir de nenhum processo real; a magnitude da divergência em uma aplicação empírica dependerá inteiramente da volatilidade e do comprimento do período analisado, como já advertiam Barff e Knight (1988).
 
-**Extensão de Arcelus II não formalizada numericamente.** O segundo modelo de Arcelus (1984), com efeitos de crescimento e composição regionais endógenos, é descrito apenas conceitualmente na Seção 7.3: a fonte primária do artigo original não foi consultada diretamente para esta nota, e uma reconstrução algébrica não verificada correria o risco de atribuir a Arcelus uma formulação que não é exatamente a sua. Recomenda-se, antes de qualquer uso formal dessa extensão, a consulta direta a Arcelus (1984), *Growth and Change* 15(1), pp. 3–8.
+**Arcelus II formalizado por fonte secundária.** A Seção 7.4 formaliza o segundo modelo de Arcelus (1984) a partir das equações 2, 2a, 2b e 2c de Knudsen (2000, p. 179), que as apresenta como "a extensão de Arcelus" e as credita ao original. A álgebra foi verificada aqui — a identidade fecha à precisão de máquina e as três propriedades da Equação 8 valem —, mas o artigo de Arcelus (1984), *Growth and Change* 15(1), pp. 3–8, não foi consultado diretamente. Duas ressalvas, detalhadas ao fim da Seção 7.4: os ponderadores impressos em Knudsen (2000) são os do ano terminal, com os quais a identidade não fecha, e esta nota adota os do ano-base; e a correspondência entre os nomes de Arcelus (efeitos de crescimento e de composição regionais) e os termos $r_{ri}$ e $d_{ri}$ é leitura da álgebra, não verificada contra a nomenclatura do original. O modelo está implementado em `ssa_models.arcelus_ii` e entra na comparação de recuperação do caderno.
 
 **Adaptações ao modelo de Knudsen (2000).** A Seção 10 foi conferida com o texto integral do artigo, e as equações que ela cita (4 a 6, 7 a 19 e 20 a 24) seguem a numeração do original. Três elementos não vêm do artigo, mas da implementação de referência do projeto: os erros-padrão quase-Poisson usados por padrão, a recentragem de $D_r$ para média ponderada nula e a conversão $(e^{D_r}-1)\,W_r$ em empregos. O artigo também não discute sobredispersão; a menção ao modelo binomial negativo vem de Flowerdew e Lovett (1989). A relação entre os parâmetros das Formas I e II segue a leitura $B_i = e^{O_i} - 1$, que difere da forma impressa no artigo, e o próprio autor não a encontrou com precisão nos dados (Seção 10.2). Por fim, o modelo misto com variável exógena contínua (equações 20 a 24) é apenas descrito, sem implementação nem exemplo numérico, e a forma dinâmica (equação 19) é formalizada mas não aplicada ao exemplo, cujas trajetórias de subperíodo da Seção 8 são hipotéticas.
 
@@ -514,4 +555,4 @@ SELTING, Anne C.; LOVERIDGE, Scott. **A summary of the literature on shift-share
 
 ---
 
-*Nota de transparência: este documento formaliza a extensão de Arcelus (1984) apenas para os componentes de crescimento nacional e composição setorial (Equação 5, Seção 7); o segundo modelo do mesmo autor (Arcelus II, com efeitos regionais endógenos) não foi verificado contra a fonte primária e é descrito apenas conceitualmente. A Seção 10 foi revisada com base no texto integral de Knudsen (2000): as equações do artigo são citadas pela numeração original, e as adaptações da implementação de referência (erros quase-Poisson, recentragem ponderada de $D_r$ e conversão em empregos) estão identificadas como tais na Seção 10.2 e na Seção 14. A referência a Rosenfeld (1959), citada na literatura secundária como um dos primeiros a apontar o defeito do efeito competitivo clássico, não pôde ser completada com periódico, volume e página exatos e é sinalizada como incompleta na lista de referências, em vez de inventada. Todos os valores numéricos das Tabelas 1 a 16 são sintéticos e devem ser validados como tal antes de qualquer circulação do documento; as medidas de ajuste citadas na Seção 10.1 são as reportadas por Knudsen (2000) para dados reais dos Estados Unidos.*
+*Nota de transparência: este documento formaliza os dois modelos de Arcelus (1984) — o Modelo I, homotético (Equação 5, Seção 7.2), e o Modelo II, de deslocamento regional (Equação 6, Seção 7.4) —, mas o Modelo II foi reconstruído a partir de Knudsen (2000, equações 2 a 2c), fonte secundária, sem consulta ao artigo original de Arcelus; a álgebra foi verificada, a nomenclatura não. A Seção 10 foi revisada com base no texto integral de Knudsen (2000): as equações do artigo são citadas pela numeração original, e as adaptações da implementação de referência (erros quase-Poisson, recentragem ponderada de $D_r$ e conversão em empregos) estão identificadas como tais na Seção 10.2 e na Seção 14. A referência a Rosenfeld (1959), citada na literatura secundária como um dos primeiros a apontar o defeito do efeito competitivo clássico, não pôde ser completada com periódico, volume e página exatos e é sinalizada como incompleta na lista de referências, em vez de inventada. Todos os valores numéricos das Tabelas 1 a 16 são sintéticos e devem ser validados como tal antes de qualquer circulação do documento; as medidas de ajuste citadas na Seção 10.1 são as reportadas por Knudsen (2000) para dados reais dos Estados Unidos.*

@@ -12,7 +12,7 @@ construction**, and then test which shift-share variant best recovers them.
 |---|---|
 | `brazil_geo.py` | Contiguity matrix of the 27 Brazilian states (real land borders) + Moran's I |
 | `ssa_dgp.py` | Data-generating process with embedded true parameters (optionally spatially autocorrelated) |
-| `ssa_models.py` | The shift-share variants (Dunn, Esteban-Marquillas, Arcelus, Barff-Knight dynamic, Berzeg ANOVA, full-analogue regression, Nazara-Hewings spatial static/dynamic, Knudsen information-theoretic static/dynamic) |
+| `ssa_models.py` | The shift-share variants (Dunn, Esteban-Marquillas, Arcelus I and II, Barff-Knight dynamic, Berzeg ANOVA, full-analogue regression, Nazara-Hewings spatial static/dynamic, Knudsen information-theoretic static/dynamic) |
 | `run_comparison.py` | Runs everything: single detailed run + 50-seed Monte Carlo in *benign*, *stress* (volatile) and *no_space* (ρ = 0) scenarios |
 | `results_single_run.csv` | Truth vs. estimates, seed 42 |
 | `results_recovery.csv` / `results_montecarlo.csv` / `results_morans_i.csv` | Recovery and spatial metrics |
@@ -125,25 +125,46 @@ benign / 0.247 stress, against 0.182 / 0.245). The static form, a single
 ten-year transition, lands behind classic Dunn with base weights on average
 (0.243 / 0.295 against 0.212 / 0.289).
 
+## Rebuilding the methodological note
+
+`nota_metodologica_shift_share_PT-BR.md` is the source. The PDF is produced
+with pandoc and xelatex (pdflatex fails on the U+2212 minus sign used in the
+tables):
+
+```
+pandoc nota_metodologica_shift_share_PT-BR.md   -o nota_metodologica_shift_share_PT-BR.pdf   --pdf-engine=xelatex --toc --toc-depth=2   -V colorlinks=true -V linkcolor=blue -V toccolor=blue   -V lang=pt-BR -V geometry:margin=1in
+```
+
 ## Scoring
 
 For each model, the estimated per-region **competitive effect** (the
 component the whole literature fights about) is compared to the truth with
 Pearson/Spearman correlation, normalized RMSE, and sign accuracy. Models in
-the homothetic family (E-M, Arcelus) are scored against the *homothetic*
-truth, since that is the object they claim to estimate. The inferential
+the homothetic family (E-M, Arcelus I) are scored against the *homothetic*
+truth, since that is the object they claim to estimate. Arcelus II is not in
+that family: it partitions Dunn's competitive effect into a regional and a
+differential shift, so its competitive column is scored against the ordinary
+truth, and the two shifts against their own. The inferential
 models (Berzeg ANOVA, full-analogue regression, Knudsen MDI) additionally get a power /
 false-flag diagnostic on their significance tests.
 
 ## Headline results (50-seed Monte Carlo)
 
+0. **Both Arcelus models degenerate in the regional aggregate, in different
+   places.** Model I's differential-national and expected-mix terms are
+   identically zero once summed over sectors; Model II's differential shift is
+   identically minus the industry-mix effect, so it recovers nothing of the
+   true within-region interaction (Pearson -0.20, nRMSE 1.16, sign accuracy
+   44% -- worse than guessing the mean), while its regional shift tracks the
+   true region-wide advantage at 0.84. Model II's competitive total is
+   identical to classic Dunn with base weights, to machine precision.
 1. **All variants rank regions almost identically** (Pearson ≈ 0.97–0.99) —
    consistent with Knudsen & Barff (1991): conventional and stochastic
    shift-share yield the same point conclusions.
 2. **Magnitudes differ, and the gap widens under stress.** By normalized
    RMSE the ordering is: dynamic E-M ≈ full-analogue regression ≈ dynamic
    Barff-Knight ≈ Berzeg ≈ dynamic Knudsen < classic (base weights) <
-   E-M/Arcelus static < static Knudsen < Fuchs average weights < terminal
+   E-M/Arcelus I static < static Knudsen < Fuchs average weights < terminal
    weights. Under the volatile scenario the
    terminal-weight variant's error roughly doubles relative to the dynamic
    models — echoing Ashby's (1970) criticism of Stilwell and the

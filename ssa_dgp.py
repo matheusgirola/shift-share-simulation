@@ -177,6 +177,13 @@ def generate_dataset(
     true_alloc = ((Ew - E_star[:, :, :T]) * c_ri[:, :, None]).sum(axis=(1, 2))
     true_comp_homothetic = (E_star[:, :, :T] * c_ri[:, :, None]).sum(axis=(1, 2))
 
+    # Arcelus II truth: c_ri = c_bar + d_ri by construction, so the region-
+    # wide advantage and the within-region, sector-specific deviation are the
+    # exact counterparts of the regional and differential shifts
+    true_reg_shift = (Ew * c_bar[:, None, None]).sum(axis=(1, 2))
+    true_diff_shift = (Ew * d_ri[:, :, None]).sum(axis=(1, 2))
+    assert np.allclose(true_reg_shift + true_diff_shift, true_comp)
+
     # Nazara-Hewings truth: split competitive rate into the neighborhood
     # average (W c) and the own-vs-neighborhood remainder (c - W c)
     Wc = W @ c_ri  # (R, I)
@@ -202,6 +209,8 @@ def generate_dataset(
             "true_comp": true_comp,
             "true_comp_homothetic": true_comp_homothetic,
             "true_alloc": true_alloc,
+            "true_reg_shift": true_reg_shift,
+            "true_diff_shift": true_diff_shift,
             "true_neigh": true_neigh,
             "true_own_net": true_own_net,
             "true_noise": true_noise,

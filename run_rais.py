@@ -47,15 +47,16 @@ from scipy import stats
 import rais_data as RD
 import ssa_models as M
 from brazil_geo import morans_i
-from run_comparison import run_all_models
+from run_comparison import HOMOTHETIC_MODELS, run_all_models
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 YEARS = (2022, 2023, 2024, 2025)
 REFERENCE = "Dynamic (Barff-Knight)"
 
 # models whose competitive effect is the structure-free (homothetic) one and
-# so is not directly comparable with the rest
-HOMOTHETIC = ("Esteban", "Arcelus")
+# so is not directly comparable with the rest (shared with run_comparison so
+# the two scripts never disagree about which model targets what)
+HOMOTHETIC = HOMOTHETIC_MODELS
 
 
 # ----------------------------------------------------------------------
@@ -102,9 +103,7 @@ def agreement_table(models, regions, reference=REFERENCE):
         rows.append(
             {
                 "model": name,
-                "target": "homothetic"
-                if any(h in name for h in HOMOTHETIC)
-                else "full",
+                "target": "homothetic" if name in HOMOTHETIC else "full",
                 "pearson_vs_ref": stats.pearsonr(x, ref)[0],
                 "spearman_vs_ref": stats.spearmanr(x, ref)[0],
                 "nrmse_vs_ref": np.sqrt(np.mean((x - ref) ** 2)) / np.std(ref),
@@ -116,14 +115,40 @@ def agreement_table(models, regions, reference=REFERENCE):
     return pd.DataFrame(rows).sort_values("nrmse_vs_ref").reset_index(drop=True)
 
 
+def distinct_competitive(models, regions):
+    """The full-effect variants, one per numerically distinct competitive
+    series, plus the aliases that were folded into each survivor.
+
+    Several variants are algebraically identical in this component -- the
+    static Nazara-Hewings split and Arcelus II both reproduce Dunn with base
+    weights, Berzeg and the dynamic Nazara-Hewings split both reproduce
+    Barff-Knight -- so counting them separately would weight the spread by
+    how many times the literature restates the same estimator. Equality is
+    tested numerically, not hard-coded, so the grouping follows the data.
+    """
+    series, alias = {}, {}
+    for name, est in models.items():
+        if name in HOMOTHETIC:
+            continue
+        v = est.set_index("region")["competitive"].reindex(regions)
+        for kept, u in series.items():
+            if np.allclose(v.values, u.values):
+                alias.setdefault(kept, []).append(name)
+                break
+        else:
+            series[name] = v
+    return series, alias
+
+
 def spread_table(models, regions):
     """Per state, the range of competitive effects across the full-effect
-    variants: the applied size of the choice-of-variant problem."""
-    full = {
-        n: e.set_index("region")["competitive"].reindex(regions)
-        for n, e in models.items()
-        if not any(h in n for h in HOMOTHETIC)
-    }
+    variants: the applied size of the choice-of-variant problem.
+
+    Duplicated estimators are folded together first (see
+    `distinct_competitive`): min, max and the sign flips are unaffected by
+    repetition, but the median is not.
+    """
+    full, _ = distinct_competitive(models, regions)
     df = pd.DataFrame(full)
     out = pd.DataFrame(
         {

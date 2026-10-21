@@ -32,6 +32,17 @@ from scipy import stats
 import ssa_models as M
 from ssa_dgp import generate_dataset
 
+# models whose "competitive" column is the structure-free (homothetic)
+# effect, and so must be scored against a different truth. Matched by exact
+# name: "Arcelus I" is a prefix of "Arcelus II", which is NOT homothetic.
+HOMOTHETIC_MODELS = frozenset(
+    {
+        "Esteban-Marquillas (static)",
+        "Arcelus I (static)",
+        "Dynamic Esteban-Marquillas",
+    }
+)
+
 
 # ----------------------------------------------------------------------
 def score(est, truth, est_col="competitive", true_col="true_comp"):
@@ -53,6 +64,7 @@ def run_all_models(data):
     out["Classic Dunn (avg wts, Fuchs)"] = M.classic_dunn(E, regs, "average")
     out["Esteban-Marquillas (static)"] = M.esteban_marquillas(E, regs)
     out["Arcelus I (static)"] = M.arcelus(E, regs)
+    out["Arcelus II (static)"] = M.arcelus_ii(E, regs)
     out["Dynamic (Barff-Knight)"] = M.dynamic_shift_share(E, regs)
     out["Dynamic Esteban-Marquillas"] = M.dynamic_em(E, regs)
     out["Berzeg ANOVA (stochastic)"] = M.berzeg_anova(E, regs)
@@ -71,8 +83,7 @@ def recovery_table(models, truth):
     rows = []
     for name, est in models.items():
         # which truth does this model's "competitive" target?
-        homothetic = ("Esteban" in name) or ("Arcelus" in name)
-        tc = "true_comp_homothetic" if homothetic else "true_comp"
+        tc = "true_comp_homothetic" if name in HOMOTHETIC_MODELS else "true_comp"
         rec = {"model": name, "target": tc, **score(est, truth, "competitive", tc)}
         # mix recovery where available
         if "mix" in est.columns:
@@ -85,6 +96,24 @@ def recovery_table(models, truth):
                 {
                     f"alloc_{k}": v
                     for k, v in score(est, truth, "allocation", "true_alloc").items()
+                }
+            )
+        # regional/differential split recovery (Arcelus II)
+        if "regional_shift" in est.columns:
+            rec.update(
+                {
+                    f"regshift_{k}": v
+                    for k, v in score(
+                        est, truth, "regional_shift", "true_reg_shift"
+                    ).items()
+                }
+            )
+            rec.update(
+                {
+                    f"diffshift_{k}": v
+                    for k, v in score(
+                        est, truth, "differential_shift", "true_diff_shift"
+                    ).items()
                 }
             )
         # spatial split recovery (Nazara-Hewings models)

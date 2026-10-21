@@ -16,6 +16,12 @@ Implemented variants
                          competitive effect + allocation effect (static).
 3. arcelus               Arcelus (1984, Model I): homothetic split of the
                          national and mix components (expected/differential).
+3b. arcelus_ii           Arcelus (1984, Model II): Dunn's competitive effect
+                         split into a regional shift (the region's own growth
+                         against the nation's) and a differential shift (the
+                         sector's standing inside the region, net of its
+                         standing inside the nation). No homothetic employment
+                         is involved; it is a different object from Model I.
 4. dynamic_shift_share   Barff & Knight (1988): classic identity computed
                          annually and summed.
 5. dynamic_em            Dynamic version of Esteban-Marquillas (annual
@@ -168,6 +174,66 @@ def arcelus(E, regions):
     out["total_explained"] = out[["national", "mix", "competitive", "allocation"]].sum(
         axis=1
     )
+    return out
+
+
+# ----------------------------------------------------------------------
+# 3b. Arcelus (1984), Model II: regional shift and differential shift
+# ----------------------------------------------------------------------
+def arcelus_ii(E, regions):
+    """Arcelus (1984, Model II): the competitive effect split by reference.
+
+    Model I (above) keeps the national reference and changes the weight,
+    swapping base employment for homothetic employment. Model II keeps the
+    weight and changes the reference: it adds the region's own growth rate
+    g_r, so that part of a cell's performance is attributed to the region
+    growing above or below the nation as a whole, and only the remainder to
+    the sector standing out inside that region:
+
+        r_ri = E0_ri (g_r - g_n)                       regional shift
+        d_ri = E0_ri [(g_ri - g_r) - (g_ni - g_n)]     differential shift
+
+    Cell by cell, r_ri + d_ri = E0_ri (g_ri - g_ni) = CE_ri: Model II is a
+    partition of Dunn's competitive effect, not a reweighting of the other
+    components, so its `competitive` column equals classic_dunn(..., "base").
+
+    Summed over the sectors of a region the two terms degenerate, because
+    sum_i E0_ri (g_ri - g_r) == 0 by the definition of g_r:
+
+        differential_shift_r == -mix_r        regional_shift_r == mix_r + CE_r
+
+    identically, for any dataset -- the counterpart, in Model II, of the two
+    vanishing subcomponents of Model I. The split carries information at the
+    cell level, not in the regional aggregate.
+
+    Source: the algebra follows Knudsen (2000), eqs. 2 and 2a-2c, which
+    presents it as "the Arcelus extension" and credits Arcelus (1984); the
+    primary source was not consulted. Knudsen prints terminal-year weights,
+    with which the identity does not close; base-year weights are used here,
+    consistently with classic_dunn.
+    """
+    T = E.shape[2] - 1
+    E0, ET = E[:, :, 0], E[:, :, T]
+    g_ri = _rates(E0, ET)
+    g_ni = ET.sum(0) / E0.sum(0) - 1.0
+    g_n = ET.sum() / E0.sum() - 1.0
+    g_r = ET.sum(1) / E0.sum(1) - 1.0
+
+    NE = (E0 * g_n).sum(1)
+    IM = (E0 * (g_ni - g_n)[None, :]).sum(1)
+    RS = (E0 * (g_r - g_n)[:, None]).sum(1)
+    DS = (E0 * ((g_ri - g_r[:, None]) - (g_ni - g_n)[None, :])).sum(1)
+    out = pd.DataFrame(
+        {
+            "region": regions,
+            "national": NE,
+            "mix": IM,
+            "regional_shift": RS,
+            "differential_shift": DS,
+            "competitive": RS + DS,
+        }
+    )
+    out["total_explained"] = out[["national", "mix", "competitive"]].sum(axis=1)
     return out
 
 
