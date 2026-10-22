@@ -14,10 +14,12 @@ results_*.csv files, so run run_comparison.py first if the models changed.
 Outputs (written next to this script):
   apresentacao_shift_share.html   standalone deck: arrow keys / click to
                                   navigate, N toggles speaker notes
-  --deck DIR                      also write the Slides-artifact files
+  --pdf                           also write apresentacao_shift_share.pdf
+                                  (one page per slide, needs Chrome)
+  --deck DIR                     also write the Slides-artifact files
                                   (DIR/project/deck.json, DIR/project/slides/)
 
-Run with: uv run python gerar_apresentacao.py [--deck DIR]
+Run with: uv run python gerar_apresentacao.py [--pdf] [--deck DIR]
 """
 
 import argparse
@@ -25,6 +27,8 @@ import json
 import math
 import os
 import re
+import shutil
+import subprocess
 from datetime import UTC, datetime
 
 import pandas as pd
@@ -578,7 +582,7 @@ def build_rais_slides(R, n, true_moran):
             n,
             "RAIS · antes de decompor",
             "A quebra de série vira efeito competitivo",
-            "A partir de 2023 a RAIS inteira passou a ser coletada pelo eSocial, e os vínculos públicos foram reclassificados: estatutários −907.224, contratos por lei municipal +927.463. Não é emprego criado; é a mesma pessoa em outra caixa.",
+            "Desde 2023 a RAIS vem do eSocial, e os vínculos públicos foram reclassificados: estatutários −907.224, contratos por lei municipal +927.463. É a mesma pessoa em outra caixa.",
             "A identidade não distingue "
             "<b>ficou competitivo</b> de <b>passou a declarar</b>",
             [
@@ -593,10 +597,6 @@ def build_rais_slides(R, n, true_moran):
                 "Crescimento da seção O, 2022–2025: "
                 + ", ".join(f"{r} {pp(g_o[r], 0)}" for r in worst)
                 + f", SP {pp(g_o['SP'], 0)}.",
-                (
-                    f"O DF sai de {br(sem[i_df] / 1000, 0)} para {br(com[i_df] / 1000, 0)} mil "
-                    "vínculos de “vantagem competitiva”."
-                ),
             ],
             single_chart(
                 "Efeito competitivo por UF, Barff-Knight (mil vínculos)",
@@ -608,6 +608,8 @@ def build_rais_slides(R, n, true_moran):
                     (ORANGE, "Com administração pública", False),
                 ],
             ),
+            f"O DF sai de {br(sem[i_df] / 1000, 0)} para {br(com[i_df] / 1000, 0)} mil "
+            "vínculos de “vantagem competitiva”. "
             "O efeito competitivo é um resíduo, e um resíduo absorve o que aparecer — inclusive erro de medida. Nenhuma das treze variantes se defende disso, e as inferenciais tampouco: a quebra é sistemática, não é ruído, e os erros-padrão medem ruído. A triagem que detecta o problema está na seção 13.1 do notebook: dispersão dos crescimentos entre UFs, seção por seção.",
             RAIS_SOURCE,
         )
@@ -624,7 +626,7 @@ def build_rais_slides(R, n, true_moran):
             n,
             "RAIS · a decomposição",
             "O efeito nacional domina; o estrutural é pequeno",
-            "A decomposição anual de Barff-Knight sobre 2022–2025, a variante mais defensável segundo o Monte Carlo. Em nenhuma UF a composição setorial chega a um quarto do efeito nacional.",
+            "Barff-Knight anual sobre 2022–2025, a variante mais defensável no Monte Carlo. Em nenhuma UF a composição chega a um quarto do efeito nacional.",
             "ΔE = nacional + estrutural + competitivo",
             [
                 (
@@ -638,7 +640,7 @@ def build_rais_slides(R, n, true_moran):
                 ),
             ],
             [
-                "Ganham dos próprios setores: "
+                "Ganham: "
                 + ", ".join(f"{REGS[i]} {br(bk[i] / 1000, 0)}" for i in top)
                 + " mil vínculos.",
                 "Perdem: "
@@ -760,17 +762,17 @@ def build_rais_slides(R, n, true_moran):
     ]
     pi_vals = [COMP[m][REGS.index("PI")] / 1000 for m in COMP]
     slides.append(
-        f"""<section id="rais-infer" data-transition="fade" style="background:{BG};color:{INK};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:36px">
+        f"""<section id="rais-infer" data-transition="fade" style="background:{BG};color:{INK};font-family:{SANS};padding:104px 128px 160px;display:flex;flex-direction:column;gap:20px">
 <p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:{BLUE}">RAIS · inferência</p>
 <h2 style="font-family:{SERIF};font-size:64px;font-weight:600;line-height:1.1">Quase nenhuma UF se distingue de zero</h2>
 {table_html([("Modelo", "34%", "left"), ("UFs signif. 5%", "22%", "right"), ("Quais", "44%", "right")], srows)}
-<p style="font-size:28px;line-height:1.45;color:{SOFT}">Na simulação, estes mesmos três modelos sinalizavam 100% das UFs de vantagem forte: havia sinal plantado e eles o encontravam. Nos dados reais, três anos de transição e 18 seções deixam variação intra-UF grande o bastante para que quase todas as diferenças regionais caibam dentro do erro-padrão.</p>
+<p style="font-size:28px;line-height:1.45;color:{SOFT}">Na simulação, estes três modelos sinalizavam 100% das UFs de vantagem forte. Nos dados reais, três anos e 18 seções deixam variação intra-UF grande o bastante para que quase todas as diferenças regionais caibam no erro-padrão.</p>
 <div style="display:flex;gap:20px;border-top:2px solid {INK};padding:18px 0px 0px 0px">
 {stat(br(min(pi_vals), 1) + " a " + br(max(pi_vals), 1), "mil vínculos: o competitivo do PI pelas treze variantes")}
 {stat("2,19 a 2,41", "t de Berzeg e das duas formas de Knudsen para o PI")}
 {stat("0,98", "t da regressão análoga completa para o PI")}
 </div>
-<p style="font-size:26px;line-height:1.45;color:{SOFT}">Mesmo no caso mais favorável dos dados, os métodos inferenciais não fecham entre si. As variantes determinísticas produzem 27 números por componente, todos aparentemente precisos, e sem erro-padrão não há como saber que a maioria não se distingue de zero.</p>
+<p style="font-size:26px;line-height:1.45;color:{SOFT}">Mesmo no caso mais favorável, os métodos inferenciais não fecham entre si. Sem erro-padrão, os 27 números das variantes determinísticas parecem precisos, e não há como saber que a maioria não se distingue de zero.</p>
 {footer_rais(n)}
 <aside>results_rais_significance.csv. É o argumento de Berzeg (1978) e de Knudsen (2000) com o sinal invertido em relação à simulação: lá a inferência confirmava o que havia; aqui ela desmente o que parecia haver. O diagnóstico qualitativo do slide da decomposição é, em grande parte, ruído com aparência de resultado.</aside>
 </section>"""
@@ -1174,15 +1176,15 @@ def build_slides(D):
             n,
             "Onda 1 · homotética · 1984",
             "Arcelus I: a partição homotética",
-            "Estende a partição homotética aos efeitos nacional e de composição. Somados por UF, dois dos quatro novos termos se anulam identicamente. Não confundir com o Modelo II do mesmo autor, que parte a competitividade usando a taxa da própria UF como referência — é esse que Knudsen (2000) usa, dois slides adiante.",
+            "Estende a partição homotética aos efeitos nacional e de composição. Somados por UF, dois dos quatro novos termos se anulam identicamente.",
             "NE = E*·gₙ + (E₀−E*)·gₙ<br>IM = E*·(gₙᵢ−gₙ) + (E₀−E*)·(gₙᵢ−gₙ)",
             metrics(M),
             [
                 mc_line(M),
-                "Na simulação, |DN| e |EM| ficam abaixo de 10⁻⁹ em todas as UFs: o efeito competitivo é o mesmo de Esteban-Marquillas.",
+                "Na simulação, |DN| e |EM| ficam abaixo de 10⁻⁹ em todas as UFs: o competitivo é o de Esteban-Marquillas.",
             ],
             chart(CTH, TH, comp(M)),
-            "Seção 7.2 da nota. A propriedade algébrica da Seção 7.3 aparece na simulação: o termo diferencial nacional e o termo esperado de composição somam zero por UF. Por isso Arcelus I e Esteban-Marquillas estático têm exatamente as mesmas estimativas e as mesmas métricas. O Modelo II (Seção 7.4) é outro objeto: reparte o competitivo de Dunn em deslocamento regional e diferencial, e tem slide próprio a seguir.",
+            "Não confundir com o Modelo II do mesmo autor, que parte a competitividade usando a taxa da própria UF como referência — é esse que Knudsen (2000) usa, dois slides adiante. Seção 7.2 da nota. A propriedade algébrica da Seção 7.3 aparece na simulação: o termo diferencial nacional e o termo esperado de composição somam zero por UF. Por isso Arcelus I e Esteban-Marquillas estático têm exatamente as mesmas estimativas e as mesmas métricas. O Modelo II (Seção 7.4) é outro objeto: reparte o competitivo de Dunn em deslocamento regional e diferencial, e tem slide próprio a seguir.",
         )
     )
     n += 1
@@ -1199,13 +1201,12 @@ def build_slides(D):
             metrics(M, "regshift_"),
             [
                 (
-                    "O competitivo total é <b>idêntico</b> ao de Dunn com pesos-base, "
-                    "à precisão de máquina: r + d = E₀·(g_rᵢ − gₙᵢ) célula a célula. "
-                    "O que o modelo acrescenta é a partição, não o total."
+                    "O competitivo total é <b>idêntico</b> ao de Dunn com pesos-base: "
+                    "r + d = E₀·(g_rᵢ − gₙᵢ) célula a célula. "
+                    "O modelo acrescenta a partição, não o total."
                 ),
                 (
-                    "Somado por UF, o deslocamento diferencial é −IM por construção, "
-                    "e as métricas mostram: r = "
+                    "Somado por UF, o diferencial é −IM por construção: r = "
                     f"{br(REC[M]['diffshift_pearson'])}, nRMSE = "
                     f"{br(REC[M]['diffshift_nrmse'], 2)}, sinal correto em "
                     f"{pct(REC[M]['diffshift_sign_acc'])}. Pior que chutar a média."
@@ -2008,6 +2009,13 @@ th { font-weight: 600; border-bottom: 2px solid #1C2733; }
   background: rgba(15, 21, 28, 0.94); color: #E6EAEE; font: 18px/1.5 -apple-system, Arial, sans-serif;
   padding: 20px 28px; display: none; }
 #notes.on { display: block; }
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { height: auto; overflow: visible; background: none; }
+  section { position: relative; visibility: visible; transform: none !important;
+    break-after: page; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  #counter, #notes { display: none; }
+}
 """
 
 STANDALONE_JS = """
@@ -2076,6 +2084,37 @@ def write_standalone(slides, path):
 """
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
+
+
+CHROME_CANDIDATES = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "google-chrome",
+    "chromium",
+]
+
+
+def write_pdf(html_path, pdf_path):
+    """Print the standalone deck with headless Chrome, one 1920x1080 page per
+    slide (the @media print rules in STANDALONE_CSS do the layout)."""
+    chrome = next(
+        (c for c in CHROME_CANDIDATES if os.path.exists(c) or shutil.which(c)), None
+    )
+    if chrome is None:
+        raise SystemExit("--pdf needs Google Chrome or Chromium installed")
+    subprocess.run(
+        [
+            chrome,
+            "--headless",
+            "--disable-gpu",
+            "--no-pdf-header-footer",
+            "--virtual-time-budget=15000",  # let the Google Fonts load
+            f"--print-to-pdf={pdf_path}",
+            "file://" + os.path.abspath(html_path),
+        ],
+        check=True,
+        capture_output=True,
+    )
 
 
 def write_deck(slides, root):
@@ -2147,12 +2186,19 @@ def write_deck(slides, root):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[1])
     ap.add_argument("--deck", help="also write the Slides-artifact files to DIR")
+    ap.add_argument(
+        "--pdf", action="store_true", help="also print the deck to PDF via Chrome"
+    )
     args = ap.parse_args()
 
     slides = build_slides(collect())
     out = os.path.join(HERE, "apresentacao_shift_share.html")
     write_standalone(slides, out)
     print(f"Saved: {out} ({len(slides)} slides)")
+    if args.pdf:
+        pdf = os.path.splitext(out)[0] + ".pdf"
+        write_pdf(out, pdf)
+        print(f"Saved: {pdf}")
     if args.deck:
         write_deck(slides, args.deck)
         print(f"Saved Slides-artifact files under {args.deck}/project/")
